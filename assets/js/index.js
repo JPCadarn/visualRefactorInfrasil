@@ -12,3 +12,11 @@ $.ajax({
 }).done(function() {
     $( this ).addClass( "done" );
 });
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+});
+
+$(document).ready(function(){
+    $('.tooltipped').tooltip();
+});
