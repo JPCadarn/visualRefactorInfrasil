@@ -1,7 +1,7 @@
 <?php
 
 if(!empty($_GET)){
-	switch($_GET['rota']){
+	switch($_GET['action']){
 		default:
 			echo json_encode([
 				'status' => 404,
@@ -10,7 +10,7 @@ if(!empty($_GET)){
 			break;			
 	}
 }elseif(!empty($_POST)){
-	switch($_POST['rota']){
+	switch($_POST['action']){
 		case 'testeId':
 			echo json_encode([
 				'status' => 200,
