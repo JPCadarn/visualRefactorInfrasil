@@ -15,7 +15,7 @@ if(!empty($_GET)){
 			echo json_encode([
 				'status' => 200,
 				'message' => 'deu boa ID'.$_POST['id']
-			])
+			]);
 		default:
 			echo json_encode([
 				'status' => 404,

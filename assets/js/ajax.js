@@ -3,16 +3,29 @@ $('.triggerModal').click(function(){
 	let dataRequest = {
 		action: action
 	}
-	$('#modal1 .modal-header').html('<h3>VAMOOOOOOO</h3>');
-	$('#modal1 .modal-content').html('<h5>pra frenteeeeeeee</h5>');
-	$('#modal1').modal('open');
-	// let request = $.ajax({
-	// 	url: 'action.php',
-	// 	type: 'POST',
-	// 	data: dataRequest,
-	// 	dataType: 'JSON'
-	// }).done(function(response){
-	// 	$('#modal1 .modal-content').html(response.html);
-	// 	$('#modal1').modal('open');
-	// });
+	let html = "<div id='modal1' class='modal'>" +
+		"<div class='modal-header'>" +
+		"<h2>Modal de testes</h2>" +
+		"</div>" +
+		"<div class='modal-content'>" +
+		"<h4>Modal Header</h4>" +
+		"  <p>A bunch of text</p>" +
+		"</div>" +
+		"<div class='modal-footer'>" +
+		"  <a href='#!' class='modal-close waves-effect waves-green btn-flat'>Agree</a>" +
+		"</div>" +
+		"</div>";
+	$.ajax({
+		url: 'action.php',
+		type: 'POST',
+		data: dataRequest,
+		dataType: 'JSON'
+	}).done(function(response){
+		let htmlAtual = $('.div-modal').html();
+		htmlAtual += html;
+		$('.div-modal').html(htmlAtual);
+		const elem = document.getElementById('modal1');
+		const instance = M.Modal.init(elem, {dismissible: false});
+		instance.open();
+	});
 });
