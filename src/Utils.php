@@ -9,4 +9,11 @@ class Utils
 
 		return $menor.', '.$maior;
 	}
+
+	public static function formatarData($data, $formato)
+	{
+		$Date = new DateTime($data);
+
+		return $Date->format($formato);
+	}
 }

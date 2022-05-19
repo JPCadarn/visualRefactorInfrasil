@@ -16,3 +16,10 @@
 	padding: 32px 48px 0px 48px;
 	border: 1px solid #EEE;
 }
+
+#toast-container {
+	top: auto !important;
+	left: auto !important;
+	bottom: 5%;
+	right:5%;
+}

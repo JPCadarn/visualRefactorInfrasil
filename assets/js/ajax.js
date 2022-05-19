@@ -13,12 +13,16 @@ $('.triggerModal').on('click', function(){
 		dataType: 'JSON'
 	}).done(function(response){
 		console.log(response);
-		let htmlAtual = $('.div-modal').html();
-		htmlAtual += response.html;
-		$('.div-modal').html(htmlAtual);
-		const elem = document.getElementById(response.idModal);
-		const instance = M.Modal.init(elem, {dismissible: false});
-		instance.open();
+		if(response.status !== 404) {
+			let htmlAtual = $('.div-modal').html();
+			htmlAtual += response.html;
+			$('.div-modal').html(htmlAtual);
+			const elem = document.getElementById(response.idModal);
+			const instance = M.Modal.init(elem, {dismissible: false});
+			instance.open();
+		}else{
+			M.toast({html: response.message, classes: "red darken-3 rounded"})
+		}
 	});
 });
 

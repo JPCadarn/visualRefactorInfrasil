@@ -18,7 +18,7 @@ class InfrasilHtml {
                 <tr>
                     <th>'.$ponte['id'].'</th>
                     <th>'.$ponte['nome'].'</th>
-                    <th>'.$ponte['data_construcao'].'</th>
+                    <th>'.Utils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
                 </tr>
             ';
         }
