@@ -13,3 +13,5 @@
 -> edit inspeções;
 -> classe Rankeamento;
 -> dark mode;
+-> validar navbars;
+-> validar campos formularios;

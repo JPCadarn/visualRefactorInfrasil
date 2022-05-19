@@ -2,7 +2,7 @@
 
 require_once('SessionService.php');
 
-class Utils{
+class Utils2{
 
 	public static function ordenarArrayMultiDimensional($array, $chave){
 		$colunas = array_column($array, $chave);

@@ -6,6 +6,7 @@ use Conexao;
 use Exception;
 use InfrasilHtml;
 use PDO;
+use Utils;
 
 class PontesService
 {
@@ -19,7 +20,7 @@ class PontesService
         $html = '';
         $pontes = [];
 
-        $limit = '0, 10';
+		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
         $sql = '
             SELECT 
                 pontes.id, 
