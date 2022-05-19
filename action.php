@@ -5,6 +5,7 @@ spl_autoload_register(function($class){
 });
 
 use Controllers\PontesController;
+use Controllers\UsuariosController;
 
 if(!empty($_GET)){
 	switch($_GET['action']){
@@ -20,6 +21,10 @@ if(!empty($_GET)){
 		case 'listarPontes':
 			$Controller = new PontesController();
             echo json_encode($Controller->listarPontes($_POST));
+            break;
+        case 'login':
+            $Controller = new UsuariosController();
+            echo json_encode($Controller->fazerLogin($_POST));
             break;
 		default:
 			echo json_encode([

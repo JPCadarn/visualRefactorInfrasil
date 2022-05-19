@@ -1,3 +1,15 @@
+<?php
+	spl_autoload_register(function($class){
+		require_once 'src\\'.$class.'.php';
+	});
+
+	use Services\SessionService;
+
+	if(empty(SessionService::getIdUsuarioLogado())){
+		header('Location: login.php');
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>

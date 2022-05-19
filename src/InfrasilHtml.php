@@ -5,7 +5,7 @@ class InfrasilHtml {
     {
         $idModal = 'modal'.$numeroModal;
 
-        $html = "<div id='$idModal' class='modal centered'>";
+        $html = "<div id='$idModal' class='modal center-align'>";
         $html .= "<div class='modal-header centered'>";
         $html .= "<h4>Estruturas Cadastradas</h4>";
         $html .= "</div>";

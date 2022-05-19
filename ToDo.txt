@@ -1,0 +1,16 @@
+-> login;
+-> grid agendamentos;
+-> grid inspeções;
+-> grid usuarios;
+-> grid clientes;
+-> form minha conta;
+-> create pontes;
+-> create agendamentos;
+-> create inspeções;
+-> create clientes;
+-> create usuarios;
+-> edit minha conta;
+-> edit agendamentos;
+-> edit inspeções;
+-> classe Rankeamento;
+-> dark mode;

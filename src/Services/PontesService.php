@@ -19,9 +19,7 @@ class PontesService
         $html = '';
         $pontes = [];
 
-        $con = new Conexao();
         $limit = '0, 10';
-        $this->conexao = $con->conectar();
         $sql = '
             SELECT 
                 pontes.id, 
@@ -39,7 +37,7 @@ class PontesService
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindParam(':idCliente', $idCliente, PDO::PARAM_INT);
             $stmt->execute();
-            $pontes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $pontes = $stmt->fetchAll();
             $this->conexao->commit();
         }catch (Exception $e){
             $mensagemErro = $e->getMessage();
@@ -85,5 +83,21 @@ class PontesService
     public function setIdCliente(int $idCliente): void
     {
         $this->idCliente = $idCliente;
+    }
+
+    /**
+     * @return PDO
+     */
+    public function getConexao(): PDO
+    {
+        return $this->conexao;
+    }
+
+    /**
+     * @param PDO $conexao
+     */
+    public function setConexao(PDO $conexao): void
+    {
+        $this->conexao = $conexao;
     }
 }

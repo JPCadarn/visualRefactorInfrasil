@@ -21,3 +21,25 @@ $('.triggerModal').on('click', function(){
 		instance.open();
 	});
 });
+
+$('#formLogin').on('submit', function (event) {
+	event.preventDefault();
+
+	let formData = {
+		usuario: $('#usuario').val(),
+		senha: $('#senha').val(),
+		action: 'login'
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: 'action.php',
+		data: formData,
+		dataType: 'JSON',
+		encode: true
+	}).done(function (response) {
+		if (response.status == 200 && response.type == 'success'){
+			window.location.href = 'index.php';
+		}
+	});
+});

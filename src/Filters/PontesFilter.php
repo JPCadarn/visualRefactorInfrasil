@@ -2,15 +2,16 @@
 
 namespace Filters;
 
-class PontesFilter
+class PontesFilter extends AbstractFilter
 {
     public static function listarPontesFilter($dadosRequisicao)
     {
-        $dadosFiltrados = [];
+        $filtros = [
+			'page' => FILTER_SANITIZE_NUMBER_INT,
+			'numeroModal' => FILTER_SANITIZE_NUMBER_INT
+		];
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
 
-        $dadosFiltrados['page'] = $dadosRequisicao['page'];
-        $dadosFiltrados['numeroModal'] = $dadosRequisicao['numeroModal'];
-
-        return $dadosFiltrados;
+        return parent::limparCamposRequisicao($dadosFiltrados);
     }
 }

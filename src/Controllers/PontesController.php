@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Conexao;
 use Filters\PontesFilter;
 use Services\PontesService;
 
@@ -12,14 +13,17 @@ class PontesController
 
     /**
      * Método para listar todas as pontes, filtrando por idCliente e idUsuario
-     * @return string
-     */
+     * @return array
+	 */
     public function listarPontes($dadosRequisicao)
     {
+        $conexao = Conexao::conectar();
         $PontesService = new PontesService();
-        $dadosRequisicao = PontesFilter::listarPontesFilter($dadosRequisicao);
+        $PontesService->setConexao($conexao);
 
-        return $PontesService->listarPontes($dadosRequisicao);
+        $dadosFiltrados = PontesFilter::listarPontesFilter($dadosRequisicao);
+
+        return $PontesService->listarPontes($dadosFiltrados);
     }
 
     /**
