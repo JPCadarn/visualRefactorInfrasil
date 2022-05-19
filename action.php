@@ -4,6 +4,7 @@ spl_autoload_register(function($class){
     require_once 'src\\'.$class.'.php';
 });
 
+use Controllers\AgendamentosController;
 use Controllers\PontesController;
 use Controllers\UsuariosController;
 
@@ -22,6 +23,10 @@ if(!empty($_GET)){
 			$Controller = new PontesController();
             echo json_encode($Controller->listarPontes($_POST));
             break;
+		case 'listarAgendamentos':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->listarAgendamentos($_POST));
+			break;
         case 'login':
             $Controller = new UsuariosController();
             echo json_encode($Controller->fazerLogin($_POST));

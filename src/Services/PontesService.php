@@ -11,13 +11,9 @@ use Utils;
 class PontesService
 {
     private PDO $conexao;
-    private int $idUsuario;
-    private int $idCliente;
 
     public function listarPontes($dadosRequisicao)
     {
-        $_SESSION['idCliente'] = 1;
-        $html = '';
         $pontes = [];
 
 		$limit = Utils::getLimitGrid($dadosRequisicao['page']);

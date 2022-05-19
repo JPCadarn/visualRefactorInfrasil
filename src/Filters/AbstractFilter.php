@@ -4,7 +4,7 @@ namespace Filters;
 
 class AbstractFilter
 {
-    public static function limparCamposRequisicao($camposRequisicao)
+    protected static function limparCamposRequisicao($camposRequisicao)
     {
 		return array_map('htmlspecialchars', $camposRequisicao);
     }
