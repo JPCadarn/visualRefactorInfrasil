@@ -1,0 +1,15 @@
+----IMEDIATOS----
+	- Revisar explode('models') nas imagens da ponte;
+	- Testar deploy;
+	- Validar acesso páginas sem login;
+	- Implementar favicon e título página;
+	- Colocar addslashes nas coisas;
+
+----FUTUROS----
+	- Refazer banco p/ usar bind;
+	- REFAZER DASHBOARD HORRIVEL;
+	- Ajustar slideshow detalhes pontes;
+	- API;
+	- Breadcrumbs;
+	- Preenchimento automático de endereço via CEP;
+	- Implementar dark mode;

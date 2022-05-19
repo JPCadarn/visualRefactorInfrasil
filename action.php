@@ -1,5 +1,11 @@
 <?php
 
+spl_autoload_register(function($class){
+    require_once 'src\\'.$class.'.php';
+});
+
+use Controllers\PontesController;
+
 if(!empty($_GET)){
 	switch($_GET['action']){
 		default:
@@ -11,11 +17,10 @@ if(!empty($_GET)){
 	}
 }elseif(!empty($_POST)){
 	switch($_POST['action']){
-		case 'testeId':
-			echo json_encode([
-				'status' => 200,
-				'message' => 'deu boa ID'.$_POST['id']
-			]);
+		case 'listarPontes':
+			$Controller = new PontesController();
+            echo json_encode($Controller->listarPontes($_POST));
+            break;
 		default:
 			echo json_encode([
 				'status' => 404,
