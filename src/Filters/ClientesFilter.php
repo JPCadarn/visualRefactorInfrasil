@@ -2,7 +2,7 @@
 
 namespace Filters;
 
-class ClientesFilter
+class ClientesFilter extends AbstractFilter
 {
 
 }

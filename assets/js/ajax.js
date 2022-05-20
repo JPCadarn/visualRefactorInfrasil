@@ -18,7 +18,9 @@ $('.triggerModal').on('click', function(){
 			htmlAtual += response.html;
 			$('.div-modal').html(htmlAtual);
 			const elem = document.getElementById(response.idModal);
-			const instance = M.Modal.init(elem, {dismissible: false});
+			const instance = M.Modal.init(elem, {
+				dismissible: false
+			});
 			instance.open();
 		}else{
 			M.toast({html: response.message, classes: "red darken-3 rounded"})
