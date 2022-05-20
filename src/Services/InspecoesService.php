@@ -7,10 +7,8 @@ use InfrasilHtml;
 use PDO;
 use Utils;
 
-class InspecoesService
+class InspecoesService extends AbstractService
 {
-	private PDO $conexao;
-
 	public function listarInspecoes($dadosRequisicao)
 	{
 		$inspecoes = [];
@@ -51,21 +49,5 @@ class InspecoesService
 			'status' => 200,
 			'idModal' => $grid['idModal']
 		];
-	}
-
-	/**
-	 * @return PDO
-	 */
-	public function getConexao(): PDO
-	{
-		return $this->conexao;
-	}
-
-	/**
-	 * @param PDO $conexao
-	 */
-	public function setConexao(PDO $conexao): void
-	{
-		$this->conexao = $conexao;
 	}
 }

@@ -3,12 +3,12 @@
 namespace Services;
 
 use Exception;
+use InfrasilHtml;
 use PDO;
+use Utils;
 
-class UsuariosService
+class UsuariosService extends AbstractService
 {
-	private PDO $conexao;
-
 	public function fazerLogin($dadosLogin)
 	{
 		$sql = '
@@ -50,19 +50,34 @@ class UsuariosService
 		}
 	}
 
-	/**
-	 * @return PDO
-	 */
-	public function getConexao (): PDO
+	public function listarUsuarios($dadosRequisicao)
 	{
-		return $this->conexao;
-	}
+		$usuarios = [];
 
-	/**
-	 * @param PDO $conexao
-	 */
-	public function setConexao (PDO $conexao): void
-	{
-		$this->conexao = $conexao;
+		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
+		$sql = '
+			SELECT id, nome, email, tipo
+			FROM usuarios
+			WHERE id_cliente = :idCliente
+			LIMIT '.$limit;
+		$idCliente = SessionService::getIdClienteLogado();
+
+		try{
+			$this->conexao->beginTransaction();
+			$statement = $this->conexao->prepare($sql);
+			$statement->bindParam('idCliente', $idCliente);
+			$statement->execute();
+			$usuarios = $statement->fetchAll();
+
+			$grid = InfrasilHtml::montarGridUsuarios($usuarios, ($dadosRequisicao['numeroModal'] + 1));
+
+			return [
+				'html' => $grid['html'],
+				'status' => 200,
+				'idModal' => $grid['idModal']
+			];
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+		}
 	}
 }

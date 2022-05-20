@@ -7,10 +7,8 @@ use InfrasilHtml;
 use PDO;
 use Utils;
 
-class AgendamentosService
+class AgendamentosService extends AbstractService
 {
-	private PDO $conexao;
-
 	public function listarAgendamentos(array $dadosRequisicao)
 	{
 		$agendamentos = [];
@@ -47,21 +45,5 @@ class AgendamentosService
 			'status' => 200,
 			'idModal' => $grid['idModal']
 		];
-	}
-
-	/**
-	 * @return PDO
-	 */
-	public function getConexao(): PDO
-	{
-		return $this->conexao;
-	}
-
-	/**
-	 * @param PDO $conexao
-	 */
-	public function setConexao(PDO $conexao): void
-	{
-		$this->conexao = $conexao;
 	}
 }

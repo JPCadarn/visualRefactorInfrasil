@@ -1,6 +1,4 @@
--> grid inspeções;
--> grid usuarios;
--> grid clientes;
+-> adicionar actions nas grids;
 -> form minha conta;
 -> create pontes;
 -> create agendamentos;
@@ -10,7 +8,9 @@
 -> edit minha conta;
 -> edit agendamentos;
 -> edit inspeções;
+-> implementar paginas;
 -> classe Rankeamento;
--> dark mode;
 -> validar navbars;
 -> validar campos formularios;
+-> validar tipos de usuario;
+-> dark mode;

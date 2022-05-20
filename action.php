@@ -5,6 +5,7 @@ spl_autoload_register(function($class){
 });
 
 use Controllers\AgendamentosController;
+use Controllers\ClientesController;
 use Controllers\InspecoesController;
 use Controllers\PontesController;
 use Controllers\UsuariosController;
@@ -31,6 +32,14 @@ if(!empty($_GET)){
 		case 'listarInspecoes':
 			$Controller = new InspecoesController();
 			echo json_encode($Controller->listarInspecoes($_POST));
+			break;
+		case 'listarUsuarios':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->listarUsuarios($_POST));
+			break;
+		case 'listarClientes':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->listarClientes($_POST));
 			break;
         case 'login':
             $Controller = new UsuariosController();

@@ -8,10 +8,8 @@ use InfrasilHtml;
 use PDO;
 use Utils;
 
-class PontesService
+class PontesService extends AbstractService
 {
-    private PDO $conexao;
-
     public function listarPontes($dadosRequisicao)
     {
         $pontes = [];
@@ -48,53 +46,5 @@ class PontesService
             'status' => 200,
             'idModal' => $grid['idModal']
         ];
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdUsuario(): int
-    {
-        return $this->idUsuario;
-    }
-
-    /**
-     * @param int $idUsuario
-     */
-    public function setIdUsuario(int $idUsuario): void
-    {
-        $this->idUsuario = $idUsuario;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdCliente(): int
-    {
-        return $this->idCliente;
-    }
-
-    /**
-     * @param int $idCliente
-     */
-    public function setIdCliente(int $idCliente): void
-    {
-        $this->idCliente = $idCliente;
-    }
-
-    /**
-     * @return PDO
-     */
-    public function getConexao(): PDO
-    {
-        return $this->conexao;
-    }
-
-    /**
-     * @param PDO $conexao
-     */
-    public function setConexao(PDO $conexao): void
-    {
-        $this->conexao = $conexao;
     }
 }
