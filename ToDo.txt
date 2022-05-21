@@ -1,11 +1,9 @@
--> adicionar actions nas grids;
--> form minha conta;
 -> create pontes;
 -> create agendamentos;
 -> create inspeções;
 -> create clientes;
 -> create usuarios;
--> edit minha conta;
+-> form minha conta;
 -> edit agendamentos;
 -> edit inspeções;
 -> implementar paginas;

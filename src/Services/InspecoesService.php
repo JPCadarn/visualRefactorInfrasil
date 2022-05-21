@@ -30,6 +30,7 @@ class InspecoesService extends AbstractService
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 			WHERE clientes.id = :idCliente
 			LIMIT '.$limit;
+		$idCliente = SessionService::getIdClienteLogado();
 
 		try{
 			$this->conexao->beginTransaction();

@@ -1,5 +1,5 @@
-$('.triggerModal').on('click', function(){
-	let action = $(this).data('action');
+function dispararAjaxAberturaModal(elemento){
+	let action = $(elemento).data('action');
 	let dataRequest = {
 		action: action,
 		numeroModal: document.getElementsByClassName('modal').length,
@@ -26,6 +26,10 @@ $('.triggerModal').on('click', function(){
 			M.toast({html: response.message, classes: "red darken-3 rounded"})
 		}
 	});
+}
+
+$("body").on("click", ".triggerModal", function(){
+	dispararAjaxAberturaModal(this);
 });
 
 $('#formLogin').on('submit', function (event) {

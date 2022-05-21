@@ -6,10 +6,10 @@ class InfrasilHtml {
         $idModal = 'modal'.$numeroModal;
 
         $html = "<div id='$idModal' class='modal center-align'>";
-        $html .= "<div class='modal-header centered'>";
-        $html .= "<h4>Estruturas Cadastradas</h4>";
+		$html .= "<div class='modal-header centered'>";
+		$html .= "<h4 class='left'>Estruturas Cadastradas</h4>";
 		$html .= "<h4 class='right modal-close'><i class='material-icons'>close</i></h4>";
-        $html .= "</div>";
+		$html .= "</div>";
         $html .= "<div class='modal-content'>";
 
         $corpo = '';
@@ -20,6 +20,10 @@ class InfrasilHtml {
                     <th>'.$ponte['id'].'</th>
                     <th>'.$ponte['nome'].'</th>
                     <th>'.Utils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
+                    <th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesPonte"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="adicionarAgendamento"><i class="material-icons yellow-text text-darken-3">print</i></a>
+					</th>
                 </tr>
             ';
         }
@@ -31,6 +35,7 @@ class InfrasilHtml {
                       <th>ID</th>
                       <th>Nome</th>
                       <th>Data de Construção</th>
+                      <th>Ações</th>
                     </tr>
                 </thead>
                 
@@ -57,7 +62,7 @@ class InfrasilHtml {
 
 		$html = "<div id='$idModal' class='modal center-align'>";
 		$html .= "<div class='modal-header centered'>";
-		$html .= "<h4>Agendamentos</h4>";
+		$html .= "<h4 class='left'>Agendamentos</h4>";
 		$html .= "<h4 class='right modal-close'><i class='material-icons'>close</i></h4>";
 		$html .= "</div>";
 		$html .= "<div class='modal-content'>";
@@ -71,6 +76,10 @@ class InfrasilHtml {
                     <th>'.$agendamento['ponte_nome'].'</th>
                     <th>'.Utils::formatarData($agendamento['data'], 'd/m/Y').'</th>
                     <th>'.$agendamento['horario'].'</th>
+                    <th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesAgendamento"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Agendamento" data-position="bottom" data-action="editarAgendamento"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+					</th>
                 </tr>
             ';
 		}
@@ -83,6 +92,7 @@ class InfrasilHtml {
                       <th>Ponte</th>
                       <th>Data</th>
                       <th>Horário</th>
+                      <th>Ações</th>
                     </tr>
                 </thead>
                 
@@ -119,11 +129,16 @@ class InfrasilHtml {
 		foreach ($inspecoes as $inspecao){
 			$corpo .= '
                 <tr>
-                    <th>'.$inspecao['id'].'</th>
+                    <th>'.$inspecao['id_inspecao'].'</th>
                     <th>'.$inspecao['ponte_nome'].'</th>
                     <th>'.Utils::formatarData($inspecao['data_inspecao'], 'd/m/Y').'</th>
                     <th>'.$inspecao['tipo_inspecao'].'</th>
                     <th>'.$inspecao['status'].'</th>
+                    <th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesInspecao"><i class="triggerModal material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Inspeção" data-position="bottom" data-action="EditarInspecao"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="detalhesAgendamento"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
+					</th>
                 </tr>
             ';
 		}
@@ -137,6 +152,7 @@ class InfrasilHtml {
                       <th>Data</th>
                       <th>Tipo</th>
                       <th>Status</th>
+                      <th>Ações</th>
                     </tr>
                 </thead>
                 
@@ -177,6 +193,10 @@ class InfrasilHtml {
                     <th>'.$usuario['nome'].'</th>
                     <th>'.$usuario['email'].'</th>
                     <th>'.$usuario['tipo'].'</th>
+                    <th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesUsuario"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="editarUsuario"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+					</th>
                 </tr>
             ';
 		}
@@ -189,6 +209,7 @@ class InfrasilHtml {
                       <th>Nome</th>
                       <th>Email</th>
                       <th>Tipo</th>
+                      <th>Ações</th>
                     </tr>
                 </thead>
                 
@@ -230,6 +251,10 @@ class InfrasilHtml {
                     <th>'.$cliente['email'].'</th>
                     <th>'.Utils::formatarData($cliente['data_nascimento'], 'd/m/Y').'</th>
                     <th>'.Utils::formataCpfCnpj($cliente['cpf_cnpj']).'</th>
+                    <th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesCliente"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="alterarCliente"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+					</th>
                 </tr>
             ';
 		}
@@ -243,6 +268,7 @@ class InfrasilHtml {
                       <th>Email</th>
                       <th>Data de Nascimento</th>
                       <th>CPF/CNPJ</th>
+                      <th>Ações</th>
                     </tr>
                 </thead>
                 
