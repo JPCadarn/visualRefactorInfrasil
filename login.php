@@ -13,11 +13,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Infrasil - O portal da infraestrutura brasileira</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="assets/css/index.css"/>
+	<link rel="icon" href="assets/Logo/logo_novo_clean.png" type="image/x-icon">
     <meta charset="UTF-8">
 
     <!--Let browser know website is optimized for mobile-->
