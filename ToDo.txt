@@ -1,9 +1,18 @@
--> create pontes;
--> create agendamentos;
--> create inspeções;
--> create clientes;
--> create usuarios;
+-> validações pontes;
+-> submit pontes;
+-> form agendamentos;
+-> form inspeções;
+-> form clientes;
+-> form usuarios;
 -> form minha conta;
+-> validações agendamentos;
+-> validações inspeções;
+-> validações clientes;
+-> validações usuarios;
+-> submit agendamentos;
+-> submit inspeções;
+-> submit clientes;
+-> submit usuarios;
 -> edit agendamentos;
 -> edit inspeções;
 -> implementar paginas;
@@ -12,3 +21,4 @@
 -> validar campos formularios;
 -> validar tipos de usuario;
 -> dark mode;
+-> separar rotas GET e POST;

@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function($class){
-    require_once 'src\\'.$class.'.php';
+    require_once $class.'.php';
 });
 
 use Controllers\AgendamentosController;
@@ -45,6 +45,10 @@ if(!empty($_GET)){
             $Controller = new UsuariosController();
             echo json_encode($Controller->fazerLogin($_POST));
             break;
+		case 'formularioPonte':
+			$Controller = new PontesController();
+			echo json_encode($Controller->gerarFormularioCadastroPonte($_POST));
+			exit;
 		default:
 			echo json_encode([
 				'status' => 404,

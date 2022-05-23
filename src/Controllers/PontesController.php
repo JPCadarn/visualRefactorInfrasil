@@ -23,8 +23,17 @@ class PontesController
 
         $dadosFiltrados = PontesFilter::listarPontesFilter($dadosRequisicao);
 
-        return $PontesService->listarPontes($dadosFiltrados);
+		return $PontesService->listarPontes($dadosFiltrados);
     }
+
+	public function gerarFormularioCadastroPonte($dadosRequisicao)
+	{
+		$PontesService = new PontesService();
+
+		$dadosFiltrados = PontesFilter::gerarFormularioCadastroPonteFilter($dadosRequisicao);
+
+		return $PontesService->gerarFormularioCadastroPonte($dadosRequisicao);
+	}
 
     /**
      * @return mixed
