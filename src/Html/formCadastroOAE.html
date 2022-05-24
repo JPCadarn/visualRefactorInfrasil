@@ -13,7 +13,8 @@
 							<div class='collapsible-body'>
 								<div class='row'>
 									<div class='input-field col s12 m6'>
-										<input id='via' name='via' type='text'  data-error='wrong'>
+										<input id='via' name='via' type='text'>
+										<input type="hidden" name="action" id="action" value="adicionarOAE">
 										<label for='via'>Via ou Municipio</label>
 									</div>
 									<div class='input-field col s12 m6'>
@@ -21,7 +22,7 @@
 										<label for='nome'>Nome da OAE</label>
 									</div>
 									<div class='input-field col s12 m6'>
-										<input id='data_construcao' name='data_construcao' class='mask-date' type='text'>
+										<input id='data_construcao' name='data_construcao' class='mask-date' type='date'>
 										<label for='data_construcao'>Data de Inauguração</label>
 									</div>
 									<div class='input-field col s12 m6'>
@@ -37,14 +38,12 @@
 										<label for='localizacao'>Localização</label>
 									</div>
 									<div class='input-field col s12 m6'>
-										<input id='latitude' name='latitude' type='text' class='mask-coord validate'  pattern='\d\dº\s\d\d\&lsquo;\s\d\d&quot;\s[A-Z]'>
+										<input id='latitude' name='latitude' type='text' class='mask-coord'>
 										<label for='latitude'>Latitude</label>
-										<span class='helper-text' data-error='As coordenadas precisam seguir o padrão 00º 00' 00&quot; A'></span>
 									</div>
 									<div class='input-field col s12 m6'>
-										<input id='longitude' name='longitude' type='text' class='mask-coord validate'  pattern='\d\dº\s\d\d\&lsquo;\s\d\d&quot;\s[A-Z]'>
+										<input id='longitude' name='longitude' type='text' class='mask-coord'>
 										<label for='longitude'>Longitude</label>
-										<span class='helper-text' data-error='As coordenadas precisam seguir o padrão 00º 00' 00&quot; A'></span>
 									</div>
 									<div class='input-field col s12 m6'>
 										<input id='projetista' name='projetista' type='text'>
@@ -282,7 +281,7 @@
 									<div class='file-field input-field'>
 										<div class='btn indigo darken-4'>
 											<span>Imagens</span>
-											<input name='images[]'  type='file' multiple accept='image/*' aria-='true'>
+											<input name='images[]'  type='file' multiple accept='image/*' aria-requireds='true'>
 										</div>
 										<div class='file-path-wrapper'>
 											<input class='file-path validate' type='text' placeholder='Anexe aqui as imagens da ponte'>

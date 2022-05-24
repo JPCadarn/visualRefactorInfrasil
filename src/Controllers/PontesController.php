@@ -8,9 +8,6 @@ use Services\PontesService;
 
 class PontesController
 {
-    private int $idCliente;
-    private int $idUsuario;
-
     /**
      * Método para listar todas as pontes, filtrando por idCliente e idUsuario
      * @return array
@@ -35,35 +32,16 @@ class PontesController
 		return $PontesService->gerarFormularioCadastroPonte($dadosRequisicao);
 	}
 
-    /**
-     * @return mixed
-     */
-    public function getIdCliente()
-    {
-        return $this->idCliente;
-    }
+	public function adicionarOae($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$PontesService = new PontesService();
+		$PontesService->setConexao($conexao);
 
-    /**
-     * @param mixed $idCliente
-     */
-    public function setIdCliente($idCliente)
-    {
-        $this->idCliente = $idCliente;
-    }
+		$dadosFiltrados = PontesFilter::adicionarOaeFilter($dadosRequisicao);
 
-    /**
-     * @return mixed
-     */
-    public function getIdUsuario()
-    {
-        return $this->idUsuario;
-    }
+		$campos = [];
 
-    /**
-     * @param mixed $idUsuario
-     */
-    public function setIdUsuario($idUsuario)
-    {
-        $this->idUsuario = $idUsuario;
-    }
+		return $PontesService->adicionarOae($dadosFiltrados);
+	}
 }

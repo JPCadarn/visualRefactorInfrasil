@@ -49,6 +49,10 @@ if(!empty($_GET)){
 			$Controller = new PontesController();
 			echo json_encode($Controller->gerarFormularioCadastroPonte($_POST));
 			exit;
+		case 'adicionarOAE':
+			$Controller = new PontesController();
+			echo json_encode($Controller->adicionarOae($_POST));
+			break;
 		default:
 			echo json_encode([
 				'status' => 404,

@@ -73,7 +73,36 @@ $('#formLogin').on('submit', function (event) {
 	});
 });
 
-$('#formCadastroOAE').on('submit', function (event) {
-	event.preventDefault();
-	console.log('oasidhfiousadhf');
-})
+$("body").on("submit", null, function(element){
+	element.preventDefault();
+
+	let formData = $('#' + element.target.id).serializeArray();
+
+	$.ajax({
+		type: 'POST',
+		url: 'src/action.php',
+		data: formData,
+		dataType: 'JSON',
+		encode: true
+	}).done(function (response) {
+		if(response.type === 'error'){
+			response.errors.forEach(function(msgErro){
+				M.toast({
+					html: msgErro,
+					classes: "red darken-3 rounded",
+					displayLength: 2500
+				})
+			})
+		}else if(response.type === 'success'){
+			M.toast({
+				html: response.message,
+				classes: "green darken-3 rounded",
+				displayLength: 2500
+			});
+			let idModal = document.getElementById(element.target.id).parentNode.parentNode.id;
+			let modal = document.getElementById(idModal);
+			const instance = M.Modal.getInstance(modal);
+			instance.destroy();
+		}
+	});
+});
