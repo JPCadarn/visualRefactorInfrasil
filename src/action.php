@@ -49,6 +49,26 @@ if(!empty($_GET)){
 			$Controller = new PontesController();
 			echo json_encode($Controller->gerarFormularioCadastroPonte($_POST));
 			exit;
+		case 'formularioAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->gerarFormularioCadastroAgendamento($_POST));
+			exit;
+		case 'formularioUsuario':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->gerarFormularioCadastroUsuario($_POST));
+			exit;
+		case 'alterarUsuario':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->gerarFormularioEdicaoUsuario($_POST));
+			exit;
+		case 'formularioCliente':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->gerarFormularioCadastroCliente($_POST));
+			exit;
+		case 'alterarCliente':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->gerarFormularioEdicaoCliente($_POST));
+			exit;
 		case 'adicionarOAE':
 			$Controller = new PontesController();
 			echo json_encode($Controller->adicionarOae($_POST));
