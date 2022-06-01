@@ -40,8 +40,6 @@ class PontesController
 
 		$dadosFiltrados = PontesFilter::adicionarOaeFilter($dadosRequisicao);
 
-		$campos = [];
-
 		return $PontesService->adicionarOae($dadosFiltrados);
 	}
 }

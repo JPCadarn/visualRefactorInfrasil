@@ -1,8 +1,0 @@
-# exclude everything
-assets/fotos/*
-toDo.txt'
-teste.php
-map.js
-
-# exception to the rule
-!fotos/.gitkeep 

@@ -94,6 +94,35 @@ $("body").on("submit", null, function(element){
 				})
 			})
 		}else if(response.type === 'success'){
+			let imageData = new FormData();
+			let contador = 0;
+			Object.values($('#imagens')[0].files).forEach(function(elem){
+				imageData.append('file'+contador, elem);
+				contador++;
+			})
+			imageData.append('idOAE', response.id);
+			$.ajax({
+				type: 'POST',
+				url: 'src/upload.php',
+				data: imageData,
+				contentType: false,
+				processData: false
+			}).done(function (resposta) {
+				if(resposta.type === 'error'){
+					M.toast({
+						html: response.message,
+						classes: "red darken-3 rounded",
+						displayLength: 2500
+					});
+				}else{
+					M.toast({
+						html: response.message,
+						classes: "green darken-3 rounded",
+						displayLength: 2500
+					});
+				}
+
+			});
 			M.toast({
 				html: response.message,
 				classes: "green darken-3 rounded",

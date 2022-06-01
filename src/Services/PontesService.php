@@ -86,8 +86,10 @@ class PontesService extends AbstractService
 				$statement->bindValue(':'.$key, $value);
 			}
 			$statement->execute();
+			$idInserido = $this->conexao->lastInsertId();
 			$this->conexao->commit();
 			return [
+				'id' => $idInserido,
 				'status' => 200,
 				'type' => 'success',
 				'message' => 'Estrutura cadastrada com sucesso.'

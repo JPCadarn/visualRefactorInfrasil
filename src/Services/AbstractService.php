@@ -4,7 +4,7 @@ namespace Services;
 
 use PDO;
 
-class AbstractService
+abstract class AbstractService
 {
 	protected PDO $conexao;
 
