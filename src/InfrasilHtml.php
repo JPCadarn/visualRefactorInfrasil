@@ -103,7 +103,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>";
+		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioAgendamento' data-position='bottom' data-tooltip='Cadastrar agendamento'><i class='material-icons'>add</i></a>";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -162,9 +162,6 @@ class InfrasilHtml {
             </table>';
 
 		$html .= "</div>";
-		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>";
-		$html .= "</div>";
 		$html .= "</div>";
 
 		return [
@@ -220,7 +217,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>";
+		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioUsuario' data-position='bottom' data-tooltip='Cadastrar usuário'><i class='material-icons'>add</i></a>";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -279,7 +276,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>";
+		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioCliente' data-position='bottom' data-tooltip='Cadastrar cliente'><i class='material-icons'>add</i></a>";
 		$html .= "</div>";
 		$html .= "</div>";
 

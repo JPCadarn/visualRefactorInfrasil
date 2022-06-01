@@ -29,4 +29,26 @@ class UsuariosController
 
 		return $UsuariosService->listarUsuarios($dadosFiltrados);
 	}
+
+	public function gerarFormularioCadastroUsuario($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFiltrados = AgendamentosFilter::gerarFormularioCadastroUsuarioFilter($dadosRequisicao);
+
+		return $UsuariosService->gerarFormularioCadastroUsuario($dadosFiltrados);
+	}
+
+	public function gerarFormularioEdicaoUsuario($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFiltrados = AgendamentosFilter::gerarFormularioEdicaoUsuarioFilter($dadosRequisicao);
+
+		return $UsuariosService->gerarFormularioEdicaoCliente($dadosFiltrados);
+	}
 }
