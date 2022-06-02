@@ -19,3 +19,4 @@
 -> validar navbars;
 -> validar campos formularios;
 -> validar tipos de usuario;
+-> organizar action.php;
