@@ -115,15 +115,15 @@ if(!empty($_GET)){
 			break;
 		case 'adicionarInspecao':
 			$Controller = new InspecoesController();
-			echo json_encode($Controller->adicionarInspecao());
+			echo json_encode($Controller->adicionarInspecao($_POST));
 			break;
 		case 'adicionarUsuario':
 			$Controller = new UsuariosController();
-			echo json_encode($Controller->adicionarUsuario());
+			echo json_encode($Controller->adicionarUsuario($_POST));
 			break;
 		case 'adicionarCliente':
 			$Controller = new ClientesController();
-			echo json_encode($Controller->adicionarCliente());
+			echo json_encode($Controller->adicionarCliente($_POST));
 			break;
 		default:
 			echo json_encode([
