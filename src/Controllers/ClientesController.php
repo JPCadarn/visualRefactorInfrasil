@@ -25,7 +25,7 @@ class ClientesController
 		$ClientesService = new ClientesService();
 		$ClientesService->setConexao($conexao);
 
-		$dadosFiltrados = AgendamentosFilter::gerarFormularioCadastroClienteFilter($dadosRequisicao);
+		$dadosFiltrados = ClientesFilter::gerarFormularioCadastroClienteFilter($dadosRequisicao);
 
 		return $ClientesService->gerarFormularioCadastroCliente($dadosFiltrados);
 	}
@@ -36,8 +36,30 @@ class ClientesController
 		$ClientesService = new ClientesService();
 		$ClientesService->setConexao($conexao);
 
-		$dadosFiltrados = AgendamentosFilter::gerarFormularioEdicaoClienteFilter($dadosRequisicao);
+		$dadosFiltrados = ClientesFilter::gerarFormularioEdicaoClienteFilter($dadosRequisicao);
 
 		return $ClientesService->gerarFormularioEdicaoCliente($dadosFiltrados);
+	}
+
+	public function adicionarCliente($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$ClientesService = new ClientesService();
+		$ClientesService->setConexao($conexao);
+
+		$dadosFiltrados = ClientesFilter::adicionarClienteFilter($dadosRequisicao);
+
+		return $ClientesService->adicionarCliente($dadosFiltrados);
+	}
+
+	public function editarCliente($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$ClientesService = new ClientesService();
+		$ClientesService->setConexao($conexao);
+
+		$dadosFiltrados = ClientesFilter::editarClienteFilter($dadosRequisicao);
+
+		return $ClientesService->editarCliente($dadosFiltrados);
 	}
 }

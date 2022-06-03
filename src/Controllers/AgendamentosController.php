@@ -29,4 +29,15 @@ class AgendamentosController
 
 		return $AgendamentosService->gerarFormularioCadastroAgendamento($dadosFiltrados);
 	}
+
+	public function adicionarAgendamento($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$AgendamentosService = new AgendamentosService();
+		$AgendamentosService->setConexao($conexao);
+
+		$dadosFiltrados = AgendamentosFilter::adicionarAgendamentoFilter($dadosRequisicao);
+
+		return $AgendamentosService->adicionarAgendamento();
+	}
 }

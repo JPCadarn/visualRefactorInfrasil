@@ -2,7 +2,7 @@
 
 namespace Filters;
 
-class AbstractFilter
+abstract class AbstractFilter
 {
     protected static function limparCamposRequisicao($camposRequisicao)
     {

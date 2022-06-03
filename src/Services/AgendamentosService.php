@@ -46,4 +46,15 @@ class AgendamentosService extends AbstractService
 			'idModal' => $grid['idModal']
 		];
 	}
+
+	public function gerarFormularioCadastroAgendamento($dadosRequisicao)
+	{
+		$grid = InfrasilHtml::montarFormAgendamentos($dadosRequisicao['numeroModal'] + 1);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
+	}
 }

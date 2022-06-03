@@ -137,7 +137,7 @@ class InfrasilHtml {
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesInspecao"><i class="triggerModal material-icons yellow-text text-darken-3">info</i></a>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Inspeção" data-position="bottom" data-action="editarInspecao"><i class="material-icons yellow-text text-darken-3">edit</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="detalhesAgendamento"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="avaliarInspecao"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
 					</th>
                 </tr>
             ';
@@ -298,6 +298,19 @@ class InfrasilHtml {
 			'idModal' => $idModal
 		];
 	}
+
+    public static function montarFormAgendamentos($numeroModal)
+    {
+        $idModal = 'modal'.$numeroModal;
+
+        $html = file_get_contents('Html/formCadastroAgendamento.html');
+        $html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+    }
 }
 
 ?>

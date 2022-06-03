@@ -48,30 +48,82 @@ if(!empty($_GET)){
 		case 'formularioPonte':
 			$Controller = new PontesController();
 			echo json_encode($Controller->gerarFormularioCadastroPonte($_POST));
-			exit;
+			break;
 		case 'formularioAgendamento':
 			$Controller = new AgendamentosController();
 			echo json_encode($Controller->gerarFormularioCadastroAgendamento($_POST));
-			exit;
+			break;
 		case 'formularioUsuario':
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->gerarFormularioCadastroUsuario($_POST));
-			exit;
+			break;
 		case 'alterarUsuario':
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->gerarFormularioEdicaoUsuario($_POST));
-			exit;
+			break;
 		case 'formularioCliente':
 			$Controller = new ClientesController();
 			echo json_encode($Controller->gerarFormularioCadastroCliente($_POST));
-			exit;
+			break;
 		case 'alterarCliente':
 			$Controller = new ClientesController();
 			echo json_encode($Controller->gerarFormularioEdicaoCliente($_POST));
-			exit;
+			break;
 		case 'adicionarOAE':
 			$Controller = new PontesController();
 			echo json_encode($Controller->adicionarOae($_POST));
+			break;
+		case 'avaliarInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->avaliarInspecao($_POST));
+			break;
+		case 'detalhesAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->detalhesAgendamento($_POST));
+			break;
+		case 'detalhesCliente':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->detalhesCliente($_POST));
+			break;
+		case 'detalhesInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->detalhesInspecao($_POST));
+			break;
+		case 'detalhesPonte':
+			$Controller = new PontesController();
+			echo json_encode($Controller->detalhesPonte($_POST));
+			break;
+		case 'detalhesUsuario':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->detalhesUsuario($_POST));
+			break;
+		case 'editarInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->editarInspecao($_POST));
+			break;
+		case 'editarUsuario':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->editarUsuario($_POST));
+			break;
+		case 'listarConta':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->listarConta($_POST));
+			break;
+		case 'adicionarAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->adicionarAgendamento($_POST));
+			break;
+		case 'adicionarInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->adicionarInspecao());
+			break;
+		case 'adicionarUsuario':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->adicionarUsuario());
+			break;
+		case 'adicionarCliente':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->adicionarCliente());
 			break;
 		default:
 			echo json_encode([
