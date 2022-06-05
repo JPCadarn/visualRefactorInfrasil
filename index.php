@@ -157,5 +157,7 @@
 	<script type="text/javascript" src="assets/js/index.js"></script>
 	<script type="text/javascript" src="assets/js/chart.js"></script>
 	<script type="text/javascript" src="assets/js/ajax.js"></script>
+	<script type="text/javascript" src="assets/js/mascaras.js"></script>
+	<script type="text/javascript" src="src/vendors/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
 </body>
 </html>
