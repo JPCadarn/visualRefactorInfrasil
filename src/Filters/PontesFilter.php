@@ -86,7 +86,8 @@ class PontesFilter extends AbstractFilter
 			'iluminacao' => FILTER_SANITIZE_STRING,
 			'sinalizacao' => FILTER_SANITIZE_STRING,
 			'protecao_pilares' => FILTER_SANITIZE_STRING,
-			'resumo' => FILTER_SANITIZE_STRING
+			'resumo' => FILTER_SANITIZE_STRING,
+			'id_usuario' => FILTER_SANITIZE_NUMBER_INT
 		];
 		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
 

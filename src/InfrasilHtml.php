@@ -299,12 +299,38 @@ class InfrasilHtml {
 		];
 	}
 
-    public static function montarFormAgendamentos($numeroModal)
+    public static function montarFormAgendamentos($numeroModal, $pontes)
     {
         $idModal = 'modal'.$numeroModal;
 
+		$selectPontes = "
+			<div class='input-field col s12'>
+				<select id='ponte_id' name='ponte_id'>
+					<option value='' disabled selected>Selecione a OAE</option>";
+		foreach($pontes as $ponte){
+			$selectPontes .= '<option value='.$ponte['id'].'>'.$ponte['nome'].'</option>';
+		}
+		$selectPontes .= "
+			</select>
+			</div>
+		";
+		$selectTipoInspecao = "
+			<div class='input-field col s12'>
+				<select id='tipo_inspecao' name='tipo_inspecao'>
+					<option value='' disabled selected>Selecione o tipo de inspeção</option>
+					<option value='cadastral'>Cadastral</option>
+					<option value='rotineira'>Rotineira</option>
+					<option value='especial'>Especial</option>
+					<option value='extraordinaria'>Extraordinária</option>
+				</select>
+			</div>
+		";
+
+
         $html = file_get_contents('Html/formCadastroAgendamento.html');
         $html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+        $html = str_replace('REPLACE_SELECT_PONTE', $selectPontes, $html);
+        $html = str_replace('REPLACE_SELECT_TIPO_INSPECAO', $selectTipoInspecao, $html);
 
 		return [
 			'html' => $html,

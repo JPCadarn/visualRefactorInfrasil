@@ -39,6 +39,7 @@ function instanciarJsMaterialize(){
 	$('.tooltipped').tooltip();
 	$('.fixed-action-btn').floatingActionButton();
 	$('.collapsible').collapsible();
+	$('select').formSelect();
 }
 
 function fazerBindMascaras(){
@@ -144,13 +145,13 @@ $("body").on("submit", null, function(element){
 			}).done(function (resposta) {
 				if(resposta.type === 'error'){
 					M.toast({
-						html: response.message,
+						html: resposta.message,
 						classes: "red darken-3 rounded",
 						displayLength: 2500
 					});
 				}else{
 					M.toast({
-						html: response.message,
+						html: resposta.message,
 						classes: "green darken-3 rounded",
 						displayLength: 2500
 					});

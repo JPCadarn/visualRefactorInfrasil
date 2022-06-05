@@ -1,0 +1,34 @@
+<div id='REPLACE_ID_MODAL' class='modal center-align'>
+	<div class='modal-header centered'>
+		<h4 class='left'>Cadastro de Agendamentos</h4>
+		<h4 class='right modal-close'><i class='material-icons'>close</i></h4>
+	</div>
+	<div class='row'>
+		<form action='action.php' id='formCadastroAgendamentos' method='POST' class='col s12' enctype='multipart/form-data' autocomplete='off'>
+			<input type="hidden" name="action" id="action" value="adicionarAgendamento">
+			<div class='modal-content'>
+				<div class='row'>
+					REPLACE_SELECT_PONTE
+					<div class='input-field col s6'>
+					<input id='data' name='data' class='mask-date' type='text'>
+					<label for='data'>Data do Agendamento</label>
+					</div>
+					<div class='input-field col s6'>
+					<input id='horario' name='horario' type='text' class='mask-hora'>
+					<label for='horario'>Horário do Agendamento</label>
+					</div>
+					<div class='input-field col s12'>
+					<input id='detalhes' name='detalhes' type='text'>
+					<label for='detalhes'>Detalhes do Agendamento</label>
+					REPLACE_SELECT_TIPO_INSPECAO
+				</div>
+			</div>
+			<div class='modal-footer'>
+				<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>
+				<button class='btn waves-effect waves-light' type='submit'>Salvar
+					<i class='material-icons right'>send</i>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

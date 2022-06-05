@@ -24,4 +24,21 @@ class AgendamentosFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function adicionarAgendamentoFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'data' => FILTER_SANITIZE_STRING,
+			'horario' => FILTER_SANITIZE_STRING,
+			'action' => FILTER_SANITIZE_STRING,
+			'detalhes' => FILTER_SANITIZE_STRING,
+			'ponte_id' => FILTER_SANITIZE_NUMBER_INT,
+			'tipo_inspecao' => FILTER_SANITIZE_STRING,
+			'id_usuario' => FILTER_SANITIZE_NUMBER_INT
+		];
+
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

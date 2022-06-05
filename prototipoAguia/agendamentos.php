@@ -24,9 +24,9 @@
 		['id' => 'extraordinaria', 'tipo' => 'Extraordinária']
 	];
 	echo '<!DOCTYPE html>';
-	Utils::tagHead();
+	Utils2::tagHead();
 	echo '<body>';
-	Utils::navBar();
+	Utils2::navBar();
 
 	echo "
 	<div class='fixed-action-btn'>
@@ -41,7 +41,7 @@
 	echo "<div class='modal-content'>";
 	echo "<div class='row'>";
 	echo "<form action='novoAgendamento.php' method='POST' class='col s12' autocomplete='off'>";
-	Utils::renderSelect('ponte_id', $pontes, 'Ponte', 'Selecione a ponte', 'nome');
+	Utils2::renderSelect('ponte_id', $pontes, 'Ponte', 'Selecione a ponte', 'nome');
 	echo "<div class='input-field col s6'>";
 	echo "<input id='data' name='data' class='mask-date' type='text'>";
 	echo "<label for='data'>Data do Agendamento</label>";
@@ -53,7 +53,7 @@
 	echo "<div class='input-field col s12'>";
 	echo "<input id='detalhes' name='detalhes' type='text'>";
 	echo "<label for='detalhes'>Detalhes do Agendamento</label>";
-	Utils::renderSelect('tipo_inspecao', $opcoesInspecao, 'Tipo de Inspeção', 'Selecione o tipo de inspeção', 'tipo');
+	Utils2::renderSelect('tipo_inspecao', $opcoesInspecao, 'Tipo de Inspeção', 'Selecione o tipo de inspeção', 'tipo');
 	echo "<button class='indigo darken-4 float-right waves-effect waves-circle waves-light btn-floating btn-large' type='submit' value='Create'>";
 	echo "<i class='large material-icons'>check</i>";
 	echo "</button>";

@@ -5,6 +5,7 @@ namespace Controllers;
 use Conexao;
 use Filters\AgendamentosFilter;
 use Services\AgendamentosService;
+use Services\SessionService;
 
 class AgendamentosController
 {
@@ -35,9 +36,10 @@ class AgendamentosController
 		$conexao = Conexao::conectar();
 		$AgendamentosService = new AgendamentosService();
 		$AgendamentosService->setConexao($conexao);
+		$dadosRequisicao['id_usuario'] = SessionService::getIdUsuarioLogado();
 
 		$dadosFiltrados = AgendamentosFilter::adicionarAgendamentoFilter($dadosRequisicao);
 
-		return $AgendamentosService->adicionarAgendamento();
+		return $AgendamentosService->adicionarAgendamento($dadosFiltrados);
 	}
 }

@@ -5,6 +5,7 @@ namespace Controllers;
 use Conexao;
 use Filters\PontesFilter;
 use Services\PontesService;
+use Services\SessionService;
 
 class PontesController
 {
@@ -37,6 +38,7 @@ class PontesController
 		$conexao = Conexao::conectar();
 		$PontesService = new PontesService();
 		$PontesService->setConexao($conexao);
+		$dadosRequisicao['id_usuario'] = SessionService::getIdUsuarioLogado();
 
 		$dadosFiltrados = PontesFilter::adicionarOaeFilter($dadosRequisicao);
 
