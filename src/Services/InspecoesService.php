@@ -75,5 +75,63 @@ class InspecoesService extends AbstractService
 				'errors' => $erros
 			];
 		}
+
+		$dadosRequisicao['status'] = 'Avaliado';
+
+		$sql = '
+			UPDATE inspecoes
+			SET status = :status,
+				nota_indice_localizacao = :nota_indice_localizacao
+				nota_indice_volume_trafego = :nota_indice_volume_trafego
+				nota_indice_largura_oae = :nota_indice_largura_oae
+				nota_geometria_condicoes = :nota_geometria_condicoes
+				nota_acessos = :nota_acessos
+				nota_cursos_agua = :nota_cursos_agua
+				nota_encontros_fundacoes = :nota_encontros_fundacoes
+				nota_apoios_intermediarios = :nota_apoios_intermediarios
+				nota_aparelhos_apoio = :nota_aparelhos_apoio
+				nota_superestrutura = :nota_superestrutura
+				nota_pista_rolamento = :nota_pista_rolamento
+				nota_juntas_dilatacao = :nota_juntas_dilatacao
+				nota_barreiras_guardacorpos = :nota_barreiras_guardacorpos
+				nota_sinalizacao = :nota_sinalizacao
+				nota_instalacoes_util_publica = :nota_instalacoes_util_publica
+				nota_largura_plataforma = :nota_largura_plataforma
+				nota_capacidade_carga = :nota_capacidade_carga
+				nota_superficie_plataforma = :nota_superficie_plataforma
+				nota_pista_rolamento_fc = :nota_pista_rolamento_fc
+				nota_outros_fc = :nota_outros_fc
+				nota_espaco_livre = :nota_espaco_livre
+				nota_localizacao_ponte = :nota_localizacao_ponte
+				nota_saude_fisica_ponte = :nota_saude_fisica_ponte
+				nota_outros_fi = :nota_outros_fi
+				obs = :obs
+			WHERE id_inspecao = :id_inspecao
+		';
+
+		try{
+			$this->conexao->beginTransaction();
+			$statement = $this->conexao->prepare($sql);
+			foreach($dadosRequisicao as $key => $value){
+				$statement->bindValue(':'.$key, $value);
+			}
+			$statement->execute();
+			$this->conexao->commit();
+			return [
+				'id' => $dadosRequisicao['id_inspecao'],
+				'status' => 200,
+				'type' => 'success',
+				'message' => 'Inspeção avaliada com sucesso.'
+			];
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao avaliar a inspeção. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
 	}
 }
