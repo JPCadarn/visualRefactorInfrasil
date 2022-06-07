@@ -7,7 +7,6 @@
 			<form id="formAvaliacaoInspecao" action="novaInspecao.php" method="POST" class="col s12"
 				enctype="multipart/form-data" autocomplete="off">
 				REPLACE_ID_INSPECAO
-				<input type="hidden" value="Avaliado" name="status" id="status">
 				<input type="hidden" value="avaliarInspecao" name="action">
 				<ul class="collapsible expandable popout">
 					<li class="active">
@@ -23,7 +22,7 @@
 							'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao');
 							echo "<h5 class='center'>Fator de Segurança</h5>";
 							Utils2::renderSelectSemDiv('nota_geometria_condicoes', InspecaoService::camposFsPesoAlto,
-							'Geometria e condições várias', 'Geometria e condições várias', 'descricao');
+							'Geometria e condições várias', 'Geometria e condições viárias', 'descricao');
 							Utils2::renderSelectSemDiv('nota_acessos', InspecaoService::camposFsPesoMedio, 'Acessos',
 							'Acessos', 'descricao');
 							Utils2::renderSelectSemDiv('nota_cursos_agua', InspecaoService::camposFsPesoMedio, 'Cursos

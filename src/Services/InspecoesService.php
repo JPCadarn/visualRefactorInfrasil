@@ -6,6 +6,7 @@ use Exception;
 use InfrasilHtml;
 use PDO;
 use Utils;
+use Validators\InspecoesValidator;
 
 class InspecoesService extends AbstractService
 {
@@ -61,5 +62,18 @@ class InspecoesService extends AbstractService
 			'status' => 200,
 			'idModal' => $grid['idModal']
 		];
+	}
+
+	public function avaliarInspecao($dadosRequisicao)
+	{
+		$erros = InspecoesValidator::avaliarInspecaoValidate($dadosRequisicao);
+
+		if(count($erros)){
+			return [
+				'status' => 200,
+				'type' => 'error',
+				'errors' => $erros
+			];
+		}
 	}
 }

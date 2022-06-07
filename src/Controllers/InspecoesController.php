@@ -29,4 +29,15 @@ class InspecoesController
 
 		return $InspecoesService->formularioAvaliacaoInspecao($dadosFiltrados);
 	}
+
+	public function avaliarInspecao($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$InspecoesService = new InspecoesService();
+		$InspecoesService->setConexao($conexao);
+
+		$dadosFiltrados = InspecoesFilter::avaliarInspecaoFilter($dadosRequisicao);
+
+		return $InspecoesService->avaliarInspecao($dadosFiltrados);
+	}
 }
