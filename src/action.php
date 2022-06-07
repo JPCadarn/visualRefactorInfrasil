@@ -77,6 +77,10 @@ if(!empty($_GET)){
 			$Controller = new InspecoesController();
 			echo json_encode($Controller->avaliarInspecao($_POST));
 			break;
+		case 'formularioAvaliacaoInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->formularioAvaliacaoInspecao($_POST));
+			break;
 		case 'detalhesAgendamento':
 			$Controller = new AgendamentosController();
 			echo json_encode($Controller->detalhesAgendamento($_POST));
