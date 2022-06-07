@@ -51,4 +51,15 @@ class InspecoesService extends AbstractService
 			'idModal' => $grid['idModal']
 		];
 	}
+
+	public function formularioAvaliacaoInspecao($dadosRequisicao)
+	{
+		$grid = InfrasilHtml::montarFormAvaliacao($dadosRequisicao['numeroModal'] + 1, $dadosRequisicao['id']);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
+	}
 }

@@ -5,6 +5,10 @@ function dispararAjaxAberturaModal(elemento){
 		numeroModal: document.getElementsByClassName('modal').length,
 		page: 1
 	}
+	let dataId = $(elemento).data('id');
+	if(dataId != ''){
+		dataRequest['id'] = dataId;
+	}
 
 	$.ajax({
 		url: 'src/action.php',
