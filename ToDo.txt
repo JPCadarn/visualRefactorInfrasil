@@ -19,3 +19,8 @@
 -> organizar action.php;
 -> Relatórios;
 -> dark mode;
+-> filtros grid pontes;
+-> filtros grid agendamentos;
+-> filtros grid inspeçoes;
+-> filtros grid usuarios;
+-> filtros grid clientes;
