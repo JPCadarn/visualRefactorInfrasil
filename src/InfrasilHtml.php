@@ -21,8 +21,8 @@ class InfrasilHtml {
                     <th>'.$ponte['nome'].'</th>
                     <th>'.Utils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesPonte"><i class="material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="formularioAgendamento"><i class="material-icons yellow-text text-darken-3">print</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesPonte" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="formularioAgendamento" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">print</i></a>
 					</th>
                 </tr>
             ';
@@ -77,8 +77,8 @@ class InfrasilHtml {
                     <th>'.Utils::formatarData($agendamento['data'], 'd/m/Y').'</th>
                     <th>'.$agendamento['horario'].'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesAgendamento"><i class="material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Agendamento" data-position="bottom" data-action="editarAgendamento"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesAgendamento" data-id="'.$agendamento['id'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Agendamento" data-position="bottom" data-action="editarAgendamento" data-id="'.$agendamento['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
 					</th>
                 </tr>
             ';
@@ -135,8 +135,7 @@ class InfrasilHtml {
                     <th>'.$inspecao['tipo_inspecao'].'</th>
                     <th>'.$inspecao['status'].'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesInspecao"><i class="triggerModal material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Inspeção" data-position="bottom" data-action="editarInspecao"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Inspeção" data-position="bottom" data-action="editarInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="formularioAvaliacaoInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
 					</th>
                 </tr>
@@ -191,8 +190,7 @@ class InfrasilHtml {
                     <th>'.$usuario['email'].'</th>
                     <th>'.$usuario['tipo'].'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesUsuario"><i class="material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="editarUsuario"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="editarUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
 					</th>
                 </tr>
             ';
@@ -249,8 +247,7 @@ class InfrasilHtml {
                     <th>'.Utils::formatarData($cliente['data_nascimento'], 'd/m/Y').'</th>
                     <th>'.Utils::formataCpfCnpj($cliente['cpf_cnpj']).'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesCliente"><i class="material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="alterarCliente"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="alterarCliente" data-id="'.$cliente['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
 					</th>
                 </tr>
             ';
