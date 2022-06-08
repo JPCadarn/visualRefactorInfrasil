@@ -81,6 +81,10 @@ if(!empty($_GET)){
 			$Controller = new InspecoesController();
 			echo json_encode($Controller->avaliarInspecao($_POST));
 			break;
+		case 'adicionarAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->adicionarAgendamento($_POST));
+			break;
 		case 'detalhesPonte':
 			$Controller = new PontesController();
 			echo json_encode($Controller->detalhesPonte($_POST));
@@ -96,10 +100,6 @@ if(!empty($_GET)){
 		case 'listarConta':
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->listarConta($_POST));
-			break;
-		case 'adicionarAgendamento':
-			$Controller = new AgendamentosController();
-			echo json_encode($Controller->adicionarAgendamento($_POST));
 			break;
 		case 'adicionarInspecao':
 			$Controller = new InspecoesController();

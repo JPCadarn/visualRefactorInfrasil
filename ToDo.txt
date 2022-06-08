@@ -1,3 +1,4 @@
+-> separar .triggerModal em .triggerInsert, .triggerEdit, .triggerDetalhes e .triggerGrid;
 -> submit agendamentos; test
 -> validações agendamentos; test
 -> form inspeções; test
