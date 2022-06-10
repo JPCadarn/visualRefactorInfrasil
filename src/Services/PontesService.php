@@ -105,4 +105,54 @@ class PontesService extends AbstractService
 			];
 		}
 	}
+
+	public function detalhesPonte($dadosRequisicao)
+	{
+		$erros = PontesValidator::detalhesPonteValidator($dadosRequisicao);
+
+		$sqlOae = 'SELECT * FROM pontes WHERE id = :idOae';
+		$sqlAdicional = '
+			SELECT imagem 
+			FROM imagens_pontes
+			INNER JOIN agendamentos ON imagens_pontes.ponte_id = agendamentos.ponte_id
+			INNER JOIN inspecoes ON imagens_pontes.ponte_id = inspecoes.ponte_id
+			INNER JOIN usuarios ON inspecoes.id_usuario = usuarios.id
+			WHERE imagens_pontes.ponte_id = :idOae
+		';
+
+		try{
+			$statementOae = $this->conexao->prepare($sqlOae);
+			$statementAdicional = $this->conexao->prepare($sqlAdicional);
+
+			$statementOae->bindParam(':idOae', $dadosRequisicao['idOae']);
+			$statementAdicional->bindParam(':idOae', $dadosRequisicao['idOae']);
+
+			$dadosOae = $statementOae->execute();
+			$dadosAdicionais = $statementAdicional->execute();
+			$this->conexao->commit();
+
+			$detalhes = [
+				'dadosOae' => $dadosOae,
+				'dadosAdicionais' => $dadosAdicionais
+			];
+			
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao buscar a estrutura. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+
+		$form = InfrasilHtml::montarDetalhesOae($detalhes, ($dadosRequisicao['numeroModal'] + 1));
+
+		return [
+            'html' => $form['html'],
+            'status' => 200,
+            'idModal' => $form['idModal']
+        ];
+	}
 }

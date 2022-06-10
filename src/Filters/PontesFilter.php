@@ -93,4 +93,15 @@ class PontesFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function detalhesPonteFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'numeroModal' => FILTER_SANITIZE_NUMBER_INT,
+			'idOae' => FILTER_SANITIZE_NUMBER_INT
+		];
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

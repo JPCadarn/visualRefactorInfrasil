@@ -44,4 +44,15 @@ class PontesController
 
 		return $PontesService->adicionarOae($dadosFiltrados);
 	}
+
+	public function detalhesPonte($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$PontesService = new PontesService();
+		$PontesService->setConexao($conexao);
+
+		$dadosFiltrados = PontesFilter::detalhesPonteFilter($dadosRequisicao);
+
+		return $PontesService->detalhesPonte($dadosFiltrados);
+	}
 }

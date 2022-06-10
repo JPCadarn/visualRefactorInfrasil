@@ -28,4 +28,20 @@ class PontesValidator
 
 		return $erros;
 	}
+
+	public static function detalhesPonteValidator($dadosSelect){
+		$erros = [];
+
+		$camposRequeridos = [
+			'idOae' => 'A OAE selecionada é inválida'
+		];
+
+		foreach($dadosSelect as $key => $value){
+			if(array_key_exists($key, $camposRequeridos) && empty($value)){
+				$erros[] = $camposRequeridos[$key];
+			}
+		}
+
+		return $erros;
+	}
 }
