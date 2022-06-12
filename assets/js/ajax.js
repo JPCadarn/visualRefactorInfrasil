@@ -6,7 +6,7 @@ function dispararAjaxAberturaModal(elemento){
 		page: 1
 	}
 	let dataId = $(elemento).data('id');
-	if(dataId != ''){
+	if(dataId !== ''){
 		dataRequest['id'] = dataId;
 	}
 

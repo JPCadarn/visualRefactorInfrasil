@@ -124,11 +124,13 @@ class PontesService extends AbstractService
 			$statementOae = $this->conexao->prepare($sqlOae);
 			$statementAdicional = $this->conexao->prepare($sqlAdicional);
 
-			$statementOae->bindParam(':idOae', $dadosRequisicao['idOae']);
-			$statementAdicional->bindParam(':idOae', $dadosRequisicao['idOae']);
+			$statementOae->bindParam(':idOae', $dadosRequisicao['id']);
+			$statementAdicional->bindParam(':idOae', $dadosRequisicao['id']);
+			$statementOae->execute();
+			$statementAdicional->execute();
 
-			$dadosOae = $statementOae->execute();
-			$dadosAdicionais = $statementAdicional->execute();
+			$dadosOae = $statementOae->fetch();
+			$dadosAdicionais = $statementAdicional->fetchAll();
 			$this->conexao->commit();
 
 			$detalhes = [

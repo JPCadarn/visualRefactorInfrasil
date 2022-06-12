@@ -98,7 +98,7 @@ class PontesFilter extends AbstractFilter
 	{
 		$filtros = [
 			'numeroModal' => FILTER_SANITIZE_NUMBER_INT,
-			'idOae' => FILTER_SANITIZE_NUMBER_INT
+			'id' => FILTER_SANITIZE_NUMBER_INT
 		];
 		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
 

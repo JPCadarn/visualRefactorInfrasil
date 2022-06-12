@@ -348,6 +348,99 @@ class InfrasilHtml {
 			'idModal' => $idModal
 		];
 	}
+
+	public static function montarDetalhesOae($detalhes, $numeroModal)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/detalhesPonte.html');
+		$replaces = [
+			'REPLACE_ID_MODAL' => $idModal,
+			'REPLACE_NOME_OAE' => $detalhes['dadosOae']['nome'],
+			'REPLACE_VIA' => $detalhes['dadosOae']['via'],
+			'REPLACE_MUNICIPIO' => $detalhes['dadosOae']['cidade'].', '.$detalhes['dadosOae']['estado'],
+			'REPLACE_DATA_CONSTRUCAO' => $detalhes['dadosOae']['data_construcao'],
+			'REPLACE_TREM_TIPO' => $detalhes['dadosOae']['trem_tipo'],
+			'REPLACE_SENTIDO' => $detalhes['dadosOae']['sentido'],
+			'REPLACE_LOCALIZACAO' => $detalhes['dadosOae']['localizacao'],
+			'REPLACE_COORDENADAS' => $detalhes['dadosOae']['latitude'].' '.$detalhes['dadosOae']['longitude'],
+			'REPLACE_PROJETISTA' => $detalhes['dadosOae']['projetista'],
+			'REPLACE_CONSTRUTOR' => $detalhes['dadosOae']['construtor'],
+			'REPLACE_COMPRIMENTO_TOTAL' => $detalhes['dadosOae']['comprimento_estrutura'],
+			'REPLACE_LARGURA_FAIXA' => $detalhes['dadosOae']['largura_estrutura'],
+			'REPLACE_LARGURA_ACOSTAMENTO' => $detalhes['dadosOae']['largura_acostamento'],
+			'REPLACE_LARGURA_REFUGIO' => $detalhes['dadosOae']['largura_refugio'],
+			'REPLACE_LARGURA_PASSEIO' => $detalhes['dadosOae']['largura_passeio'],
+			'REPLACE_SIS_CONST' => $detalhes['dadosOae']['sistema_construtivo'],
+			'REPLACE_TRANSPOSICAO' => $detalhes['dadosOae']['natureza_transposicao'],
+			'REPLACE_MATERIAL' => $detalhes['dadosOae']['material_construcao'],
+			'REPLACE_LONG_SUPER' => $detalhes['dadosOae']['longitudinal_super'],
+			'REPLACE_TRANS_SUPER' => $detalhes['dadosOae']['transversal_super'],
+			'REPLACE_MESO' => $detalhes['dadosOae']['mesoestrutura_tipo'],
+			'REPLACE_NRO_VAOS' => $detalhes['dadosOae']['nro_vaos'],
+			'REPLACE_NRO_APOIOS' => $detalhes['dadosOae']['nro_apoios'],
+			'REPLACE_PILAR_APOIO' => $detalhes['dadosOae']['nro_pilares_apoio'],
+			'REPLACE_APARELHOS_APOIO' => $detalhes['dadosOae']['aparelhos_apoio'],
+			'REPLACE_VAO_TIPICO' => $detalhes['dadosOae']['comprimento_vao_tipico'],
+			'REPLACE_MAIOR_VAO' => $detalhes['dadosOae']['comprimento_maior_vao'],
+			'REPLACE_ALT_PILARES' => $detalhes['dadosOae']['altura_pilares'],
+			'REPLACE_JUNTAS' => $detalhes['dadosOae']['juntas_dilatacao'],
+			'REPLACE_ENCONTROS' => $detalhes['dadosOae']['encontros'],
+			'REPLACE_OUTRAS' => $detalhes['dadosOae']['outras'],
+			'REPLACE_CARACTERISTICAS_PLANI' => $detalhes['dadosOae']['caracteristicas_plani'],
+			'REPLACE_NRO_FAIXAS' => $detalhes['dadosOae']['nro_faixas'],
+			'REPLACE_ACOSTAMENTO' => $detalhes['dadosOae']['acostamento'],
+			'REPLACE_REFUGIOS' => $detalhes['dadosOae']['refugios'],
+			'REPLACE_PASSEIO' => $detalhes['dadosOae']['passeio'],
+			'REPLACE_BARREIRA_RIGIDA' => $detalhes['dadosOae']['barreira_rigida'],
+			'REPLACE_MATERIAL_PAVIMENTO' => $detalhes['dadosOae']['material_pavimento'],
+			'REPLACE_PINGADEIRAS' => $detalhes['dadosOae']['pingadeiras'],
+			'REPLACE_GUARDA_CORPO' => $detalhes['dadosOae']['guarda_corpo'],
+			'REPLACE_DRENOS' => $detalhes['dadosOae']['drenos'],
+			'REPLACE_FREQ_PASSAGEM_CARGA' => $detalhes['dadosOae']['freq_passagem_carga'],
+			'REPLACE_SUPERESTRUTURA' => $detalhes['dadosOae']['superestrutura'],
+			'REPLACE_MESOESTRUTURA' => $detalhes['dadosOae']['mesoestrutura'],
+			'REPLACE_INFRAESTRUTURA' => $detalhes['dadosOae']['infraestrutura'],
+			'REPLACE_APARELHOS_APOIO_ANOMALIA' => $detalhes['dadosOae']['aparelhos_apoio_anomalia'],
+			'REPLACE_JUNTAS_DILATACAO_ANOMALIA' => $detalhes['dadosOae']['juntas_dilatacao_anomalia'],
+			'REPLACE_ENCONTROS_ANOMALIA' => $detalhes['dadosOae']['encontros_anomalia'],
+			'REPLACE_PAVIMENTO_ANOMALIA' => $detalhes['dadosOae']['pavimento_anomalia'],
+			'REPLACE_ACOSTAMENTO_REFUGIO_ANOMALIA' => $detalhes['dadosOae']['acostamento_refugio_anomalia'],
+			'REPLACE_DRENAGEM_ANOMALIA' => $detalhes['dadosOae']['drenagem_anomalia'],
+			'REPLACE_GUARDA_CORPO_ANOMALIA' => $detalhes['dadosOae']['guarda_corpo_anomalia'],
+			'REPLACE_BARREIRA_DEFESA' => $detalhes['dadosOae']['barreira_defesa'],
+			'REPLACE_TALUDES' => $detalhes['dadosOae']['taludes'],
+			'REPLACE_ILUMINACAO' => $detalhes['dadosOae']['iluminacao'],
+			'REPLACE_SINALIZACAO' => $detalhes['dadosOae']['sinalizacao'],
+			'REPLACE_PROTECAO_PILARES' => $detalhes['dadosOae']['protecao_pilares'],
+			'REPLACE_AGENDAMENTOS' => self::montarAgendamentosDetalhesOae($detalhes['dadosAdicionais']),
+			'REPLACE_INSPECOES' => self::montarInspecoesDetalhesOae($detalhes['dadosAdicionais']),
+			'REPLACE_SLIDES' => self::montarSlidesDetalhesOae($detalhes['dadosAdicionais'])
+		];
+		foreach ($replaces as $chave => $valor){
+			$html = str_replace($chave, $valor, $html);
+		}
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
+
+	private static function montarAgendamentosDetalhesOae($dadosAdicionais)
+	{
+
+	}
+
+	private static function montarInspecoesDetalhesOae($dadosAdicionais)
+	{
+
+	}
+
+	private static function montarSlidesDetalhesOae($dadosAdicionais)
+	{
+
+	}
 }
 
 ?>
