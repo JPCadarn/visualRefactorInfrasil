@@ -17,6 +17,12 @@ class Utils
 		return $Date->format($formato);
 	}
 
+
+	public static function formatarDataBanco($data)
+	{
+		return implode('-', array_reverse(explode('/', $data)));
+	}
+
 	public static function formataCpfCnpj($cpfCnpj)
 	{
 		if(strlen($cpfCnpj) == 14){

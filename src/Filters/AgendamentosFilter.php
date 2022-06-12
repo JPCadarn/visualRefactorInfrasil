@@ -2,6 +2,8 @@
 
 namespace Filters;
 
+use Utils;
+
 class AgendamentosFilter extends AbstractFilter
 {
 	public static function listarAgendamentosFilter($dadosRequisicao)
@@ -30,7 +32,6 @@ class AgendamentosFilter extends AbstractFilter
 		$filtros = [
 			'data' => FILTER_SANITIZE_STRING,
 			'horario' => FILTER_SANITIZE_STRING,
-			'action' => FILTER_SANITIZE_STRING,
 			'detalhes' => FILTER_SANITIZE_STRING,
 			'ponte_id' => FILTER_SANITIZE_NUMBER_INT,
 			'tipo_inspecao' => FILTER_SANITIZE_STRING,
@@ -38,6 +39,7 @@ class AgendamentosFilter extends AbstractFilter
 		];
 
 		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+		$dadosFiltrados['data'] = Utils::formatarDataBanco($dadosFiltrados['data']);
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
