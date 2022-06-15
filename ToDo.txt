@@ -1,7 +1,6 @@
--> validações agendamentos; test
--> form inspeções; test
+-> Verificar tooltips quando abre outro form;
 -> validações inspeções; test
--> submit inspeções; test
+-> avaliação inspeções; test
 -> form clientes;
 -> validações clientes;
 -> submit clientes;
