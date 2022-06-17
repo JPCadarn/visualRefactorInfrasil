@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('SessionService.php');
 	require_once('AgendamentoService.php');
@@ -63,7 +66,7 @@
 	echo "</div>";
 	echo "</div>";
 
-	$agendamentosAgrupados = Utils::agruparArrayPorChave($agendamentos, 'ponte_id');
+	$agendamentosAgrupados = HtmlUtils::agruparArrayPorChave($agendamentos, 'ponte_id');
 	
 	if(count($agendamentos)){
 		echo "<div class='container'>";
@@ -82,7 +85,7 @@
 		echo "<h6>Nenhum agendamento cadastrado</h6>";
 	}
 
-	Utils::scriptsJs();
+	HtmlUtils::scriptsJs();
 	echo '</body>';
 	echo '</html>';
 ?>

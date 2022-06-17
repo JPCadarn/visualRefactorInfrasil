@@ -2,11 +2,10 @@
 
 namespace Services;
 
-use Conexao;
 use Exception;
 use InfrasilHtml;
 use PDO;
-use Utils;
+use Utils\HtmlUtils;
 use Validators\PontesValidator;
 
 class PontesService extends AbstractService
@@ -15,7 +14,7 @@ class PontesService extends AbstractService
     {
         $pontes = [];
 
-		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
+		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
         $sql = '
             SELECT 
                 pontes.id, 

@@ -4,8 +4,7 @@ namespace Services;
 
 use Exception;
 use InfrasilHtml;
-use PDO;
-use Utils;
+use Utils\HtmlUtils;
 
 class UsuariosService extends AbstractService
 {
@@ -54,7 +53,7 @@ class UsuariosService extends AbstractService
 	{
 		$usuarios = [];
 
-		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
+		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT id, nome, email, tipo
 			FROM usuarios

@@ -1,5 +1,7 @@
 <?php
 
+use Utils\HtmlUtils;
+
 class AgendamentoService{
 	public static function renderCardsAgendamentoAgrupado($groupAgendamento){
         $conexao = new Conexao();
@@ -21,7 +23,7 @@ class AgendamentoService{
 			echo "</div>";
 			echo "<div class='card-content'>";
 			echo "<p>{$agendamento['detalhes']}</p>";
-			echo "<p>".Utils::formataData($agendamento['data'])." - ".$agendamento['horario']." - ID ".$agendamento['id']."</p>";
+			echo "<p>".HtmlUtils::formataData($agendamento['data'])." - ".$agendamento['horario']." - ID ".$agendamento['id']."</p>";
 			// echo "<p><b>Status: </b>{$agendamento['descrica']}</p>";
 			echo "</div>";
 			echo "</div>";

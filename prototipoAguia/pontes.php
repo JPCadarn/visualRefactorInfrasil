@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('SessionService.php');
 	require_once('Cidades.php');
@@ -11,11 +14,11 @@
 <!DOCTYPE html>
 <html>
 	<?php
-		Utils::tagHead();
+		HtmlUtils::tagHead();
 	?>
 	<body>
 		<?php
-			Utils::navBar();
+			HtmlUtils::navBar();
 			echo "<div class='row'>";
 			$pontes = $conexao->executarQuery('SELECT pontes.id, pontes.nome, pontes.descricao, pontes.resumo, pontes.id_usuario FROM pontes LEFT JOIN usuarios ON pontes.id_usuario = usuarios.id LEFT JOIN clientes ON usuarios.id_cliente = clientes.id WHERE clientes.id = '.SessionService::getIdCliente());
 			if(count($pontes)){
@@ -79,7 +82,7 @@
 											<label for="nome">Nome da OAE</label>
 										</div>
 										<?php
-											Utils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
+											HtmlUtils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
 											echo "<div id='div_cidades' class='input-field col s12 m6'>";
 											echo "<select disabled id='cidade' name='cidade'>";
 											echo "<option value='' disabled selected>Selecione a cidade da OAE</option>";
@@ -91,7 +94,7 @@
 											unset($constantes['ESTADOS']);
 											ksort($constantes);
 											foreach($constantes as $estado => $cidades){
-												Utils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
+												HtmlUtils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
 											}
 										?>
 										<div class="input-field col s12 m6">
@@ -379,7 +382,7 @@
 		</div>
 		
 		<?php
-		Utils::scriptsJs();
+		HtmlUtils::scriptsJs();
 		?>
 		<script type='text/javascript' src='assets/js/cidades.js'></script>
 	</body>

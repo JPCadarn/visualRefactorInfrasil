@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	$conexao = new Conexao();
 
@@ -12,10 +15,10 @@
 
 		private function formatarDadosClientes($clientes){
 			foreach($clientes as $idCliente => $cliente){
-				$clientes[$idCliente]['data_nascimento'] = Utils::formataData($cliente['data_nascimento']);
-				$clientes[$idCliente]['telefone'] = Utils::formataTelefone($cliente['telefone']);
-				$clientes[$idCliente]['cpf_cnpj'] = Utils::formataCpfCnpj($cliente['cpf_cnpj']);
-				$clientes[$idCliente]['endereco'] = Utils::formataEnderecoCliente($cliente);
+				$clientes[$idCliente]['data_nascimento'] = HtmlUtils::formataData($cliente['data_nascimento']);
+				$clientes[$idCliente]['telefone'] = HtmlUtils::formataTelefone($cliente['telefone']);
+				$clientes[$idCliente]['cpf_cnpj'] = HtmlUtils::formataCpfCnpj($cliente['cpf_cnpj']);
+				$clientes[$idCliente]['endereco'] = HtmlUtils::formataEnderecoCliente($cliente);
 			}
 			
 			return $clientes;

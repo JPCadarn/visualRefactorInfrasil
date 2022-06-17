@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 
 	class ContaService{
 		public static function renderMinhaConta($dadosUsuario){
@@ -165,13 +168,13 @@
 				echo "<tr>";
 				echo "<td>".$cliente['id']."</td>";
 				echo "<td>".$cliente['nome']."</td>";
-				echo "<td>".Utils::formataData($cliente['data_nascimento'])."</td>";
-				echo "<td>".Utils::formataCpfCnpj($cliente['cpf_cnpj'])."</td>";
+				echo "<td>".HtmlUtils::formataData($cliente['data_nascimento'])."</td>";
+				echo "<td>".HtmlUtils::formataCpfCnpj($cliente['cpf_cnpj'])."</td>";
 				echo "<td>".$cliente['endereco']."</td>";
 				echo "<td>".$cliente['telefone']."</td>";
 				echo "<td>".$cliente['email']."</td>";
-				echo "<td>".Utils::formataDateTime($cliente['datetime_cadastro'])."</td>";
-				echo "<td>".Utils::formataDateTime($cliente['datetime_atualizacao'])."</td>";
+				echo "<td>".HtmlUtils::formataDateTime($cliente['datetime_cadastro'])."</td>";
+				echo "<td>".HtmlUtils::formataDateTime($cliente['datetime_atualizacao'])."</td>";
 				echo "<td>".$cliente['chave']."</td>";
 				echo "</tr>";
 			}

@@ -1,5 +1,8 @@
 <?php
-	require_once('utils.php');
+
+use Utils\HtmlUtils;
+
+require_once('utils.php');
 	require_once('conexao.php');
 	require_once('SessionService.php');
 	require_once('UsuariosService.php');
@@ -13,13 +16,13 @@
 		$dadosUsuario = $conexao->executarQuery('SELECT * FROM usuarios');
 	}
 
-	Utils::tagHead();
+	HtmlUtils::tagHead();
 	echo "<body>";
-	Utils::navBar();
+	HtmlUtils::navBar();
 	echo "<div class='container'>";
 	UsuariosService::renderUsuarios($dadosUsuario);
 	echo "</div>";
-	Utils::scriptsJs();
+	HtmlUtils::scriptsJs();
 	echo "<script type='text/javascript' src='assets/js/validarSenha.js'></script>";
 	echo "</body>";
 ?>

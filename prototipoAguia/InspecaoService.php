@@ -1,5 +1,7 @@
 <?php
 
+use Utils\HtmlUtils;
+
 require_once('conexao.php');
 
 class InspecaoService{
@@ -147,7 +149,7 @@ class InspecaoService{
 				echo "<a data-position='bottom' href='inspecoesDetalhes.php?id={$inspecao['id_inspecao']}'' data-tooltip='Detalhes' class='indigo darken-4 modal-trigger tooltipped btn-floating btn-large halfway-fab waves-effect waves-light'><i class='material-icons'>info_outline</i></a>";
 			}
 			echo "<p>{$inspecao['descricao']}</p>";
-			echo "<p>".Utils::formataData($inspecao['data_inspecao'])." - ".InspecaoService::tipos[$inspecao['tipo_inspecao']]." - ID ".$inspecao['id_inspecao']."</p>";
+			echo "<p>".HtmlUtils::formataData($inspecao['data_inspecao'])." - ".InspecaoService::tipos[$inspecao['tipo_inspecao']]." - ID ".$inspecao['id_inspecao']."</p>";
 			echo "<p><b>Status: </b>{$inspecao['status']}</p>";
 			echo "</div>";
 			echo "</div>";

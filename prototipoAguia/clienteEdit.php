@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	if(!isset($_GET['id']) || $_GET['id'] == ''){
 		header('Location: '.$_SERVER['HTTP_REFERER']);
@@ -21,7 +24,7 @@
 	</head>
 	<body>
 		<?php
-			Utils::navBar();
+			HtmlUtils::navBar();
 		?>
 		<div class="row">
 			<form action="editCliente.php" method="POST" class="col s12" autocomplete="off">
@@ -32,7 +35,7 @@
 						<label for="nome">Nome</label>
 					</div>
 					<div class="input-field col s12 m6">
-						<input id="data_nascimento" value="<?php echo Utils::formataData($cliente['data_nascimento']); ?>" name="data_nascimento" class="mask-date" type="text">
+						<input id="data_nascimento" value="<?php echo HtmlUtils::formataData($cliente['data_nascimento']); ?>" name="data_nascimento" class="mask-date" type="text">
 						<label for="data_nascimento">Data de Nascimento</label>
 					</div>
 					<div class="input-field col s12 m6">
@@ -85,6 +88,6 @@
 				</div>
 			</form>
 		</div>
-		<?php Utils::scriptsJs(); ?>
+		<?php HtmlUtils::scriptsJs(); ?>
 	</body>
 </html>

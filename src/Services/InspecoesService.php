@@ -5,7 +5,7 @@ namespace Services;
 use Exception;
 use InfrasilHtml;
 use PDO;
-use Utils;
+use Utils\HtmlUtils;
 use Validators\InspecoesValidator;
 
 class InspecoesService extends AbstractService
@@ -14,7 +14,7 @@ class InspecoesService extends AbstractService
 	{
 		$inspecoes = [];
 
-		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
+		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT 
 				pontes.id, 
@@ -81,32 +81,32 @@ class InspecoesService extends AbstractService
 		$sql = '
 			UPDATE inspecoes
 			SET status = :status,
-				nota_indice_localizacao = :nota_indice_localizacao
-				nota_indice_volume_trafego = :nota_indice_volume_trafego
-				nota_indice_largura_oae = :nota_indice_largura_oae
-				nota_geometria_condicoes = :nota_geometria_condicoes
-				nota_acessos = :nota_acessos
-				nota_cursos_agua = :nota_cursos_agua
-				nota_encontros_fundacoes = :nota_encontros_fundacoes
-				nota_apoios_intermediarios = :nota_apoios_intermediarios
-				nota_aparelhos_apoio = :nota_aparelhos_apoio
-				nota_superestrutura = :nota_superestrutura
-				nota_pista_rolamento = :nota_pista_rolamento
-				nota_juntas_dilatacao = :nota_juntas_dilatacao
-				nota_barreiras_guardacorpos = :nota_barreiras_guardacorpos
-				nota_sinalizacao = :nota_sinalizacao
-				nota_instalacoes_util_publica = :nota_instalacoes_util_publica
-				nota_largura_plataforma = :nota_largura_plataforma
-				nota_capacidade_carga = :nota_capacidade_carga
-				nota_superficie_plataforma = :nota_superficie_plataforma
-				nota_pista_rolamento_fc = :nota_pista_rolamento_fc
-				nota_outros_fc = :nota_outros_fc
-				nota_espaco_livre = :nota_espaco_livre
-				nota_localizacao_ponte = :nota_localizacao_ponte
-				nota_saude_fisica_ponte = :nota_saude_fisica_ponte
-				nota_outros_fi = :nota_outros_fi
+				nota_indice_localizacao = :nota_indice_localizacao,
+				nota_indice_volume_trafego = :nota_indice_volume_trafego,
+				nota_indice_largura_oae = :nota_indice_largura_oae,
+				nota_geometria_condicoes = :nota_geometria_condicoes,
+				nota_acessos = :nota_acessos,
+				nota_cursos_agua = :nota_cursos_agua,
+				nota_encontros_fundacoes = :nota_encontros_fundacoes,
+				nota_apoios_intermediarios = :nota_apoios_intermediarios,
+				nota_aparelhos_apoio = :nota_aparelhos_apoio,
+				nota_superestrutura = :nota_superestrutura,
+				nota_pista_rolamento = :nota_pista_rolamento,
+				nota_juntas_dilatacao = :nota_juntas_dilatacao,
+				nota_barreiras_guardacorpos = :nota_barreiras_guardacorpos,
+				nota_sinalizacao = :nota_sinalizacao,
+				nota_instalacoes_util_publica = :nota_instalacoes_util_publica,
+				nota_largura_plataforma = :nota_largura_plataforma,
+				nota_capacidade_carga = :nota_capacidade_carga,
+				nota_superficie_plataforma = :nota_superficie_plataforma,
+				nota_pista_rolamento_fc = :nota_pista_rolamento_fc,
+				nota_outros_fc = :nota_outros_fc,
+				nota_espaco_livre = :nota_espaco_livre,
+				nota_localizacao_ponte = :nota_localizacao_ponte,
+				nota_saude_fisica_ponte = :nota_saude_fisica_ponte,
+				nota_outros_fi = :nota_outros_fi,
 				obs = :obs
-			WHERE id_inspecao = :id_inspecao
+			WHERE id = :id_inspecao
 		';
 
 		try{

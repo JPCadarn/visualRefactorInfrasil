@@ -1,6 +1,9 @@
 
 <?php
-	require_once('utils.php');
+
+use Utils\HtmlUtils;
+
+require_once('utils.php');
 	require_once('Cidades.php');
 ?>
 
@@ -78,7 +81,7 @@
 				<h5 class="center">Consulta do estado das OAE de sua cidade</h5>
 				<form action="buscarOAE.php" method="POST">
 					<?php
-						Utils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
+						HtmlUtils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
 						echo "<div id='div_cidades' class='input-field col s12 m6'>";
 						echo "<select disabled id='cidade' name='cidade'>";
 						echo "<option value='' disabled selected>Selecione a cidade da OAE</option>";
@@ -90,7 +93,7 @@
 						unset($constantes['ESTADOS']);
 						ksort($constantes);
 						foreach($constantes as $estado => $cidades){
-							Utils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
+							HtmlUtils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
 						}
 					?>
 					<button target="_blank" class="indigo darken-4 float-right  waves-effect waves-circle waves-light btn-floating btn-large" type="submit" value="Create">
@@ -162,7 +165,7 @@
 		<form action="buscarOAE.php" method="POST">
 		<div class="modal-content">
 			<?php
-				Utils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
+				HtmlUtils::renderSelect('estado', Cidades::ESTADOS, 'Estado', 'Selecione o estado da OAE', 'nome', 's12 m6');
 				echo "<div id='div_cidades' class='input-field col s12 m6'>";
 				echo "<select disabled id='cidade' name='cidade'>";
 				echo "<option value='' disabled selected>Selecione a cidade da OAE</option>";
@@ -174,7 +177,7 @@
 				unset($constantes['ESTADOS']);
 				ksort($constantes);
 				foreach($constantes as $estado => $cidades){
-					Utils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
+					HtmlUtils::renderSelectNameIdDiferentesOculto($estado, 'cidade', $cidades, 'Cidade', 'Selecione a cidade da OAE', 'nome', 's21 m6');
 				}
 			?>
 			</div>
@@ -217,7 +220,7 @@
 
 	<!--  Scripts-->
 	<?php
-		Utils::scriptsJs();
+		HtmlUtils::scriptsJs();
 	?>
 	<script type='text/javascript' src='assets/js/cidades.js'></script>
 	</body>

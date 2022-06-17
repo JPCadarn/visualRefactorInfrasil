@@ -1,6 +1,8 @@
 <?php
 
-	require_once('InspecaoService.php');
+use Utils\HtmlUtils;
+
+require_once('InspecaoService.php');
 
 	class RankeamentoService{
 		const ALFA1 = 0.4;
@@ -40,7 +42,7 @@
 			foreach($this->inspecoes as $inspecao){
 				$imps[$inspecao['ponte_id']] = $this->calcularIMP($inspecao);
 			}
-			$imps = Utils::ordenarArrayMultiDimensional($imps, 'imp');
+			$imps = HtmlUtils::ordenarArrayMultiDimensional($imps, 'imp');
 			$html = '';
 			$html .= "<table class='striped centered responsive-table'>";
 			$html .= "<thead>";
@@ -62,7 +64,7 @@
 				$html .= "<tr>";
 				$html .= "<td>".InspecaoService::tipos[$inspecao['tipo_inspecao']]."</td>";
 				$html .= "<td>".$inspecao['descricao']."</td>";
-				$html .= "<td>".Utils::formataData($inspecao['data_inspecao'])."</td>";
+				$html .= "<td>".HtmlUtils::formataData($inspecao['data_inspecao'])."</td>";
 				$html .= "<td>".$inspecao['ivs']."</td>";
 				$html .= "<td>".$inspecao['ise']."</td>";
 				$html .= "<td>".$inspecao['imp']."</td>";
@@ -86,7 +88,7 @@
 				$imps[$inspecao['ponte_id']] = $this->calcularIMP($inspecao);
 			}
 
-			$imps = Utils::ordenarArrayMultiDimensional($imps, 'imp');
+			$imps = HtmlUtils::ordenarArrayMultiDimensional($imps, 'imp');
 
 			$html = '';
 			$html .= "<table>";
@@ -107,7 +109,7 @@
 				$html .= "<tr>";
 				$html .= "<td>".InspecaoService::tipos[$inspecao['id']]."</td>";
 				$html .= "<td>".$inspecao['ponte_nome']."</td>";
-				$html .= "<td>".Utils::formataData($inspecao['data_inspecao'])."</td>";
+				$html .= "<td>".HtmlUtils::formataData($inspecao['data_inspecao'])."</td>";
 				$html .= "<td>".$inspecao['imp']."</td>";
 				$html .= "</tr>";
 				$contador++;
@@ -124,7 +126,7 @@
 			foreach($this->inspecoes as $inspecao){
 				$imps[$inspecao['ponte_id']] = $this->calcularIMP($inspecao);
 			}
-			$imps = Utils::ordenarArrayMultiDimensional($imps, 'imp');
+			$imps = HtmlUtils::ordenarArrayMultiDimensional($imps, 'imp');
 
 			return array_search($idPonte, array_column($imps, 'ponte_id')) + 1;
 		}

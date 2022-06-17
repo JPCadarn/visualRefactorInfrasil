@@ -1,87 +1,62 @@
 <div id="REPLACE_ID_MODAL" class="modal">
-	<div class="modal-title">
-		<h4 class="center">Avaliar Inspeção</h4>
+	<div class='modal-header'>
+		<h4 class='left'>Avaliar Inspeção</h4>
+		<h4 class='right modal-close'><i class='material-icons'>close</i></h4>
 	</div>
-	<div class="modal-content">
-		<div class="row">
-			<form id="formAvaliacaoInspecao" action="novaInspecao.php" method="POST" class="col s12"
-				enctype="multipart/form-data" autocomplete="off">
-				REPLACE_ID_INSPECAO
-				<input type="hidden" value="avaliarInspecao" name="action">
-				<ul class="collapsible expandable popout">
-					<li class="active">
-						<div class="collapsible-header"><i class="material-icons">grade</i>Notas</div>
-						<div class="collapsible-body">
-							Utils2::renderSelectSemDiv('nota_indice_localizacao',
-							InspecaoService::camposIndiceLocalizacao, 'Índice de Localização', 'Índice de Localização',
-							'descricao');
-							Utils2::renderSelectSemDiv('nota_indice_volume_trafego',
-							InspecaoService::camposVolumeTrafego, 'Índice de Volume de Tráfego', 'Índice de Volume de
-							Tráfego', 'descricao');
-							Utils2::renderSelectSemDiv('nota_indice_largura_oae', InspecaoService::camposLarguraOAE,
-							'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao');
-							echo "<h5 class='center'>Fator de Segurança</h5>";
-							Utils2::renderSelectSemDiv('nota_geometria_condicoes', InspecaoService::camposFsPesoAlto,
-							'Geometria e condições várias', 'Geometria e condições viárias', 'descricao');
-							Utils2::renderSelectSemDiv('nota_acessos', InspecaoService::camposFsPesoMedio, 'Acessos',
-							'Acessos', 'descricao');
-							Utils2::renderSelectSemDiv('nota_cursos_agua', InspecaoService::camposFsPesoMedio, 'Cursos
-							d\'água', 'Cursos d\'água', 'descricao');
-							Utils2::renderSelectSemDiv('nota_encontros_fundacoes', InspecaoService::camposFsPesoAlto,
-							'Encontros e fundações', 'Encontros e fundações', 'descricao');
-							Utils2::renderSelectSemDiv('nota_apoios_intermediarios', InspecaoService::camposFsPesoAlto,
-							'Apoios intermediários', 'Apoios intermediários', 'descricao');
-							Utils2::renderSelectSemDiv('nota_aparelhos_apoio', InspecaoService::camposFsPesoAlto,
-							'Aparelhos de apoio', 'Aparelhos de apoio', 'descricao');
-							Utils2::renderSelectSemDiv('nota_superestrutura', InspecaoService::camposFsPesoAlto,
-							'Superestrutura', 'Superestrutura', 'descricao');
-							Utils2::renderSelectSemDiv('nota_pista_rolamento', InspecaoService::camposFsPesoMedio, 'Pista
-							de rolamento', 'Pista de rolamento', 'descricao');
-							Utils2::renderSelectSemDiv('nota_juntas_dilatacao', InspecaoService::camposFsPesoMedio,
-							'Juntas de dilatação', 'Juntas de dilatação', 'descricao');
-							Utils2::renderSelectSemDiv('nota_barreiras_guardacorpos', InspecaoService::camposFsPesoBaixo,
-							'Barreiras e guarda-corpos', 'Barreiras e guarda-corpos', 'descricao');
-							Utils2::renderSelectSemDiv('nota_sinalizacao', InspecaoService::camposFsPesoBaixo,
-							'Sinalização', 'Sinalização', 'descricao');
-							Utils2::renderSelectSemDiv('nota_instalacoes_util_publica',
-							InspecaoService::camposFsPesoBaixo, 'Instalações de utilidade pública', 'Instalações de
-							utilidade pública', 'descricao');
-							echo "<h5 class='center'>Fator de Conservação </h5>";
-							Utils2::renderSelectSemDiv('nota_largura_plataforma', InspecaoService::camposFcLargura,
-							'Largura da plataforma', 'Largura da plataforma', 'descricao');
-							Utils2::renderSelectSemDiv('nota_capacidade_carga', InspecaoService::camposFcCarga,
-							'Capacidade de carga', 'Capacidade de carga', 'descricao');
-							Utils2::renderSelectSemDiv('nota_superficie_plataforma', InspecaoService::camposFcSuperficie,
-							'Superfície da plataforma', 'Superfície da plataforma', 'descricao');
-							Utils2::renderSelectSemDiv('nota_pista_rolamento_fc',
-							InspecaoService::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento',
-							'descricao');
-							Utils2::renderSelectSemDiv('nota_outros_fc', InspecaoService::camposFcOutros, 'Outros',
-							'Outros', 'descricao');
-							echo "<h5 class='center'>Fator de Impacto </h5>";
-							Utils2::renderSelectSemDiv('nota_espaco_livre', InspecaoService::camposFiEspacoLivre, 'Espaço
-							livre', 'Espaço livre', 'descricao');
-							Utils2::renderSelectSemDiv('nota_localizacao_ponte', InspecaoService::camposFiLocal,
-							'Localização da Ponte', 'Localização da Ponte', 'descricao');
-							Utils2::renderSelectSemDiv('nota_saude_fisica_ponte', InspecaoService::camposFiSaude, 'Saúde
-							física da ponte', 'Saúde física da ponte', 'descricao');
-							Utils2::renderSelectSemDiv('nota_outros_fi', InspecaoService::camposFiOutros, 'Outros',
-							'Outros', 'descricao');
-							<div class="row">
-								<div class="input-field col s12">
-									<textarea class="materialize-textarea" id="obs" name="obs" type="text"></textarea>
-									<label for="obs">Resumo</label>
+	<div class="row">
+		<form id="formAvaliacaoInspecao" action="../action.php" method="POST" class="col s12" enctype="multipart/form-data" autocomplete="off">
+			<div class="modal-content">
+				<div class="row">
+					<input type="hidden" value="avaliarInspecao" name="action">
+					<input type="hidden" value="REPLACE_ID_INSPECAO" name="id_inspecao">
+					<ul class="collapsible expandable popout">
+						<li class="active">
+							<div class="collapsible-header"><i class="material-icons">grade</i>Notas</div>
+							<div class="collapsible-body">
+								REPLACE_SELECT_IND_LOCALIZACAO
+								REPLACE_SELECT_INDICE_VOL_TRAF
+								REPLACE_INDICE_LARGURA_OAE
+								<h5 class='center'>Fator de Segurança</h5>
+								REPLACE_NOTA_GEOMETRIA_CONDICOES
+								REPLACE_NOTA_ACESSOS
+								REPLACE_NOTA_CURSOS_AGUA
+								REPLACE_NOTA_ENCONTROS_FUNDACOES
+								REPLACE_NOTA_APOIOS_INTERMEDIARIOS
+								REPLACE_NOTA_APARELHOS_APOIO
+								REPLACE_NOTA_SUPERESTRUTURA
+								REPLACE_NOTA_PISTA_ROLAMENTO
+								REPLACE_NOTA_JUNTAS_DILATACAO
+								REPLACE_NOTA_BARREIRAS_GUARDACORPOS
+								REPLACE_NOTA_SINALIZACAO
+								REPLACE_NOTA_INSTALACOES_UTIL_PUBLICA
+								<h5 class='center'>Fator de Conservação </h5>
+								REPLACE_NOTA_LARGURA_PLATAFORMA
+								REPLACE_NOTA_CAPACIDADE_CARGA
+								REPLACE_NOTA_SUPERFICIE_PLATAFORMA
+								REPLACE_NOTA_PISTA_ROLAMENTO_FC
+								REPLACE_NOTA_OUTROS_FC
+								<h5 class='center'>Fator de Impacto </h5>
+								REPLACE_NOTA_ESPACO_LIVRE
+								REPLACE_NOTA_LOCALIZACAO_PONTE
+								REPLACE_NOTA_SAUDE_FISICA_PONTE
+								REPLACE_NOTA_OUTROS_FI
+								<div class="row">
+									<div class="input-field col s12">
+										<textarea class="materialize-textarea" id="obs" name="obs" type="text"></textarea>
+										<label for="obs">Resumo</label>
+									</div>
 								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
-				<button
-					class="indigo darken-4  waves-effect waves-circle waves-light btn-floating btn-large float-right"
-					type="submit" value="Create">
-					<i class="large material-icons">check</i>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class='modal-footer'>
+				<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>
+				<button class='btn waves-effect waves-light' type='submit'>Salvar
+					<i class='material-icons right'>send</i>
 				</button>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </div>

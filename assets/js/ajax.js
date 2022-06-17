@@ -19,12 +19,7 @@ function dispararAjaxAberturaModal(elemento){
 		if(response.status !== 404) {
 			let htmlAtual = $('.div-modal').html();
 			$('.tooltipped').tooltip('close');
-			if($(elemento).hasClass('modal-close')){
-				htmlAtual = response.html;
-			}else {
-				htmlAtual += response.html;
-			}
-			$('.div-modal').html(htmlAtual);
+			$('.div-modal').html(response.html);
 			const elem = document.getElementById(response.idModal);
 			const instance = M.Modal.init(elem, {
 				dismissible: false

@@ -1,14 +1,17 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('InspecaoService.php');
 	require_once('SessionService.php');
 	SessionService::validarLoginFeito();
 	$conexao = new Conexao();
 	echo '<!DOCTYPE html>';
-	Utils::tagHead();
+	HtmlUtils::tagHead();
 	echo '<body>';
-	Utils::navBar();
+	HtmlUtils::navBar();
 
 	$inspecoes = $conexao->executarQuery('
 		SELECT 
@@ -25,7 +28,7 @@
 		LEFT JOIN usuarios ON pontes.id_usuario = usuarios.id 
 		LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 		WHERE clientes.id = '.SessionService::getIdCliente());
-	$inspecoesAgrupadas = Utils::agruparArrayPorChave($inspecoes, 'id');
+	$inspecoesAgrupadas = HtmlUtils::agruparArrayPorChave($inspecoes, 'id');
 	
 	if(count($inspecoes)){
 		echo "<div class='container'>";
@@ -60,33 +63,30 @@
 							<div class="collapsible-header"><i class="material-icons">grade</i>Notas</div>
 							<div class="collapsible-body">
 								<?php
-									Utils::renderSelectSemDiv('nota_indice_localizacao', InspecaoService::camposIndiceLocalizacao, 'Índice de Localização', 'Índice de Localização', 'descricao');
-									Utils::renderSelectSemDiv('nota_indice_volume_trafego', InspecaoService::camposVolumeTrafego, 'Índice de Volume de Tráfego', 'Índice de Volume de Tráfego', 'descricao');
-									Utils::renderSelectSemDiv('nota_indice_largura_oae', InspecaoService::camposLarguraOAE, 'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao');
-									echo "<h5 class='center'>Fator de Segurança</h5>";
-									Utils::renderSelectSemDiv('nota_geometria_condicoes', InspecaoService::camposFsPesoAlto, 'Geometria e condições várias', 'Geometria e condições várias', 'descricao');
-									Utils::renderSelectSemDiv('nota_acessos', InspecaoService::camposFsPesoMedio, 'Acessos', 'Acessos', 'descricao');
-									Utils::renderSelectSemDiv('nota_cursos_agua', InspecaoService::camposFsPesoMedio, 'Cursos d\'água', 'Cursos d\'água', 'descricao');
-									Utils::renderSelectSemDiv('nota_encontros_fundacoes', InspecaoService::camposFsPesoAlto, 'Encontros e fundações', 'Encontros e fundações', 'descricao');
-									Utils::renderSelectSemDiv('nota_apoios_intermediarios', InspecaoService::camposFsPesoAlto, 'Apoios intermediários', 'Apoios intermediários', 'descricao');
-									Utils::renderSelectSemDiv('nota_aparelhos_apoio', InspecaoService::camposFsPesoAlto, 'Aparelhos de apoio', 'Aparelhos de apoio', 'descricao');
-									Utils::renderSelectSemDiv('nota_superestrutura', InspecaoService::camposFsPesoAlto, 'Superestrutura', 'Superestrutura', 'descricao');
-									Utils::renderSelectSemDiv('nota_pista_rolamento', InspecaoService::camposFsPesoMedio, 'Pista de rolamento', 'Pista de rolamento', 'descricao');
-									Utils::renderSelectSemDiv('nota_juntas_dilatacao', InspecaoService::camposFsPesoMedio, 'Juntas de dilatação', 'Juntas de dilatação', 'descricao');
-									Utils::renderSelectSemDiv('nota_barreiras_guardacorpos', InspecaoService::camposFsPesoBaixo, 'Barreiras e guarda-corpos', 'Barreiras e guarda-corpos', 'descricao');
-									Utils::renderSelectSemDiv('nota_sinalizacao', InspecaoService::camposFsPesoBaixo, 'Sinalização', 'Sinalização', 'descricao');
-									Utils::renderSelectSemDiv('nota_instalacoes_util_publica', InspecaoService::camposFsPesoBaixo, 'Instalações de utilidade pública', 'Instalações de utilidade pública', 'descricao');
-									echo "<h5 class='center'>Fator de Conservação </h5>";
-									Utils::renderSelectSemDiv('nota_largura_plataforma', InspecaoService::camposFcLargura, 'Largura da plataforma', 'Largura da plataforma', 'descricao');
-									Utils::renderSelectSemDiv('nota_capacidade_carga', InspecaoService::camposFcCarga, 'Capacidade de carga', 'Capacidade de carga', 'descricao');
-									Utils::renderSelectSemDiv('nota_superficie_plataforma', InspecaoService::camposFcSuperficie, 'Superfície da plataforma', 'Superfície da plataforma', 'descricao');
-									Utils::renderSelectSemDiv('nota_pista_rolamento_fc', InspecaoService::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento', 'descricao');
-									Utils::renderSelectSemDiv('nota_outros_fc', InspecaoService::camposFcOutros, 'Outros', 'Outros', 'descricao');
-									echo "<h5 class='center'>Fator de Impacto </h5>";
-									Utils::renderSelectSemDiv('nota_espaco_livre', InspecaoService::camposFiEspacoLivre, 'Espaço livre', 'Espaço livre', 'descricao');
-									Utils::renderSelectSemDiv('nota_localizacao_ponte', InspecaoService::camposFiLocal, 'Localização da Ponte', 'Localização da Ponte', 'descricao');
-									Utils::renderSelectSemDiv('nota_saude_fisica_ponte', InspecaoService::camposFiSaude, 'Saúde física da ponte', 'Saúde física da ponte', 'descricao');
-									Utils::renderSelectSemDiv('nota_outros_fi', InspecaoService::camposFiOutros, 'Outros', 'Outros', 'descricao');
+									HtmlUtils::renderSelect('nota_indice_localizacao', InspecaoService::camposIndiceLocalizacao, 'Índice de Localização', 'Índice de Localização', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_indice_volume_trafego', Constants::camposVolumeTrafego, 'Índice de Volume de Tráfego', 'Índice de Volume de Tráfego', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_indice_largura_oae', Constants::camposLarguraOAE, 'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_geometria_condicoes', Constants::camposFsPesoAlto, 'Geometria e condições várias', 'Geometria e condições várias', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_acessos', Constants::camposFsPesoMedio, 'Acessos', 'Acessos', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_cursos_agua', Constants::camposFsPesoMedio, 'Cursos d\'água', 'Cursos d\'água', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_encontros_fundacoes', Constants::camposFsPesoAlto, 'Encontros e fundações', 'Encontros e fundações', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_apoios_intermediarios', Constants::camposFsPesoAlto, 'Apoios intermediários', 'Apoios intermediários', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_aparelhos_apoio', Constants::camposFsPesoAlto, 'Aparelhos de apoio', 'Aparelhos de apoio', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_superestrutura', Constants::camposFsPesoAlto, 'Superestrutura', 'Superestrutura', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_pista_rolamento', Constants::camposFsPesoMedio, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_juntas_dilatacao', Constants::camposFsPesoMedio, 'Juntas de dilatação', 'Juntas de dilatação', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_barreiras_guardacorpos', Constants::camposFsPesoBaixo, 'Barreiras e guarda-corpos', 'Barreiras e guarda-corpos', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_sinalizacao', Constants::camposFsPesoBaixo, 'Sinalização', 'Sinalização', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_instalacoes_util_publica', Constants::camposFsPesoBaixo, 'Instalações de utilidade pública', 'Instalações de utilidade pública', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_largura_plataforma', Constants::camposFcLargura, 'Largura da plataforma', 'Largura da plataforma', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_capacidade_carga', Constants::camposFcCarga, 'Capacidade de carga', 'Capacidade de carga', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_superficie_plataforma', Constants::camposFcSuperficie, 'Superfície da plataforma', 'Superfície da plataforma', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_pista_rolamento_fc', Constants::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_outros_fc', Constants::camposFcOutros, 'Outros', 'Outros', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_espaco_livre', Constants::camposFiEspacoLivre, 'Espaço livre', 'Espaço livre', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_localizacao_ponte', Constants::camposFiLocal, 'Localização da Ponte', 'Localização da Ponte', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_saude_fisica_ponte', Constants::camposFiSaude, 'Saúde física da ponte', 'Saúde física da ponte', 'descricao', 'nota');
+									HtmlUtils::renderSelect('nota_outros_fi', Constants::camposFiOutros, 'Outros', 'Outros', 'descricao', 'nota');
 								?>
 								<div class="row">
 									<div class="input-field col s12">

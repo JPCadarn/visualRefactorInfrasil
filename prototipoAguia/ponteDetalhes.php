@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('InspecaoService.php');
 	require_once('SessionService.php');
@@ -29,12 +32,12 @@
 <html>
 	<head>
 		<?php
-			Utils::tagHead();
+			HtmlUtils::tagHead();
 		?>
 	</head>
 	<body>
 		<?php
-			Utils::navBar();
+			HtmlUtils::navBar();
 		?>
 		
 		<div class="row">
@@ -202,7 +205,7 @@
 		echo "<div class='input-field col s12'>";
 		echo "<input id='detalhes' name='detalhes' type='text'>";
 		echo "<label for='detalhes'>Detalhes do Agendamento</label>";
-		Utils::renderSelect('tipo_inspecao', $opcoesInspecao, 'Tipo de Inspeção', 'Selecione o tipo de inspeção', 'tipo');
+		HtmlUtils::renderSelect('tipo_inspecao', $opcoesInspecao, 'Tipo de Inspeção', 'Selecione o tipo de inspeção', 'tipo');
 		echo "<button class='indigo darken-4 float-right  waves-effect waves-circle waves-light btn-floating btn-large' type='submit' value='Create'>";
 		echo "<i class='large material-icons'>check</i>";
 		echo "</button>";
@@ -212,7 +215,7 @@
 		echo "</div>";
 		echo "</div>";
 		echo "<div class='row'>";
-		Utils::scriptsJs();
+		HtmlUtils::scriptsJs();
 		?>
 	</body>
 </html>

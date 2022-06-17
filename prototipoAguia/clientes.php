@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('ClientesService.php');
 	require_once('SessionService.php');
@@ -9,12 +12,12 @@
 	$clienteService = new ClientesService();
 
 	echo '<!DOCTYPE html>';
-	Utils::tagHead();
+	HtmlUtils::tagHead();
 	echo '<body>';
-	Utils::navBar();
+	HtmlUtils::navBar();
 
 	$clientes = $clienteService->getDadosClientesFormatados();
-	Utils::row();
+	HtmlUtils::row();
 	if(is_array($clientes) && count($clientes) > 0){
 		foreach($clientes as $cliente){
 			echo "
@@ -121,7 +124,7 @@
 	</div>
 
 <?php
-	Utils::scriptsJs();
+	HtmlUtils::scriptsJs();
 	echo '</body>';
 	echo '</html>';
 ?>

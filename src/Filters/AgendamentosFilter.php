@@ -2,7 +2,7 @@
 
 namespace Filters;
 
-use Utils;
+use Utils\DateUtils;
 
 class AgendamentosFilter extends AbstractFilter
 {
@@ -39,7 +39,7 @@ class AgendamentosFilter extends AbstractFilter
 		];
 
 		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
-		$dadosFiltrados['data'] = Utils::formatarDataBanco($dadosFiltrados['data']);
+		$dadosFiltrados['data'] = DateUtils::formatarDataBanco($dadosFiltrados['data']);
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}

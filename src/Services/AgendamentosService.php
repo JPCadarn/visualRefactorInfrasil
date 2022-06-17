@@ -5,7 +5,7 @@ namespace Services;
 use Exception;
 use InfrasilHtml;
 use PDO;
-use Utils;
+use Utils\HtmlUtils;
 use Validators\AgendamentosValidator;
 
 class AgendamentosService extends AbstractService
@@ -14,7 +14,7 @@ class AgendamentosService extends AbstractService
 	{
 		$agendamentos = [];
 
-		$limit = Utils::getLimitGrid($dadosRequisicao['page']);
+		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT 
 				a.*,

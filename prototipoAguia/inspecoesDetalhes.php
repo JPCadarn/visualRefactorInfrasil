@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('InspecaoService.php');
 	require_once('SessionService.php');
@@ -22,11 +25,11 @@
 <!DOCTYPE html>
 <html>
 	<?php
-		Utils::tagHead();
+		HtmlUtils::tagHead();
 	?>
 	<body>
 		<?php
-			Utils::navBar();
+			HtmlUtils::navBar();
 		?>
 		
 		<div class="row">
@@ -84,7 +87,7 @@
 		</div>
 
 		<?php
-		Utils::scriptsJs();
+		HtmlUtils::scriptsJs();
 		?>
 	</body>
 </html>

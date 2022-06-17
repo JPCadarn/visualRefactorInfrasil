@@ -1,5 +1,10 @@
 <?php
 
+use Utils\Constants;
+use Utils\DateUtils;
+use Utils\HtmlUtils;
+use Utils\MaskUtils;
+
 class InfrasilHtml {
     public static function montarGridPontes($pontes, $numeroModal)
     {
@@ -19,7 +24,7 @@ class InfrasilHtml {
                 <tr>
                     <th>'.$ponte['id'].'</th>
                     <th>'.$ponte['nome'].'</th>
-                    <th>'.Utils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
+                    <th>'.DateUtils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesPonte" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="formularioAgendamento" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">print</i></a>
@@ -74,7 +79,7 @@ class InfrasilHtml {
                 <tr>
                     <th>'.$agendamento['id'].'</th>
                     <th>'.$agendamento['ponte_nome'].'</th>
-                    <th>'.Utils::formatarData($agendamento['data'], 'd/m/Y').'</th>
+                    <th>'.DateUtils::formatarData($agendamento['data'], 'd/m/Y').'</th>
                     <th>'.$agendamento['horario'].'</th>
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesAgendamento" data-id="'.$agendamento['id'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
@@ -131,7 +136,7 @@ class InfrasilHtml {
                 <tr>
                     <th>'.$inspecao['id_inspecao'].'</th>
                     <th>'.$inspecao['ponte_nome'].'</th>
-                    <th>'.Utils::formatarData($inspecao['data_inspecao'], 'd/m/Y').'</th>
+                    <th>'.DateUtils::formatarData($inspecao['data_inspecao'], 'd/m/Y').'</th>
                     <th>'.$inspecao['tipo_inspecao'].'</th>
                     <th>'.$inspecao['status'].'</th>
                     <th>
@@ -244,8 +249,8 @@ class InfrasilHtml {
                     <th>'.$cliente['id'].'</th>
                     <th>'.$cliente['nome'].'</th>
                     <th>'.$cliente['email'].'</th>
-                    <th>'.Utils::formatarData($cliente['data_nascimento'], 'd/m/Y').'</th>
-                    <th>'.Utils::formataCpfCnpj($cliente['cpf_cnpj']).'</th>
+                    <th>'.DateUtils::formatarData($cliente['data_nascimento'], 'd/m/Y').'</th>
+                    <th>'.MaskUtils::formataCpfCnpj($cliente['cpf_cnpj']).'</th>
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="alterarCliente" data-id="'.$cliente['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
 					</th>
@@ -339,9 +344,65 @@ class InfrasilHtml {
 	{
 		$idModal = 'modal'.$numeroModal;
 
+		$selectIndiceLocalizao = HtmlUtils::renderSelect(
+			'nota_indice_localizacao',
+			Constants::camposIndiceLocalizacao,
+			'Índice de Localização',
+			'Índice de Localização',
+			'descricao',
+			'nota'
+		);
+		$selectNotaIndiceVolumeTrafego = HtmlUtils::renderSelect('nota_indice_volume_trafego', Constants::camposVolumeTrafego, 'Índice de Volume de Tráfego', 'Índice de Volume de Tráfego', 'descricao', 'nota');
+		$selectNotaIndiceLarguraOae = HtmlUtils::renderSelect('nota_indice_largura_oae', Constants::camposLarguraOAE, 'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao', 'nota');
+		$selectNotaGeometriaCondicoes = HtmlUtils::renderSelect('nota_geometria_condicoes', Constants::camposFsPesoAlto, 'Geometria e condições várias', 'Geometria e condições várias', 'descricao', 'nota');
+		$selectNotaAcessos = HtmlUtils::renderSelect('nota_acessos', Constants::camposFsPesoMedio, 'Acessos', 'Acessos', 'descricao', 'nota');
+		$selectNotaCursosAgua = HtmlUtils::renderSelect('nota_cursos_agua', Constants::camposFsPesoMedio, 'Cursos d\'água', 'Cursos d\'água', 'descricao', 'nota');
+		$selectNotaEncontrosFundacoes = HtmlUtils::renderSelect('nota_encontros_fundacoes', Constants::camposFsPesoAlto, 'Encontros e fundações', 'Encontros e fundações', 'descricao', 'nota');
+		$selectNotaApoiosIntermediarios = HtmlUtils::renderSelect('nota_apoios_intermediarios', Constants::camposFsPesoAlto, 'Apoios intermediários', 'Apoios intermediários', 'descricao', 'nota');
+		$selectNotaAparelhosApoio = HtmlUtils::renderSelect('nota_aparelhos_apoio', Constants::camposFsPesoAlto, 'Aparelhos de apoio', 'Aparelhos de apoio', 'descricao', 'nota');
+		$selectNotaSuperestrutura = HtmlUtils::renderSelect('nota_superestrutura', Constants::camposFsPesoAlto, 'Superestrutura', 'Superestrutura', 'descricao', 'nota');
+		$selectNotaPistaRolamento = HtmlUtils::renderSelect('nota_pista_rolamento', Constants::camposFsPesoMedio, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
+		$selectNotaJuntasDilatacao = HtmlUtils::renderSelect('nota_juntas_dilatacao', Constants::camposFsPesoMedio, 'Juntas de dilatação', 'Juntas de dilatação', 'descricao', 'nota');
+		$selectNotaBarreirasGuardacorpos = HtmlUtils::renderSelect('nota_barreiras_guardacorpos', Constants::camposFsPesoBaixo, 'Barreiras e guarda-corpos', 'Barreiras e guarda-corpos', 'descricao', 'nota');
+		$selectNotaSinalizacao = HtmlUtils::renderSelect('nota_sinalizacao', Constants::camposFsPesoBaixo, 'Sinalização', 'Sinalização', 'descricao', 'nota');
+		$selectNotaInstalacoesUtilPublica = HtmlUtils::renderSelect('nota_instalacoes_util_publica', Constants::camposFsPesoBaixo, 'Instalações de utilidade pública', 'Instalações de utilidade pública', 'descricao', 'nota');
+		$selectNotaLarguraPlataforma = HtmlUtils::renderSelect('nota_largura_plataforma', Constants::camposFcLargura, 'Largura da plataforma', 'Largura da plataforma', 'descricao', 'nota');
+		$selectNotaCapacidadeCarga = HtmlUtils::renderSelect('nota_capacidade_carga', Constants::camposFcCarga, 'Capacidade de carga', 'Capacidade de carga', 'descricao', 'nota');
+		$selectNotaSuperficiePlataforma = HtmlUtils::renderSelect('nota_superficie_plataforma', Constants::camposFcSuperficie, 'Superfície da plataforma', 'Superfície da plataforma', 'descricao', 'nota');
+		$selectNotaPistaRolamentoFc = HtmlUtils::renderSelect('nota_pista_rolamento_fc', Constants::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
+		$selectNotaOutrosFc = HtmlUtils::renderSelect('nota_outros_fc', Constants::camposFcOutros, 'Outros', 'Outros', 'descricao', 'nota');
+		$selectNotaEspacoLivre = HtmlUtils::renderSelect('nota_espaco_livre', Constants::camposFiEspacoLivre, 'Espaço livre', 'Espaço livre', 'descricao', 'nota');
+		$selectNotaLocalizacaoPonte = HtmlUtils::renderSelect('nota_localizacao_ponte', Constants::camposFiLocal, 'Localização da Ponte', 'Localização da Ponte', 'descricao', 'nota');
+		$selectNotaSaudeFisicaPonte = HtmlUtils::renderSelect('nota_saude_fisica_ponte', Constants::camposFiSaude, 'Saúde física da ponte', 'Saúde física da ponte', 'descricao', 'nota');
+		$selectNotaOutrosFi = HtmlUtils::renderSelect('nota_outros_fi', Constants::camposFiOutros, 'Outros', 'Outros', 'descricao', 'nota');
+
 		$html = file_get_contents('Html/formAvaliacaoInspecao.html');
         $html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
         $html = str_replace('REPLACE_ID_INSPECAO', $idInspecao, $html);
+		$html = str_replace('REPLACE_SELECT_IND_LOCALIZACAO', $selectIndiceLocalizao, $html);
+		$html = str_replace('REPLACE_SELECT_INDICE_VOL_TRAF', $selectNotaIndiceVolumeTrafego, $html);
+		$html = str_replace('REPLACE_INDICE_LARGURA_OAE', $selectNotaIndiceLarguraOae, $html);
+		$html = str_replace('REPLACE_NOTA_GEOMETRIA_CONDICOES', $selectNotaGeometriaCondicoes, $html);
+		$html = str_replace('REPLACE_NOTA_ACESSOS', $selectNotaAcessos, $html);
+		$html = str_replace('REPLACE_NOTA_CURSOS_AGUA', $selectNotaCursosAgua, $html);
+		$html = str_replace('REPLACE_NOTA_ENCONTROS_FUNDACOES', $selectNotaEncontrosFundacoes, $html);
+		$html = str_replace('REPLACE_NOTA_APOIOS_INTERMEDIARIOS', $selectNotaApoiosIntermediarios, $html);
+		$html = str_replace('REPLACE_NOTA_APARELHOS_APOIO', $selectNotaAparelhosApoio, $html);
+		$html = str_replace('REPLACE_NOTA_SUPERESTRUTURA', $selectNotaSuperestrutura, $html);
+		$html = str_replace('REPLACE_NOTA_PISTA_ROLAMENTO', $selectNotaPistaRolamento, $html);
+		$html = str_replace('REPLACE_NOTA_JUNTAS_DILATACAO', $selectNotaJuntasDilatacao, $html);
+		$html = str_replace('REPLACE_NOTA_BARREIRAS_GUARDACORPOS', $selectNotaBarreirasGuardacorpos, $html);
+		$html = str_replace('REPLACE_NOTA_SINALIZACAO', $selectNotaSinalizacao, $html);
+		$html = str_replace('REPLACE_NOTA_INSTALACOES_UTIL_PUBLICA', $selectNotaInstalacoesUtilPublica, $html);
+		$html = str_replace('REPLACE_NOTA_LARGURA_PLATAFORMA', $selectNotaLarguraPlataforma, $html);
+		$html = str_replace('REPLACE_NOTA_CAPACIDADE_CARGA', $selectNotaCapacidadeCarga, $html);
+		$html = str_replace('REPLACE_NOTA_SUPERFICIE_PLATAFORMA', $selectNotaSuperficiePlataforma, $html);
+		$html = str_replace('REPLACE_NOTA_PISTA_ROLAMENTO_FC', $selectNotaPistaRolamentoFc, $html);
+		$html = str_replace('REPLACE_NOTA_OUTROS_FC', $selectNotaOutrosFc, $html);
+		$html = str_replace('REPLACE_NOTA_ESPACO_LIVRE', $selectNotaEspacoLivre, $html);
+		$html = str_replace('REPLACE_NOTA_LOCALIZACAO_PONTE', $selectNotaLocalizacaoPonte, $html);
+		$html = str_replace('REPLACE_NOTA_SAUDE_FISICA_PONTE', $selectNotaSaudeFisicaPonte, $html);
+		$html = str_replace('REPLACE_NOTA_OUTROS_FI', $selectNotaOutrosFi, $html);
 
 		return [
 			'html' => $html,

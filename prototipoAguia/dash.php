@@ -1,5 +1,8 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	require_once('RankeamentoService.php');
 	require_once('SessionService.php');
@@ -16,7 +19,7 @@
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 			WHERE clientes.id = '.SessionService::getIdCliente());
 	$rankeamento = new RankeamentoService($inspecoes);
-	Utils::navBar();
+	HtmlUtils::navBar();
 ?>
 <!DOCTYPE html>
 <html>

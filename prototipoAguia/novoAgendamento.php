@@ -1,9 +1,12 @@
 <?php
-	require_once('conexao.php');
+
+use Utils\HtmlUtils;
+
+require_once('conexao.php');
 	require_once('utils.php');
 	
 	$conexao = new Conexao();
-	$_POST['data'] = Utils::formataDataBD($_POST['data']);	
+	$_POST['data'] = HtmlUtils::formataDataBD($_POST['data']);
 	$tipoInspecao = $_POST['tipo_inspecao'];
 	unset($_POST['tipo_inspecao']);
 	

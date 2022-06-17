@@ -1,5 +1,7 @@
 <?php
 
+use Utils\HtmlUtils;
+
 require_once('conexao.php');
 require_once('utils.php');
 require_once('ImpressaoHelper.php');
@@ -97,7 +99,7 @@ class RelatorioPonte{
 		if($this->dados['ponte']['data_construcao'] == 'Não cadastrado'){
 			$html = "<p><b>Data de Inauguração: </b>".$this->dados['ponte']['data_construcao']."</p>";
 		}else{
-			$html = "<p><b>Data de Inauguração: (ou época aprox.)</b>".Utils::formataData($this->dados['ponte']['data_construcao'])."</p>";
+			$html = "<p><b>Data de Inauguração: (ou época aprox.)</b>".HtmlUtils::formataData($this->dados['ponte']['data_construcao'])."</p>";
 		}
 		$this->pdf->writeHTML($html);
 
@@ -107,7 +109,7 @@ class RelatorioPonte{
 		if($this->dados['ponte']['data_construcao'] == 'Não cadastrado'){
 			$html = $html = "<p><b>Idade: </b>".$this->dados['ponte']['data_construcao']."</p>";
 		}else{
-			$html = "<p><b>Idade: </b>".Utils::calculaDiferencaDatas($this->dados['ponte']['data_construcao'], date('Y-m-d'), '%y')." anos </p>";
+			$html = "<p><b>Idade: </b>".HtmlUtils::calculaDiferencaDatas($this->dados['ponte']['data_construcao'], date('Y-m-d'), '%y')." anos </p>";
 		}
 		$this->pdf->writeHTML($html);
 
@@ -120,7 +122,7 @@ class RelatorioPonte{
 		$html = "<p><b>Comprimento: </b>".$this->dados['ponte']['comprimento_estrutura']."</p>";
 		$this->pdf->writeHTML($html);
 
-		$html = "<p><b>Largura: </b>".Utils::somarArray($this->dados['ponte'], ['largura_estrutura', 'largura_acostamento', 'largura_refugio', 'largura_passeio', ])." metros</p>";
+		$html = "<p><b>Largura: </b>".HtmlUtils::somarArray($this->dados['ponte'], ['largura_estrutura', 'largura_acostamento', 'largura_refugio', 'largura_passeio', ])." metros</p>";
 		$this->pdf->writeHTML($html);
 
 		$html = "<p><b>Material: </b>".$this->dados['ponte']['material_construcao']."</p><br>";
