@@ -77,6 +77,7 @@ class InspecoesService extends AbstractService
 		}
 
 		$dadosRequisicao['status'] = 'Avaliado';
+		$dadosRequisicao['data_inspecao'] = date('Y-m-d');
 
 		$sql = '
 			UPDATE inspecoes
@@ -105,7 +106,8 @@ class InspecoesService extends AbstractService
 				nota_localizacao_ponte = :nota_localizacao_ponte,
 				nota_saude_fisica_ponte = :nota_saude_fisica_ponte,
 				nota_outros_fi = :nota_outros_fi,
-				obs = :obs
+				obs = :obs,
+				data_inspecao = :data_inspecao
 			WHERE id = :id_inspecao
 		';
 

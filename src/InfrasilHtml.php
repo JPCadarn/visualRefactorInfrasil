@@ -361,6 +361,7 @@ class InfrasilHtml {
 		$selectNotaApoiosIntermediarios = HtmlUtils::renderSelect('nota_apoios_intermediarios', Constants::camposFsPesoAlto, 'Apoios intermediários', 'Apoios intermediários', 'descricao', 'nota');
 		$selectNotaAparelhosApoio = HtmlUtils::renderSelect('nota_aparelhos_apoio', Constants::camposFsPesoAlto, 'Aparelhos de apoio', 'Aparelhos de apoio', 'descricao', 'nota');
 		$selectNotaSuperestrutura = HtmlUtils::renderSelect('nota_superestrutura', Constants::camposFsPesoAlto, 'Superestrutura', 'Superestrutura', 'descricao', 'nota');
+		$selectNotaPistaRolamentoFc = HtmlUtils::renderSelect('nota_pista_rolamento_fc', Constants::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
 		$selectNotaPistaRolamento = HtmlUtils::renderSelect('nota_pista_rolamento', Constants::camposFsPesoMedio, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
 		$selectNotaJuntasDilatacao = HtmlUtils::renderSelect('nota_juntas_dilatacao', Constants::camposFsPesoMedio, 'Juntas de dilatação', 'Juntas de dilatação', 'descricao', 'nota');
 		$selectNotaBarreirasGuardacorpos = HtmlUtils::renderSelect('nota_barreiras_guardacorpos', Constants::camposFsPesoBaixo, 'Barreiras e guarda-corpos', 'Barreiras e guarda-corpos', 'descricao', 'nota');
@@ -369,7 +370,6 @@ class InfrasilHtml {
 		$selectNotaLarguraPlataforma = HtmlUtils::renderSelect('nota_largura_plataforma', Constants::camposFcLargura, 'Largura da plataforma', 'Largura da plataforma', 'descricao', 'nota');
 		$selectNotaCapacidadeCarga = HtmlUtils::renderSelect('nota_capacidade_carga', Constants::camposFcCarga, 'Capacidade de carga', 'Capacidade de carga', 'descricao', 'nota');
 		$selectNotaSuperficiePlataforma = HtmlUtils::renderSelect('nota_superficie_plataforma', Constants::camposFcSuperficie, 'Superfície da plataforma', 'Superfície da plataforma', 'descricao', 'nota');
-		$selectNotaPistaRolamentoFc = HtmlUtils::renderSelect('nota_pista_rolamento_fc', Constants::camposFcPistaRolamento, 'Pista de rolamento', 'Pista de rolamento', 'descricao', 'nota');
 		$selectNotaOutrosFc = HtmlUtils::renderSelect('nota_outros_fc', Constants::camposFcOutros, 'Outros', 'Outros', 'descricao', 'nota');
 		$selectNotaEspacoLivre = HtmlUtils::renderSelect('nota_espaco_livre', Constants::camposFiEspacoLivre, 'Espaço livre', 'Espaço livre', 'descricao', 'nota');
 		$selectNotaLocalizacaoPonte = HtmlUtils::renderSelect('nota_localizacao_ponte', Constants::camposFiLocal, 'Localização da Ponte', 'Localização da Ponte', 'descricao', 'nota');
@@ -389,6 +389,7 @@ class InfrasilHtml {
 		$html = str_replace('REPLACE_NOTA_APOIOS_INTERMEDIARIOS', $selectNotaApoiosIntermediarios, $html);
 		$html = str_replace('REPLACE_NOTA_APARELHOS_APOIO', $selectNotaAparelhosApoio, $html);
 		$html = str_replace('REPLACE_NOTA_SUPERESTRUTURA', $selectNotaSuperestrutura, $html);
+		$html = str_replace('REPLACE_NOTA_PISTA_ROLAMENTO_FC', $selectNotaPistaRolamentoFc, $html);
 		$html = str_replace('REPLACE_NOTA_PISTA_ROLAMENTO', $selectNotaPistaRolamento, $html);
 		$html = str_replace('REPLACE_NOTA_JUNTAS_DILATACAO', $selectNotaJuntasDilatacao, $html);
 		$html = str_replace('REPLACE_NOTA_BARREIRAS_GUARDACORPOS', $selectNotaBarreirasGuardacorpos, $html);
@@ -397,7 +398,6 @@ class InfrasilHtml {
 		$html = str_replace('REPLACE_NOTA_LARGURA_PLATAFORMA', $selectNotaLarguraPlataforma, $html);
 		$html = str_replace('REPLACE_NOTA_CAPACIDADE_CARGA', $selectNotaCapacidadeCarga, $html);
 		$html = str_replace('REPLACE_NOTA_SUPERFICIE_PLATAFORMA', $selectNotaSuperficiePlataforma, $html);
-		$html = str_replace('REPLACE_NOTA_PISTA_ROLAMENTO_FC', $selectNotaPistaRolamentoFc, $html);
 		$html = str_replace('REPLACE_NOTA_OUTROS_FC', $selectNotaOutrosFc, $html);
 		$html = str_replace('REPLACE_NOTA_ESPACO_LIVRE', $selectNotaEspacoLivre, $html);
 		$html = str_replace('REPLACE_NOTA_LOCALIZACAO_PONTE', $selectNotaLocalizacaoPonte, $html);
