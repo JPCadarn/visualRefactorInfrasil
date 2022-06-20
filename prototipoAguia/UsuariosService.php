@@ -80,5 +80,16 @@ require_once('conexao.php');
 					</a>
 				</div>";
 		}
+
+		public static function gerarFormularioCadastroUsuario($dadosRequisicao)
+		{
+			$grid = InfrasilHtml::montarFormUsuarios($dadosRequisicao['numeroModal'] + 1);
+
+			return [
+				'html' => $grid['html'],
+				'status' => 200,
+				'idModal' => $grid['idModal']
+			];
+		}
 	}
 ?>

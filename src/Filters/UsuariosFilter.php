@@ -25,4 +25,14 @@ class UsuariosFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function gerarFormularioCadastroUsuarioFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'numeroModal' => FILTER_SANITIZE_NUMBER_INT
+		];
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

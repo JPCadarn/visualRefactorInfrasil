@@ -1,12 +1,9 @@
--> Verificar tooltips quando abre outro form;
--> validações inspeções; test
--> avaliação inspeções; test
--> form clientes;
--> validações clientes;
--> submit clientes;
 -> form usuarios;
 -> validações usuarios;
 -> submit usuarios;
+-> form clientes;
+-> validações clientes;
+-> submit clientes;
 -> form minha conta;
 -> validações conta;
 -> edit agendamentos;

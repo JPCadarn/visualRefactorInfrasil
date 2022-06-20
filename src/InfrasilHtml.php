@@ -502,6 +502,19 @@ class InfrasilHtml {
 	{
 
 	}
+
+	public static function montarFormUsuarios($numeroModal)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formCadastroUsuarios.html');
+		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
 }
 
 ?>

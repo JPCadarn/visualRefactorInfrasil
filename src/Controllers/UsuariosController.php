@@ -36,7 +36,7 @@ class UsuariosController
 		$UsuariosService = new UsuariosService();
 		$UsuariosService->setConexao($conexao);
 
-		$dadosFiltrados = AgendamentosFilter::gerarFormularioCadastroUsuarioFilter($dadosRequisicao);
+		$dadosFiltrados = UsuariosFilter::gerarFormularioCadastroUsuarioFilter($dadosRequisicao);
 
 		return $UsuariosService->gerarFormularioCadastroUsuario($dadosFiltrados);
 	}
