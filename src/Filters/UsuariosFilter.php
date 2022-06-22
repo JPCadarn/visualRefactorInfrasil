@@ -35,4 +35,19 @@ class UsuariosFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function adicionarUsuarioFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'nome' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'senha' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'email' => FILTER_SANITIZE_EMAIL,
+			'chave' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'tipo' => FILTER_SANITIZE_SPECIAL_CHARS
+		];
+
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

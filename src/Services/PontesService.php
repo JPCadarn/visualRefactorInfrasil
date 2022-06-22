@@ -109,6 +109,14 @@ class PontesService extends AbstractService
 	{
 		$erros = PontesValidator::detalhesPonteValidator($dadosRequisicao);
 
+		if(count($erros)){
+			return [
+				'status' => 200,
+				'type' => 'error',
+				'errors' => $erros
+			];
+		}
+
 		$sqlOae = 'SELECT * FROM pontes WHERE id = :idOae';
 		$sqlAdicional = '
 			SELECT imagem 

@@ -5,6 +5,7 @@ namespace Services;
 use Exception;
 use InfrasilHtml;
 use Utils\HtmlUtils;
+use Validators\UsuariosValidator;
 
 class UsuariosService extends AbstractService
 {
@@ -77,6 +78,69 @@ class UsuariosService extends AbstractService
 			];
 		}catch(Exception $e){
 			$this->conexao->rollBack();
+		}
+	}
+
+	public function gerarFormularioCadastroUsuario($dadosRequisicao)
+	{
+		$grid = InfrasilHtml::montarFormUsuarios($dadosRequisicao['numeroModal'] + 1);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
+	}
+
+	public function adicionarUsuario($dadosRequisicao)
+	{
+		$sqlChave = "SELECT id FROM cliente WHERE chave = :chave";
+
+		$statementChave = $this->conexao->prepare($sqlChave);
+		$statementChave->bindValue(':chave', $dadosRequisicao['chave']);
+		$statementChave->execute();
+		$chaveCliente = $statementChave->fetch();
+
+		$erros = UsuariosValidator::adicionarUsuarioValidate($dadosRequisicao, $chaveCliente);
+
+		if(count($erros)){
+			return [
+				'status' => 200,
+				'type' => 'error',
+				'errors' => $erros
+			];
+		}
+
+		$sqlInsert = "
+			INSERT INTO usuarios
+			(nome, senha, chave, email, tipo)
+			VALUES
+			:nome, :senha, :chave, :email, :tipo
+		";
+		try {
+			$this->conexao->beginTransaction();
+			$statement = $this->conexao->prepare($sqlInsert);
+			foreach($dadosRequisicao as $key => $value){
+				$statement->bindValue(':'.$key, $value);
+			}
+			$statement->execute();
+			$idInserido = $this->conexao->lastInsertId();
+			$this->conexao->commit();
+			return [
+				'id' => $idInserido,
+				'status' => 200,
+				'type' => 'success',
+				'message' => 'Usuário cadastrado com sucesso.'
+			];
+		}catch (Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao salvar o usuário. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
 		}
 	}
 }

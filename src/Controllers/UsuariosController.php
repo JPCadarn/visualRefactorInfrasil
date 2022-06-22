@@ -41,13 +41,24 @@ class UsuariosController
 		return $UsuariosService->gerarFormularioCadastroUsuario($dadosFiltrados);
 	}
 
+	public function adicionarUsuario($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFiltrados = UsuariosFilter::adicionarUsuarioFilter($dadosRequisicao);
+
+		return $UsuariosService->adicionarUsuario($dadosFiltrados);
+	}
+
 	public function gerarFormularioEdicaoUsuario($dadosRequisicao)
 	{
 		$conexao = Conexao::conectar();
 		$UsuariosService = new UsuariosService();
 		$UsuariosService->setConexao($conexao);
 
-		$dadosFiltrados = AgendamentosFilter::gerarFormularioEdicaoUsuarioFilter($dadosRequisicao);
+		$dadosFiltrados = UsuariosFilter::gerarFormularioEdicaoUsuarioFilter($dadosRequisicao);
 
 		return $UsuariosService->gerarFormularioEdicaoCliente($dadosFiltrados);
 	}
