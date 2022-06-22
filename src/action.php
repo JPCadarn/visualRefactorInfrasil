@@ -69,7 +69,7 @@ if(!empty($_GET)){
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->gerarFormularioCadastroUsuario($_POST));
 			break;
-		case 'alterarUsuario':
+		case 'formularioEdicaoUsuario':
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->gerarFormularioEdicaoUsuario($_POST));
 			break;
