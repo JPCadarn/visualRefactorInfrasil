@@ -60,6 +60,17 @@ class UsuariosController
 
 		$dadosFiltrados = UsuariosFilter::gerarFormularioEdicaoUsuarioFilter($dadosRequisicao);
 
-		return $UsuariosService->gerarFormularioEdicaoCliente($dadosFiltrados);
+		return $UsuariosService->gerarFormularioEdicaoUsuario($dadosFiltrados);
+	}
+
+	public function editarUsuario($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFilter = UsuariosFilter::editarUsuarioFilter($dadosRequisicao);
+
+		return $UsuariosService->editarUsuario($dadosRequisicao);
 	}
 }

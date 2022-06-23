@@ -1,0 +1,46 @@
+<div id='REPLACE_ID_MODAL' class='modal center-align'>
+	<div class='modal-header'>
+		<h4 class='left'>Cadastro de Usuários</h4>
+		<h4 class='right modal-close'><i class='material-icons'>close</i></h4>
+	</div>
+	<div class='row'>
+		<form action='../action.php' method='POST' class='col s12' autocomplete='off'></form>
+			<input name="action" value="editarUsuario" type="hidden">
+			<input name="id" value="REPLACE_ID_USUARIO" type="hidden">
+			<div class='modal-content'>
+				<div class='row'>
+					<div class='input-field col s12 m6'>
+						<input id='nome' name='nome' type='text'>
+						<label for='nome'>Nome</label>
+					</div>
+					<div class='input-field col s12 m6'>
+						<input id='senha' name='senha' type='password'>
+						<label for='senha'>Senha</label>
+					</div>
+					<div class='input-field col s12 m6'>
+						<input id='email' name='email' type='email'>
+						<label for='email'>Email</label>
+					</div>
+					<div class='input-field col s12 m6'>
+						<input id='chave' name='chave' type='text'>
+						<label for='chave'>Chave</label>
+					</div>
+					<div class='input-field col s12 m6'>
+						<select id='tipo' name='tipo'>
+							<option value='' disabled selected>Selecione o tipo de usuário</option>
+							<option value='admin'>Admin</option>
+							<option value='normal'>Normal</option>
+						</select>
+						<label>Tipo de Usuário</label>
+					</div>
+				</div>
+			</div>
+			<div class='modal-footer'>
+				<a href='#!' class='modal-close waves-effect waves-green btn'>Fechar</a>
+				<button class='btn waves-effect waves-light' type='submit'>Salvar
+					<i class='material-icons right'>send</i>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

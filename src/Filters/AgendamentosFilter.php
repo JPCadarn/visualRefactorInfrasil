@@ -30,11 +30,11 @@ class AgendamentosFilter extends AbstractFilter
 	public static function adicionarAgendamentoFilter($dadosRequisicao)
 	{
 		$filtros = [
-			'data' => FILTER_SANITIZE_STRING,
-			'horario' => FILTER_SANITIZE_STRING,
-			'detalhes' => FILTER_SANITIZE_STRING,
+			'data' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'horario' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'detalhes' => FILTER_SANITIZE_SPECIAL_CHARS,
 			'ponte_id' => FILTER_SANITIZE_NUMBER_INT,
-			'tipo_inspecao' => FILTER_SANITIZE_STRING,
+			'tipo_inspecao' => FILTER_SANITIZE_SPECIAL_CHARS,
 			'id_usuario' => FILTER_SANITIZE_NUMBER_INT
 		];
 

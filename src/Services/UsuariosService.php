@@ -143,4 +143,66 @@ class UsuariosService extends AbstractService
 			];
 		}
 	}
+
+	public function gerarFormularioEdicaoUsuario($dadosRequisicao)
+	{
+		$grid = InfrasilHtml::montarFormEditUsuarios($dadosRequisicao['numeroModal'] + 1, $dadosRequisicao['id']);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
+	}
+
+	public function editarUsuario($dadosRequisicao)
+	{
+		$sqlChave = "SELECT id FROM cliente WHERE chave = :chave";
+
+		$statementChave = $this->conexao->prepare($sqlChave);
+		$statementChave->bindValue(':chave', $dadosRequisicao['chave']);
+		$statementChave->execute();
+		$chaveCliente = $statementChave->fetch();
+
+		$erros = UsuariosValidator::editarUsuarioValidate($dadosRequisicao, $chaveCliente);
+
+		if(count($erros)){
+			return [
+				'status' => 200,
+				'type' => 'error',
+				'errors' => $erros
+			];
+		}
+
+		$sqlUpdate = "
+			UPDATE usuarios
+			SET nome = :nome, senha = :senha, chave = :chave, email = :email, tipo = :tipo
+			WHERE id = :id
+		";
+		try {
+			$this->conexao->beginTransaction();
+			$statement = $this->conexao->prepare($sqlUpdate);
+			foreach($dadosRequisicao as $key => $value){
+				$statement->bindValue(':'.$key, $value);
+			}
+			$statement->execute();
+			$idInserido = $this->conexao->lastInsertId();
+			$this->conexao->commit();
+			return [
+				'id' => $dadosRequisicao['id'],
+				'status' => 200,
+				'type' => 'success',
+				'message' => 'Usuário atualizado com sucesso.'
+			];
+		}catch (Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao atualizar o usuário. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+	}
 }
