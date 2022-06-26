@@ -94,31 +94,36 @@ class UsuariosService extends AbstractService
 
 	public function adicionarUsuario($dadosRequisicao)
 	{
-		$sqlChave = "SELECT id FROM cliente WHERE chave = :chave";
-
-		$statementChave = $this->conexao->prepare($sqlChave);
-		$statementChave->bindValue(':chave', $dadosRequisicao['chave']);
-		$statementChave->execute();
-		$chaveCliente = $statementChave->fetch();
-
-		$erros = UsuariosValidator::adicionarUsuarioValidate($dadosRequisicao, $chaveCliente);
-
-		if(count($erros)){
-			return [
-				'status' => 200,
-				'type' => 'error',
-				'errors' => $erros
-			];
-		}
-
-		$sqlInsert = "
-			INSERT INTO usuarios
-			(nome, senha, chave, email, tipo)
-			VALUES
-			:nome, :senha, :chave, :email, :tipo
-		";
 		try {
 			$this->conexao->beginTransaction();
+
+			$sqlChave = "SELECT id FROM clientes WHERE chave = :chave";
+
+			$statementChave = $this->conexao->prepare($sqlChave);
+			$statementChave->bindValue(':chave', $dadosRequisicao['chave']);
+			$statementChave->execute();
+			$idCliente = $statementChave->fetch();
+
+			$erros = UsuariosValidator::adicionarUsuarioValidate($dadosRequisicao, $idCliente);
+
+			if(count($erros)){
+				return [
+					'status' => 200,
+					'type' => 'error',
+					'errors' => $erros
+				];
+			}
+
+			$dadosRequisicao['idCliente'] = $idCliente['id'];
+			$dadosRequisicao['senha'] = password_hash($dadosRequisicao['senha'], PASSWORD_BCRYPT);
+
+			$sqlInsert = "
+				INSERT INTO usuarios
+				(nome, senha, chave, email, tipo, id_cliente)
+				VALUES
+				(:nome, :senha, :chave, :email, :tipo, :idCliente)
+			";
+
 			$statement = $this->conexao->prepare($sqlInsert);
 			foreach($dadosRequisicao as $key => $value){
 				$statement->bindValue(':'.$key, $value);
@@ -146,7 +151,19 @@ class UsuariosService extends AbstractService
 
 	public function gerarFormularioEdicaoUsuario($dadosRequisicao)
 	{
-		$grid = InfrasilHtml::montarFormEditUsuarios($dadosRequisicao['numeroModal'] + 1, $dadosRequisicao['id']);
+		try{
+			$this->conexao->beginTransaction();
+			$sql = "SELECT id, nome, email, senha FROM usuarios WHERE id = :id";
+			$statement = $this->conexao->prepare($sql);
+			$statement->bindParam(':id', $dadosRequisicao['id']);
+			$statement->execute();
+			$dadosUsuario = $statement->fetch();
+			$this->conexao->commit();
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+		}
+
+		$grid = InfrasilHtml::montarFormEditUsuarios($dadosRequisicao['numeroModal'] + 1, $dadosUsuario);
 
 		return [
 			'html' => $grid['html'],
@@ -157,14 +174,7 @@ class UsuariosService extends AbstractService
 
 	public function editarUsuario($dadosRequisicao)
 	{
-		$sqlChave = "SELECT id FROM cliente WHERE chave = :chave";
-
-		$statementChave = $this->conexao->prepare($sqlChave);
-		$statementChave->bindValue(':chave', $dadosRequisicao['chave']);
-		$statementChave->execute();
-		$chaveCliente = $statementChave->fetch();
-
-		$erros = UsuariosValidator::editarUsuarioValidate($dadosRequisicao, $chaveCliente);
+		$erros = UsuariosValidator::editarUsuarioValidate($dadosRequisicao);
 
 		if(count($erros)){
 			return [
@@ -174,9 +184,12 @@ class UsuariosService extends AbstractService
 			];
 		}
 
+		$dadosRequisicao['senha'] = password_hash($dadosRequisicao['senha'], PASSWORD_BCRYPT);
+		unset($dadosRequisicao['action']);
+
 		$sqlUpdate = "
 			UPDATE usuarios
-			SET nome = :nome, senha = :senha, chave = :chave, email = :email, tipo = :tipo
+			SET nome = :nome, senha = :senha, email = :email, tipo = :tipo
 			WHERE id = :id
 		";
 		try {

@@ -3,7 +3,7 @@
 namespace Validators;
 
 class UsuariosValidator {
-	public static function adicionarUsuarioValidate($dadosInsert, $chaveCliente)
+	public static function adicionarUsuarioValidate($dadosInsert, $idCliente)
 	{
 		$erros = [];
 
@@ -21,14 +21,14 @@ class UsuariosValidator {
 			}
 		}
 
-		if(!empty($chaveCliente)){
+		if(empty($idCliente)){
 			$erros[] = 'A chave informada não corresponde a nenhum cliente';
 		}
 
 		return $erros;
 	}
 
-	public static function editarUsuarioValidate($dadosInsert, $chaveCliente)
+	public static function editarUsuarioValidate($dadosInsert)
 	{
 		$erros = [];
 
@@ -37,7 +37,6 @@ class UsuariosValidator {
 			'nome' => 'O nome é obrigatório.',
 			'senha' => 'A senha é obrigatória.',
 			'email' => 'O email é obrigatório',
-			'chave' => 'A chave de cliente é obrigatória.',
 			'tipo' => 'O tipo de cliente é obrigatório.'
 		];
 
@@ -45,10 +44,6 @@ class UsuariosValidator {
 			if(array_key_exists($key, $camposRequeridos) && empty($value)){
 				$erros[] = $camposRequeridos[$key];
 			}
-		}
-
-		if(!empty($chaveCliente)){
-			$erros[] = 'A chave informada não corresponde a nenhum cliente';
 		}
 
 		return $erros;

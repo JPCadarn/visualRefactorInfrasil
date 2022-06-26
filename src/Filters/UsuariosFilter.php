@@ -69,7 +69,6 @@ class UsuariosFilter extends AbstractFilter
 			'nome' => FILTER_SANITIZE_SPECIAL_CHARS,
 			'senha' => FILTER_SANITIZE_SPECIAL_CHARS,
 			'email' => FILTER_SANITIZE_EMAIL,
-			'chave' => FILTER_SANITIZE_SPECIAL_CHARS,
 			'tipo' => FILTER_SANITIZE_SPECIAL_CHARS
 		];
 

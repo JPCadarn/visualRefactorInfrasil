@@ -111,9 +111,9 @@ class AgendamentosService extends AbstractService
 			$nomeInspecao = 'Inspeção automática gerada pelo agendamento ID: '.$idInserido;
 			$sqlInspecao = "
 				INSERT INTO inspecoes
-				(ponte_id, nome, descricao, tipo_inspecao)
+				(ponte_id, nome, descricao, tipo_inspecao, id_usuario)
 				VALUES
-				(:ponte_id, :nome, :descricao, :tipo_inspecao)
+				(:ponte_id, :nome, :descricao, :tipo_inspecao, :ïd_usuario)
 			";
 			$statementInspecao = $this->conexao->prepare($sqlInspecao);
 			$statementInspecao->bindParam(':ponte_id', $dadosRequisicao['ponte_id']);

@@ -17,7 +17,6 @@ function dispararAjaxAberturaModal(elemento){
 		dataType: 'JSON'
 	}).done(function(response){
 		if(response.status !== 404) {
-			let htmlAtual = $('.div-modal').html();
 			$('.tooltipped').tooltip('close');
 			$('.div-modal').html(response.html);
 			const elem = document.getElementById(response.idModal);
@@ -111,7 +110,7 @@ $('#formLogin').on('submit', function (event) {
 $("body").on("submit", null, function(element){
 	element.preventDefault();
 
-	let formData = $('#' + element.target.id).serializeArray();
+	let formData = $('#' + element.target.getAttribute('id')).serializeArray();
 
 	$.ajax({
 		type: 'POST',
@@ -129,7 +128,7 @@ $("body").on("submit", null, function(element){
 				})
 			})
 		}else if(response.type === 'success'){
-			let elementos = $('#' + element.target.id)[0].elements;
+			let elementos = $('#' + element.target.getAttribute('id'))[0].elements;
 			let formPossuiImagens = false;
 
 			for(let i = 0; i < elementos.length; i ++){
@@ -173,7 +172,7 @@ $("body").on("submit", null, function(element){
 				classes: "green darken-3 rounded",
 				displayLength: 2500
 			});
-			let idModal = document.getElementById(element.target.id).parentNode.parentNode.id;
+			let idModal = document.getElementById(element.target.getAttribute('id')).parentNode.parentNode.id;
 			let modal = document.getElementById(idModal);
 			const instance = M.Modal.getInstance(modal);
 			instance.destroy();

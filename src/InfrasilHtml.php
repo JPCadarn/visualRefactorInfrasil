@@ -51,7 +51,7 @@ class InfrasilHtml {
 
         $html .= "</div>";
         $html .= "<div class='modal-footer'>";
-        $html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioPonte' data-position='bottom' data-tooltip='Cadastrar estrutura'><i class='material-icons'>add</i></a>";
+        $html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioPonte' data-position='bottom' data-tooltip='Cadastrar estrutura'><i class='material-icons'>add</i></button>";
         $html .= "</div>";
         $html .= "</div>";
 
@@ -108,7 +108,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioAgendamento' data-position='bottom' data-tooltip='Cadastrar agendamento'><i class='material-icons'>add</i></a>";
+		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioAgendamento' data-position='bottom' data-tooltip='Cadastrar agendamento'><i class='material-icons'>add</i></button>";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -195,7 +195,8 @@ class InfrasilHtml {
                     <th>'.$usuario['email'].'</th>
                     <th>'.$usuario['tipo'].'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="editarUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="formularioEdicaoUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Alterar Usuário" data-position="bottom" data-action="excluirUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">delete</i></a>
 					</th>
                 </tr>
             ';
@@ -220,7 +221,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioUsuario' data-position='bottom' data-tooltip='Cadastrar usuário'><i class='material-icons'>add</i></a>";
+		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioUsuario' data-position='bottom' data-tooltip='Cadastrar usuário'><i class='material-icons'>add</i></button>";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -278,7 +279,7 @@ class InfrasilHtml {
 
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
-		$html .= "<a href='#!' class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioCliente' data-position='bottom' data-tooltip='Cadastrar cliente'><i class='material-icons'>add</i></a>";
+		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioCliente' data-position='bottom' data-tooltip='Cadastrar cliente'><i class='material-icons'>add</i></button>";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -516,13 +517,15 @@ class InfrasilHtml {
 		];
 	}
 
-	public static function montarFormEditUsuarios($numeroModal, $idUsuario)
+	public static function montarFormEditUsuarios($numeroModal, $dadosUsuario)
 	{
 		$idModal = 'modal'.$numeroModal;
 
 		$html = file_get_contents('Html/formEdicaoUsuarios.html');
 		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
-		$html = str_replace('REPLACE_ID_USUARIO', $idUsuario, $html);
+		$html = str_replace('REPLACE_ID_USUARIO', $dadosUsuario['id'], $html);
+		$html = str_replace('REPLACE_NOME', $dadosUsuario['nome'], $html);
+		$html = str_replace('REPLACE_EMAIL', $dadosUsuario['email'], $html);
 
 		return [
 			'html' => $html,
