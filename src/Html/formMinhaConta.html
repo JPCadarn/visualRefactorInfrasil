@@ -4,30 +4,28 @@
 		<h4 class='right modal-close'><i class='material-icons'>close</i></h4>
 	</div>
 	<div class='row'>
-		<form action='../action.php' id="formEdicaoUsuarios" method='POST' class='col s12' autocomplete='off'>
+		<form action='../action.php' id="formMinhaConta" method='POST' class='col s12' autocomplete='off'>
 			<input name="id" value="REPLACE_ID_USUARIO" type="hidden">
-			<input name="action" value="editarUsuarioMinhaConta" type="hidden">
+			<input name="action" value="editarUsuario" type="hidden">
+			<input name="tipo" value="REPLACE_TIPO" type="hidden">
 			<div class='modal-content'>
 				<div class='row'>
+					<input type='hidden' name='id' id='id' value=".$dadosUsuario['id'].">
 					<div class='input-field col s12'>
-						<input id='nome' name='nome' type='text' value='REPLACE_NOME' class="active">
+						<input id='nome' name='nome' type='text' value='REPLACE_NOME'>
 						<label for='nome'>Nome</label>
 					</div>
 					<div class='input-field col s12'>
-						<input id='senha' name='senha' type='password'>
-						<label for='senha'>Senha</label>
-					</div>
-					<div class='input-field col s12'>
-						<input id='email' name='email' type='email' value='REPLACE_EMAIL' class="active">
+						<input id='email' name='email' type='text' value='REPLACE_EMAIL'>
 						<label for='email'>Email</label>
 					</div>
 					<div class='input-field col s12'>
-						<select id='tipo' name='tipo'>
-							<option value='' disabled selected>Selecione o tipo de usuário</option>
-							<option value='admin'>Admin</option>
-							<option value='normal'>Normal</option>
-						</select>
-						<label for="tipo">Tipo de Usuário</label>
+						<input id='senha' name='senha' type='text'>
+						<label for='senha'>Senha</label>
+					</div>
+					<div class='input-field col s12'>
+						<input id='confirme_senha' type='text'>
+						<label for='confirme_senha'>Confirme sua Senha</label>
 					</div>
 				</div>
 			</div>

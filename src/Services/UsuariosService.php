@@ -199,7 +199,6 @@ class UsuariosService extends AbstractService
 				$statement->bindValue(':'.$key, $value);
 			}
 			$statement->execute();
-			$idInserido = $this->conexao->lastInsertId();
 			$this->conexao->commit();
 			return [
 				'id' => $dadosRequisicao['id'],
@@ -217,5 +216,33 @@ class UsuariosService extends AbstractService
 				'type' => 'error'
 			];
 		}
+	}
+
+	public function listarConta($dadosRequisicao)
+	{
+		try{
+			$sql = 'SELECT * FROM usuarios WHERE id = :idUsuario';
+			$statement = $this->conexao->prepare($sql);
+			$statement->bindParam(':idUsuario', SessionService::getIdUsuarioLogado());
+			$statement->execute();
+			$dadosUsuario = $statement->fetch();
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao buscar os dados do usuário. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+
+		$grid = InfrasilHtml::montarFormMinhaConta($dadosRequisicao['numeroModal'] + 1, $dadosUsuario);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
 	}
 }

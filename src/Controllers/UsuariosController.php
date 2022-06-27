@@ -69,8 +69,19 @@ class UsuariosController
 		$UsuariosService = new UsuariosService();
 		$UsuariosService->setConexao($conexao);
 
-		$dadosFilter = UsuariosFilter::editarUsuarioFilter($dadosRequisicao);
+		$dadosFiltrados = UsuariosFilter::editarUsuarioFilter($dadosRequisicao);
 
-		return $UsuariosService->editarUsuario($dadosRequisicao);
+		return $UsuariosService->editarUsuario($dadosFiltrados);
+	}
+
+	public function listarConta($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFiltrados = UsuariosFilter::listarContaFilter($dadosRequisicao);
+
+		return $UsuariosService->listarConta($dadosFiltrados);
 	}
 }

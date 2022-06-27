@@ -532,6 +532,23 @@ class InfrasilHtml {
 			'idModal' => $idModal
 		];
 	}
+
+	public static function montarFormMinhaConta($numeroModal, $dadosUsuario)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formMinhaConta.html');
+		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+		$html = str_replace('REPLACE_ID_USUARIO', $dadosUsuario['id'], $html);
+		$html = str_replace('REPLACE_NOME', $dadosUsuario['nome'], $html);
+		$html = str_replace('REPLACE_EMAIL', $dadosUsuario['email'], $html);
+		$html = str_replace('REPLACE_TIPO', $dadosUsuario['tipo'], $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
 }
 
 ?>
