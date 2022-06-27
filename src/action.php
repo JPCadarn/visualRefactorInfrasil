@@ -77,6 +77,10 @@ if(!empty($_GET)){
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->fazerLogin($_POST));
 			break;
+		case 'excluirUsuario':
+			$Controller = new UsuariosController();
+			echo json_encode($Controller->excluirUsuario($_POST));
+			break;
 		case 'listarClientes':
 			$Controller = new ClientesController();
 			echo json_encode($Controller->listarClientes($_POST));
@@ -96,6 +100,10 @@ if(!empty($_GET)){
 		case 'editarCliente':
 			$Controller = new ClientesController();
 			echo json_encode($Controller->editarCliente($_POST));
+			break;
+		case 'excluirCliente':
+			$Controller = new ClientesController();
+			echo json_encode($Controller->excluirCliente($_POST));
 			break;
 		case 'formularioAvaliacaoInspecao':
 			$Controller = new InspecoesController();

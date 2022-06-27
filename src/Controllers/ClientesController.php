@@ -62,4 +62,15 @@ class ClientesController
 
 		return $ClientesService->editarCliente($dadosFiltrados);
 	}
+
+	public function excluirCliente($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$ClientesService = new ClientesService();
+		$ClientesService->setConexao($conexao);
+
+		$dadosFiltrados = ClientesFilter::excluirClienteFilter($dadosRequisicao);
+
+		return $ClientesService->excluirCliente($dadosFiltrados);
+	}
 }

@@ -84,4 +84,15 @@ class UsuariosController
 
 		return $UsuariosService->listarConta($dadosFiltrados);
 	}
+
+	public function excluirUsuario($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$UsuariosService = new UsuariosService();
+		$UsuariosService->setConexao($conexao);
+
+		$dadosFiltrados = UsuariosFilter::excluirUsuarioFilter($dadosRequisicao);
+
+		return $UsuariosService->excluirUsuario($dadosFiltrados);
+	}
 }

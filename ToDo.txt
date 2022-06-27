@@ -1,5 +1,7 @@
--> validações clientes;
--> submit clientes;
+-> delete usuários;
+-> create clientes;
+-> edit clientes;
+-> delete clientes;
 -> form minha conta;
 -> validações conta;
 -> edit agendamentos;

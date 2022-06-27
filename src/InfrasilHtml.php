@@ -196,7 +196,7 @@ class InfrasilHtml {
                     <th>'.$usuario['tipo'].'</th>
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Usuário" data-position="bottom" data-action="formularioEdicaoUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Alterar Usuário" data-position="bottom" data-action="excluirUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">delete</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Excluir Usuário" data-position="bottom" data-action="excluirUsuario" data-id="'.$usuario['id'].'"><i class="material-icons yellow-text text-darken-3">delete</i></a>
 					</th>
                 </tr>
             ';

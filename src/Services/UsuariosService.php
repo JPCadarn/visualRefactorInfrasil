@@ -245,4 +245,30 @@ class UsuariosService extends AbstractService
 			'idModal' => $grid['idModal']
 		];
 	}
+
+	public function excluirUsuario($dadosRequisicao)
+	{
+		try{
+			$this->conexao->beginTransaction();
+			$sql = 'DELETE FROM usuarios WHERE id = : idUsuario';
+			$statement = $this->conexao->prepare($sql);
+			$statement->bindParam(':idUsuario', $dadosRequisicao['id']);
+			$statement->execute();
+			$this->conexao->commit();
+			return [
+				'status' => 200,
+				'type' => 'success',
+				'message' => 'Usuário excluído com sucesso.'
+			];
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao excluir o usuário. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+	}
 }
