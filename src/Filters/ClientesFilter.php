@@ -24,4 +24,15 @@ class ClientesFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function gerarFormularioEdicaoClienteFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'numeroModal' => FILTER_SANITIZE_NUMBER_INT,
+			'id' => FILTER_SANITIZE_NUMBER_INT
+		];
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

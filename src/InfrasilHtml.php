@@ -140,7 +140,6 @@ class InfrasilHtml {
                     <th>'.$inspecao['tipo_inspecao'].'</th>
                     <th>'.$inspecao['status'].'</th>
                     <th>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Editar Inspeção" data-position="bottom" data-action="editarInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">edit</i></a>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="formularioAvaliacaoInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
 					</th>
                 </tr>
@@ -543,6 +542,46 @@ class InfrasilHtml {
 		$html = str_replace('REPLACE_NOME', $dadosUsuario['nome'], $html);
 		$html = str_replace('REPLACE_EMAIL', $dadosUsuario['email'], $html);
 		$html = str_replace('REPLACE_TIPO', $dadosUsuario['tipo'], $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
+
+	public static function montarFormCliente($numeroModal)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formCadastroCliente.html');
+		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
+
+	public static function montarFormEdicaoCliente($numeroModal, $dadosCliente)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formCadastroCliente.html');
+		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+		$html = str_replace('REPLACE_ID_CLIENTE', $dadosCliente['id_cliente'], $html);
+		$html = str_replace('REPLACE_NOME', $dadosCliente['nome'], $html);
+		$html = str_replace('REPLACE_DATA_NASCIMENTO', $dadosCliente['data_nascimento'], $html);
+		$html = str_replace('REPLACE_CPF_CNPJ', $dadosCliente['cpf_cnpj'], $html);
+		$html = str_replace('REPLACE_TELEFONE', $dadosCliente['telefone'], $html);
+		$html = str_replace('REPLACE_EMAIL', $dadosCliente['email'], $html);
+		$html = str_replace('REPLACE_CEP', $dadosCliente['cep'], $html);
+		$html = str_replace('REPLACE_ENDERECO', $dadosCliente['endereco'], $html);
+		$html = str_replace('REPLACE_BAIRRO', $dadosCliente['bairro'], $html);
+		$html = str_replace('REPLACE_NUMERO', $dadosCliente['numero'], $html);
+		$html = str_replace('REPLACE_COMPLEMENTO', $dadosCliente['complemento'], $html);
+		$html = str_replace('REPLACE_ESTADO', $dadosCliente['estado'], $html);
+		$html = str_replace('REPLACE_CIDADE', $dadosCliente['cidade'], $html);
+		$html = str_replace('REPLACE_REFERENCIA', $dadosCliente['referencia'], $html);
 
 		return [
 			'html' => $html,

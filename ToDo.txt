@@ -3,12 +3,11 @@
 -> edit clientes;
 -> delete clientes;
 -> form minha conta;
--> validações conta;
 -> edit agendamentos;
--> edit inspeções;
--> implementar paginas;
--> classe Rankeamento;
+-> implementar paginação;
+-> fazer requisição pra montar chartJS;
 -> validar navbars;
+-> validar status da inspeção p/ montar ações;
 -> organizar action.php;
 -> Relatórios;
 -> dark mode;
