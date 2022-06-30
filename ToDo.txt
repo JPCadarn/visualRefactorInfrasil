@@ -1,9 +1,4 @@
--> delete usuários;
--> create clientes;
--> edit clientes;
--> delete clientes;
--> form minha conta;
--> edit agendamentos;
+-> Criar coluna id_agendamento nas inspeções;
 -> implementar paginação;
 -> fazer requisição pra montar chartJS;
 -> validar navbars;

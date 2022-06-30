@@ -1,0 +1,35 @@
+<div id='REPLACE_ID_MODAL' class='modal center-align'>
+	<div class='modal-header centered'>
+		<h4 class='left'>Cadastro de Agendamentos</h4>
+		<h4 class='right modal-close'><i class='material-icons'>close</i></h4>
+	</div>
+	<div class='row'>
+		<form action='../action.php' id='formCadastroAgendamentos' method='POST' class='col s12'
+			enctype='multipart/form-data' autocomplete='off'>
+			<input type="hidden" name="action" id="action" value="adicionarAgendamento">
+			<input type="hidden" name="id" id="id" value="REPLACE_ID_AGENDAMENTO">
+			<div class='modal-content'>
+				<div class='row'>
+					<div class='input-field col s6'>
+						<input id='data' name='data' class='mask-date' type='text'>
+						<label for='data'>Data do Agendamento</label>
+					</div>
+					<div class='input-field col s6'>
+						<input id='horario' name='horario' type='text' class='mask-hora'>
+						<label for='horario'>Horário do Agendamento</label>
+					</div>
+					<div class='input-field col s12'>
+						<input id='detalhes' name='detalhes' type='text'>
+						<label for='detalhes'>Detalhes do Agendamento</label>
+					</div>
+				</div>
+				<div class='modal-footer'>
+					<button class='modal-close waves-effect waves-green btn'>Fechar</button>
+					<button class='btn waves-effect waves-light' type='submit'>Salvar
+						<i class='material-icons right'>send</i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

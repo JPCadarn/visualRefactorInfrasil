@@ -33,6 +33,14 @@ if(!empty($_GET)){
 			$Controller = new AgendamentosController();
 			echo json_encode($Controller->adicionarAgendamento($_POST));
 			break;
+		case 'gerarFormularioEdicaoAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->gerarFormularioEdicaoAgendamento($_POST));
+			break;
+		case 'editarAgendamento':
+			$Controller = new AgendamentosController();
+			echo json_encode($Controller->editarAgendamento($_POST));
+			break;
 		case 'listarPontes':
 			$Controller = new PontesController();
             echo json_encode($Controller->listarPontes($_POST));

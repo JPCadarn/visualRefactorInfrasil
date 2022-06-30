@@ -588,6 +588,20 @@ class InfrasilHtml {
 			'idModal' => $idModal
 		];
 	}
+
+	public static function montarFormEdicaoAgendamentos($numeroModal, $idAgendamento)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formEdicaoAgendamento.html');
+		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
+		$html = str_replace('REPLACE_ID_AGENDAMENTO', $idAgendamento, $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
+	}
 }
 
 ?>

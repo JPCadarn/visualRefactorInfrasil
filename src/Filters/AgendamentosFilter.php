@@ -43,4 +43,30 @@ class AgendamentosFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+	public static function editarAgendamentoFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'id' => FILTER_SANITIZE_NUMBER_INT,
+			'data' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'horario' => FILTER_SANITIZE_SPECIAL_CHARS,
+			'detalhes' => FILTER_SANITIZE_SPECIAL_CHARS,
+		];
+
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+		$dadosFiltrados['data'] = DateUtils::formatarDataBanco($dadosFiltrados['data']);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
+
+	public static function gerarFormularioEdicaoAgendamentoFilter($dadosRequisicao)
+	{
+		$filtros = [
+			'numeroModal' => FILTER_SANITIZE_NUMBER_INT,
+			'id' => FILTER_SANITIZE_NUMBER_INT
+		];
+		$dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+		return parent::limparCamposRequisicao($dadosFiltrados);
+	}
 }

@@ -24,4 +24,24 @@ class AgendamentosValidator
 
 		return $erros;
 	}
+
+	public static function editarAgendamentoValidate($dadosInsert)
+	{
+		$erros = [];
+
+		$camposObrigatorios = [
+			'id' => 'Agendamento inválido.',
+			'data' => 'Por favor, preencha o campo Data.',
+			'horario' => 'Por favor, preencha o campo Horário.',
+			'detalhes' => 'Por favor, preencha o campo Detalhes.',
+		];
+
+		foreach($dadosInsert as $key => $value){
+			if(array_key_exists($key, $camposObrigatorios) && empty($value)){
+				$erros[] = $camposObrigatorios[$key];
+			}
+		}
+
+		return $erros;
+	}
 }

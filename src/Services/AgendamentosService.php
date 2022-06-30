@@ -111,19 +111,75 @@ class AgendamentosService extends AbstractService
 			$nomeInspecao = 'Inspeção automática gerada pelo agendamento ID: '.$idInserido;
 			$sqlInspecao = "
 				INSERT INTO inspecoes
-				(ponte_id, nome, descricao, tipo_inspecao, id_usuario)
+				(ponte_id, nome, descricao, tipo_inspecao, id_usuario, id_agendamento)
 				VALUES
-				(:ponte_id, :nome, :descricao, :tipo_inspecao, :ïd_usuario)
+				(:ponte_id, :nome, :descricao, :tipo_inspecao, :id_usuario, :id_agendamento)
 			";
 			$statementInspecao = $this->conexao->prepare($sqlInspecao);
 			$statementInspecao->bindParam(':ponte_id', $dadosRequisicao['ponte_id']);
 			$statementInspecao->bindParam(':nome', $nomeInspecao);
 			$statementInspecao->bindParam(':descricao', $dadosRequisicao['detalhes']);
 			$statementInspecao->bindParam(':tipo_inspecao', $tipoInspecao);
+			$statementInspecao->bindParam(':id_agendamento', $idInserido);
 
 			$this->conexao->commit();
 			return [
 				'id' => $idInserido,
+				'status' => 200,
+				'type' => 'success',
+				'message' => 'Agendamento cadastrado com sucesso.'
+			];
+		}catch (Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao salvar o agendamento. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+	}
+
+	public function gerarFormularioEdicaoAgendamento($dadosRequisicao)
+	{
+		$grid = InfrasilHtml::montarFormEdicaoAgendamentos($dadosRequisicao['numeroModal'] + 1, $dadosRequisicao['id']);
+
+		return [
+			'html' => $grid['html'],
+			'status' => 200,
+			'idModal' => $grid['idModal']
+		];
+	}
+
+	public function editarAgendamento($dadosRequisicao)
+	{
+		$erros = AgendamentosValidator::editarAgendamentoValidate($dadosRequisicao);
+
+		if(count($erros)){
+			return [
+				'status' => 200,
+				'type' => 'error',
+				'errors' => $erros
+			];
+		}
+
+		$sql = '
+			UPDATE agendamentos
+			SET data = :data, horario = :horario, detalhes = :detalhes
+			WHERE id = :id
+		';
+
+		try {
+			$this->conexao->beginTransaction();
+			$statement = $this->conexao->prepare($sql);
+			foreach($dadosRequisicao as $key => $value){
+				$statement->bindValue(':'.$key, $value);
+			}
+			$statement->execute();
+
+			$this->conexao->commit();
+			return [
 				'status' => 200,
 				'type' => 'success',
 				'message' => 'Agendamento cadastrado com sucesso.'

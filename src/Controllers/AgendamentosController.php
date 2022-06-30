@@ -42,4 +42,27 @@ class AgendamentosController
 
 		return $AgendamentosService->adicionarAgendamento($dadosFiltrados);
 	}
+
+	public function editarAgendamento($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$AgendamentosService = new AgendamentosService();
+		$AgendamentosService->setConexao($conexao);
+		$dadosRequisicao['id_usuario'] = SessionService::getIdUsuarioLogado();
+
+		$dadosFiltrados = AgendamentosFilter::editarAgendamentoFilter($dadosRequisicao);
+
+		return $AgendamentosService->editarAgendamento($dadosFiltrados);
+	}
+
+	public function gerarFormularioEdicaoAgendamento($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$AgendamentosService = new AgendamentosService();
+		$AgendamentosService->setConexao($conexao);
+
+		$dadosFiltrados = AgendamentosFilter::gerarFormularioEdicaoAgendamentoFilter($dadosRequisicao);
+
+		return $AgendamentosService->gerarFormularioEdicaoAgendamento($dadosFiltrados);
+	}
 }
