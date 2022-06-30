@@ -182,14 +182,14 @@ class AgendamentosService extends AbstractService
 			return [
 				'status' => 200,
 				'type' => 'success',
-				'message' => 'Agendamento cadastrado com sucesso.'
+				'message' => 'Agendamento editado com sucesso.'
 			];
 		}catch (Exception $e){
 			$this->conexao->rollBack();
 			return [
 				'status' => $e->getCode(),
 				'errors' => [
-					'Ocorreu um erro ao salvar o agendamento. Tente novamente e contate o suporte técnico caso o erro persista.'
+					'Ocorreu um erro ao editar o agendamento. Tente novamente e contate o suporte técnico caso o erro persista.'
 				],
 				'type' => 'error'
 			];
