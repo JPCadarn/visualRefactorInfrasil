@@ -568,7 +568,7 @@ class InfrasilHtml {
 
 		$html = file_get_contents('Html/formCadastroCliente.html');
 		$html = str_replace('REPLACE_ID_MODAL', $idModal, $html);
-		$html = str_replace('REPLACE_ID_CLIENTE', $dadosCliente['id_cliente'], $html);
+		$html = str_replace('REPLACE_ID_CLIENTE', $dadosCliente['id'], $html);
 		$html = str_replace('REPLACE_NOME', $dadosCliente['nome'], $html);
 		$html = str_replace('REPLACE_DATA_NASCIMENTO', $dadosCliente['data_nascimento'], $html);
 		$html = str_replace('REPLACE_CPF_CNPJ', $dadosCliente['cpf_cnpj'], $html);
