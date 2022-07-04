@@ -125,6 +125,10 @@ if(!empty($_GET)){
 			$Controller = new InspecoesController();
 			echo json_encode($Controller->listarInspecoes($_POST));
 			break;
+		case 'detalhesInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->detalhesInspecao($_POST));
+			break;
 		default:
 			echo json_encode([
 				'status' => 404,

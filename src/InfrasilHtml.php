@@ -352,14 +352,7 @@ class InfrasilHtml {
 	{
 		$idModal = 'modal'.$numeroModal;
 
-		$selectIndiceLocalizao = HtmlUtils::renderSelect(
-			'nota_indice_localizacao',
-			Constants::camposIndiceLocalizacao,
-			'Índice de Localização',
-			'Índice de Localização',
-			'descricao',
-			'nota'
-		);
+		$selectIndiceLocalizao = HtmlUtils::renderSelect('nota_indice_localizacao', Constants::camposIndiceLocalizacao, 'Índice de Localização', 'Índice de Localização', 'descricao', 'nota');
 		$selectNotaIndiceVolumeTrafego = HtmlUtils::renderSelect('nota_indice_volume_trafego', Constants::camposVolumeTrafego, 'Índice de Volume de Tráfego', 'Índice de Volume de Tráfego', 'descricao', 'nota');
 		$selectNotaIndiceLarguraOae = HtmlUtils::renderSelect('nota_indice_largura_oae', Constants::camposLarguraOAE, 'Índice de Largura da OAE', 'Índice de Largura da OAE', 'descricao', 'nota');
 		$selectNotaGeometriaCondicoes = HtmlUtils::renderSelect('nota_geometria_condicoes', Constants::camposFsPesoAlto, 'Geometria e condições várias', 'Geometria e condições várias', 'descricao', 'nota');
@@ -654,6 +647,141 @@ class InfrasilHtml {
 				</ul>
 			</div>
 		';
+	}
+
+	public static function montarDetalhesInspecao($numeroModal, $dadosInspecao)
+	{
+		$idModal = 'modal'.$numeroModal;
+
+		$html = file_get_contents('Html/formDetalhesInspecao.html');
+		$html .= str_replace('REPLACE_ID_MODAL', $idModal, $html);
+		$html .= str_replace(
+			'REPLACE_INDICE_LOCALIZACAO', 
+			Constants::camposIndiceLocalizacao[array_search($dadosInspecao['nota_indice_localizacao'], array_column(Constants::camposIndiceLocalizacao, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_VOLUME_TRAFEGO', 
+			Constants::camposVolumeTrafego[array_search($dadosInspecao['nota_indice_volume_trafego'], array_column(Constants::camposVolumeTrafego, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_INDICE_LARGURA_OAE', 
+			Constants::camposLarguraOAE[array_search($dadosInspecao['nota_indice_largura_oae'], array_column(Constants::camposLarguraOAE, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_GEOMETRIA', 
+			Constants::camposFsPesoAlto[array_search($dadosInspecao['nota_geometria_condicoes'], array_column(Constants::camposFsPesoAlto, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_ACESSOS', 
+			Constants::camposFsPesoMedio[array_search($dadosInspecao['nota_acessos'], array_column(Constants::camposFsPesoMedio, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_CURSOS_DAGUA', 
+			Constants::camposFsPesoMedio[array_search($dadosInspecao['nota_cursos_agua'], array_column(Constants::camposFsPesoMedio, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_ENCONTROS_FUNDACOES', 
+			Constants::camposFsPesoAlto[array_search($dadosInspecao['nota_encontros_fundacoes'], array_column(Constants::camposFsPesoAlto, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_APOIOS_INTERMEDIARIOS', 
+			Constants::camposFsPesoAlto[array_search($dadosInspecao['nota_apoios_intermediarios'], array_column(Constants::camposFsPesoAlto, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_APARELHOS_APOIO', 
+			Constants::camposFsPesoAlto[array_search($dadosInspecao['nota_aparelhos_apoio'], array_column(Constants::camposFsPesoAlto, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_SUPER', 
+			Constants::camposFsPesoAlto[array_search($dadosInspecao['nota_superestrutura'], array_column(Constants::camposFsPesoAlto, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_PISTA_ROLAMENTO', 
+			Constants::camposFcPistaRolamento[array_search($dadosInspecao['nota_pista_rolamento_fc'], array_column(Constants::camposFcPistaRolamento, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_JUNTAS_DILATACAO', 
+			Constants::camposFsPesoMedio[array_search($dadosInspecao['nota_pista_rolamento'], array_column(Constants::camposFsPesoMedio, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_BARREIRAS', 
+			Constants::camposFsPesoMedio[array_search($dadosInspecao['nota_juntas_dilatacao'], array_column(Constants::camposFsPesoMedio, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_SINALIZACAO', 
+			Constants::camposFsPesoBaixo[array_search($dadosInspecao['nota_barreiras_guardacorpos'], array_column(Constants::camposFsPesoBaixo, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FS_INSTALACOES', 
+			Constants::camposFsPesoBaixo[array_search($dadosInspecao['nota_sinalizacao'], array_column(Constants::camposFsPesoBaixo, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FC_LARGURA', 
+			Constants::camposFsPesoBaixo[array_search($dadosInspecao['nota_instalacoes_util_publica'], array_column(Constants::camposFsPesoBaixo, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FC_CAPACIDADE_CARGA', 
+			Constants::camposFcLargura[array_search($dadosInspecao['nota_largura_plataforma'], array_column(Constants::camposFcLargura, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FC_SUPERFICIES', 
+			Constants::camposFcCarga[array_search($dadosInspecao['nota_capacidade_carga'], array_column(Constants::camposFcCarga, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FC_PISTA_ROLAMENTO', 
+			Constants::camposFcSuperficie[array_search($dadosInspecao['nota_superficie_plataforma'], array_column(Constants::camposFcSuperficie, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FC_OUTROS', 
+			Constants::camposFcOutros[array_search($dadosInspecao['nota_outros_fc'], array_column(Constants::camposFcOutros, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FI_ESPACO_LIVRE', 
+			Constants::camposFiEspacoLivre[array_search($dadosInspecao['nota_espaco_livre'], array_column(Constants::camposFiEspacoLivre, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FI_LOCAL', 
+			Constants::camposFiLocal[array_search($dadosInspecao['nota_localizacao_ponte'], array_column(Constants::camposFiLocal, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FI_SAUDE_FISICA', 
+			Constants::camposFiSaude[array_search($dadosInspecao['nota_saude_fisica_ponte'], array_column(Constants::camposFiSaude, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace(
+			'REPLACE_FIOUTROS', 
+			Constants::camposFiOutros[array_search($dadosInspecao['nota_outros_fi'], array_column(Constants::camposFiOutros, 'nota'))]['descricao'], 
+			$html
+		);
+		$html .= str_replace('REPLACE_OBS', $dadosInspecao['obs'], $html);
+		$html .= str_replace('REPLACE_IMAGENS', HtmlUtils::renderImagens($dadosInspecao['imagens']), $html);
+
+		return [
+			'html' => $html,
+			'idModal' => $idModal
+		];
 	}
 }
 

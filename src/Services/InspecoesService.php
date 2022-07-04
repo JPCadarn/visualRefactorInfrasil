@@ -136,4 +136,41 @@ class InspecoesService extends AbstractService
 			];
 		}
 	}
+
+	public function detalhesInspecao($dadosRequisicao)
+	{
+		$sqlInspecao = "SELECT * FROM inspecoes WHERE id = :id";
+		$sqlImagens = "SELECT * FROM imagens_inspecoes WHERE inspecao_id = :inspecaoId";
+
+		try{
+			$this->conexao->beginTransaction();
+			$statementInspecao = $this->conexao->prepare($sqlInspecao);
+			$statementInspecao->bindParam(':id', $dadosRequisicao['id']);
+			$statementInspecao->execute();
+			$dadosInspecao = $statementInspecao->fetch();
+
+			$statementImagens = $this->conexao->prepare($sqlImagens);
+			$statementImagens->bindParam(':inspecaoId', $dadosInspecao['id']);
+			$statementImagens->execute();
+			$dadosInspecao['imagens'] = $statementImagens->fetchAll();
+			$this->conexao->commit();
+
+			$grid = InfrasilHtml::montarDetalhesInspecao($dadosRequisicao['numeroModal'] + 1, $dadosInspecao);
+
+			return [
+				'html' => $grid['html'],
+				'status' => 200,
+				'idModal' => $grid['idModal']
+			];
+		}catch(Exception $e){
+			$this->conexao->rollBack();
+			return [
+				'status' => $e->getCode(),
+				'errors' => [
+					'Ocorreu um erro ao buscar a inspeção. Tente novamente e contate o suporte técnico caso o erro persista.'
+				],
+				'type' => 'error'
+			];
+		}
+	}
 }
