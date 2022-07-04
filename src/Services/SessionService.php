@@ -26,4 +26,11 @@ class SessionService
 		$_SESSION['tipoUsuario'] = $dadosUsuario['tipo'];
 		$_SESSION['idCliente'] = $dadosUsuario['id_cliente'];
 	}
+
+	public static function getTipoUsuarioLogado()
+	{
+		session_start();
+
+		return $_SESSION['tipoUsuario'] ?? '';
+	}
 }

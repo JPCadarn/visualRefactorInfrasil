@@ -1,5 +1,6 @@
 <?php
 
+use Services\SessionService;
 use Utils\Constants;
 use Utils\DateUtils;
 use Utils\HtmlUtils;
@@ -139,11 +140,18 @@ class InfrasilHtml {
                     <th>'.DateUtils::formatarData($inspecao['data_inspecao'], 'd/m/Y').'</th>
                     <th>'.$inspecao['tipo_inspecao'].'</th>
                     <th>'.$inspecao['status'].'</th>
-                    <th>
+            ';
+			if($inspecao['status'] === 'avaliado'){
+				$corpo .= '<th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Avaliar" data-position="bottom" data-action="formularioAvaliacaoInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">thumbs_up_down</i></a>
 					</th>
-                </tr>
-            ';
+                </tr>';
+			}else{
+				$corpo .= '<th>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesInspecao" data-id="'.$inspecao['id_inspecao'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
+					</th>
+                </tr>';
+			}
 		}
 
 		$html .= '
@@ -601,6 +609,51 @@ class InfrasilHtml {
 			'html' => $html,
 			'idModal' => $idModal
 		];
+	}
+
+	public static function renderNavBar()
+	{
+		$tipoUsuario = SessionService::getTipoUsuarioLogado();
+
+		echo '
+			<div class="col s2 m2">
+				<ul id="slide-out" class="sidenav sidenav-fixed">
+					<li>
+						<div class="image-sidenav">
+							<img class="responsive-img" src="assets/images/logo.png">
+						</div>
+					</li>
+					<li>
+						<a class="waves-effect triggerModal" data-action="listarPontes"><i class="material-icons">location_city</i>Pontes</a>
+					</li>
+					<li>
+						<a class="waves-effect triggerModal" data-action="listarAgendamentos"><i class="material-icons">event</i>Agendamentos</a>
+					</li>
+					<li>
+						<a class="waves-effect triggerModal" data-action="listarInspecoes"><i class="material-icons">assessment</i>Inspeções</a>
+					</li>
+					<li><div class="divider"></div></li>';
+		if($tipoUsuario !== 'normal'){
+			echo '
+				<li>
+					<a class="waves-effect triggerModal" data-action="listarUsuarios"><i class="material-icons">people</i>Usuários</a>
+				</li>
+			';
+		}
+		if($tipoUsuario === 'aguia'){
+			echo '
+				<li>
+					<a class="waves-effect triggerModal" data-action="listarClientes"><i class="material-icons">business_center</i>Clientes</a>
+				</li>
+			';
+		}
+		echo '				
+					<li>
+						<a class="waves-effect triggerModal" data-action="listarConta"><i class="material-icons">settings</i>Minha Conta</a>
+					</li>
+				</ul>
+			</div>
+		';
 	}
 }
 

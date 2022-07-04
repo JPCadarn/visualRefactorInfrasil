@@ -1,8 +1,6 @@
 -> Criar coluna id_agendamento nas inspeções;
 -> implementar paginação;
 -> fazer requisição pra montar chartJS;
--> validar navbars;
--> validar status da inspeção p/ montar ações;
 -> organizar action.php;
 -> Relatórios;
 -> dark mode;

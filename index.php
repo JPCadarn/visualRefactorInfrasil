@@ -28,34 +28,9 @@
 
   	<body>
 		<div class="row">
-			<div class="col s2 m2">
-				<ul id="slide-out" class="sidenav sidenav-fixed">
-					<li>
-						<div class="image-sidenav">
-							<img class="responsive-img" src="assets/images/logo.png">
-						</div>
-					</li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarPontes"><i class="material-icons">location_city</i>Pontes</a>
-					</li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarAgendamentos"><i class="material-icons">event</i>Agendamentos</a>
-					</li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarInspecoes"><i class="material-icons">assessment</i>Inspeções</a>
-					</li>
-					<li><div class="divider"></div></li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarUsuarios"><i class="material-icons">people</i>Usuários</a>
-					</li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarClientes"><i class="material-icons">business_center</i>Clientes</a>
-					</li>
-					<li>
-						<a class="waves-effect triggerModal" data-action="listarConta"><i class="material-icons">settings</i>Minha Conta</a>
-					</li>
-				</ul>
-			</div>
+			<?php
+				InfrasilHtml::renderNavBar();
+			?>
 			<div class="col s12 m10">
 				<div class="col s12 m4">
 					<ul class="collapsible popout">
