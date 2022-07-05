@@ -3,7 +3,9 @@
 namespace Controllers;
 
 use Conexao;
+use Exception;
 use Filters\UsuariosFilter;
+use Services\SessionService;
 use Services\UsuariosService;
 
 class UsuariosController
@@ -95,4 +97,25 @@ class UsuariosController
 
 		return $UsuariosService->excluirUsuario($dadosFiltrados);
 	}
+
+    public function fazerLogout()
+    {
+        try {
+            SessionService::fazerLogout();
+            return [
+                'status' => 200,
+                'type' => 'success',
+                'message' => 'Logout realizado com sucesso.',
+                'redirect' => $_SERVER['HTTP_REFERER']
+            ];
+        } catch (Exception $exception) {
+            return [
+                'status' => 400,
+                'type' => 'error',
+                'message' => 'Erro ao realizar o logout',
+                'logout' => false
+            ];
+        }
+
+    }
 }

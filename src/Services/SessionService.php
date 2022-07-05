@@ -6,21 +6,27 @@ class SessionService
 {
     public static function getIdClienteLogado()
     {
-		session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
 
         return $_SESSION['idCliente'] ?? 0;
     }
 
     public static function getIdUsuarioLogado()
     {
-		session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
 
         return $_SESSION['idUsuario'] ?? 0;
     }
 
 	public static function setDadosLogin($dadosUsuario)
 	{
-		session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
 
 		$_SESSION['idUsuario'] = $dadosUsuario['id'];
 		$_SESSION['tipoUsuario'] = $dadosUsuario['tipo'];
@@ -29,8 +35,19 @@ class SessionService
 
 	public static function getTipoUsuarioLogado()
 	{
-		session_start();
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
 
 		return $_SESSION['tipoUsuario'] ?? '';
 	}
+
+    public static function fazerLogout()
+    {
+        if(session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        session_destroy();
+    }
 }

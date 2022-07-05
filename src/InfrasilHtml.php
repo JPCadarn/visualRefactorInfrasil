@@ -644,6 +644,9 @@ class InfrasilHtml {
 					<li>
 						<a class="waves-effect triggerModal" data-action="listarConta"><i class="material-icons">settings</i>Minha Conta</a>
 					</li>
+					<li>
+						<a class="waves-effect triggerModal" data-action="logout"><i class="material-icons">exit_to_app</i>Sair</a>
+					</li>
 				</ul>
 			</div>
 		';
