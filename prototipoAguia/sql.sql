@@ -163,6 +163,7 @@ INSERT INTO `imagens_pontes` VALUES(222, 30, '$2y$10$nGB4y9T3HjfqOC9RNOXmtuK46Ny
 
 CREATE TABLE `inspecoes` (
   `id` int(11) NOT NULL,
+  `id_agendamento` int(11) NOT NULL,
   `ponte_id` int(11) NOT NULL,
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `descricao` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
