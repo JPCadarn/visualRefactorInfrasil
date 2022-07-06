@@ -18,8 +18,7 @@
 <body>
 
     <div class="container">
-<!--        <button id="previous" class="btn">volta</button>-->
-<!--        <button id="next" class="btn">avanca</button>-->
+        <button id="filtrar" class="btn">filtrar</button>
         <table id="example" class="display" style="width:100%">
             <thead>
             <tr>
@@ -491,15 +490,13 @@
             </tbody>
         </table>
         <div class="row">
-            <span class="left-align" id="teste"></span>
-            <span class="right-align">
-                <ul class="pagination">
-                    <li class="waves-effect" id="previous"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <span class="left" id="teste"></span>
+            <span class="right pagination">
+                <li class="waves-effect" id="previous"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                     <span id="paginas">
 
-                </span>
-                    <li class="waves-effect" id="next"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                </ul>
+                    </span>
+                <li class="waves-effect" id="next"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             </span>
         </div>
     </div>
@@ -554,6 +551,17 @@
                 });
                 $('#page'+info.page).addClass('active')
             } );
+
+            $('#filtrar').on('click', function(){
+                let filteredData = table
+                    .columns( 1 )
+                    .data()
+                    .flatten()
+                    .filter( function ( value, index ) {
+                        return value.includes('ware');
+                    } );
+                console.log(filteredData);
+            })
         });
     </script>
 </body>
