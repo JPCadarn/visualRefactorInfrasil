@@ -17,7 +17,6 @@ function dispararAjaxAberturaModal(elemento){
 		dataType: 'JSON'
 	}).done(function(response){
 		if(response.status === 200 && response.redirect !== '' && response.redirect !== undefined){
-			console.log(response)
 			window.location.href = response.redirect;
 			return;
 		}

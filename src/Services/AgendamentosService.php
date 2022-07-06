@@ -14,7 +14,6 @@ class AgendamentosService extends AbstractService
 	{
 		$agendamentos = [];
 
-		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT 
 				a.*,
@@ -23,8 +22,7 @@ class AgendamentosService extends AbstractService
 			INNER JOIN pontes p ON a.ponte_id = p.id
 			LEFT JOIN usuarios ON p.id_usuario = usuarios.id 
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
-			WHERE clientes.id = :idCliente
-			LIMIT '.$limit;
+			WHERE clientes.id = :idCliente';
 		$idCliente = SessionService::getIdClienteLogado();
 
 		try {

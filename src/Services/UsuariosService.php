@@ -54,12 +54,10 @@ class UsuariosService extends AbstractService
 	{
 		$usuarios = [];
 
-		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT id, nome, email, tipo
 			FROM usuarios
-			WHERE id_cliente = :idCliente
-			LIMIT '.$limit;
+			WHERE id_cliente = :idCliente';
 		$idCliente = SessionService::getIdClienteLogado();
 
 		try{

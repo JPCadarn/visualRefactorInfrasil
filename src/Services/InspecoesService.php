@@ -14,7 +14,6 @@ class InspecoesService extends AbstractService
 	{
 		$inspecoes = [];
 
-		$limit = HtmlUtils::getLimitGrid($dadosRequisicao['page']);
 		$sql = '
 			SELECT 
 				pontes.id, 
@@ -29,8 +28,7 @@ class InspecoesService extends AbstractService
 			INNER JOIN inspecoes ON pontes.id = inspecoes.ponte_id 
 			LEFT JOIN usuarios ON pontes.id_usuario = usuarios.id 
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
-			WHERE clientes.id = :idCliente
-			LIMIT '.$limit;
+			WHERE clientes.id = :idCliente';
 		$idCliente = SessionService::getIdClienteLogado();
 
 		try{
