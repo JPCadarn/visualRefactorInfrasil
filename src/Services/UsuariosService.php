@@ -222,8 +222,9 @@ class UsuariosService extends AbstractService
 	{
 		try{
 			$sql = 'SELECT * FROM usuarios WHERE id = :idUsuario';
+			$idUsuario = SessionService::getIdUsuarioLogado();
 			$statement = $this->conexao->prepare($sql);
-			$statement->bindParam(':idUsuario', SessionService::getIdUsuarioLogado());
+			$statement->bindParam(':idUsuario', $idUsuario);
 			$statement->execute();
 			$dadosUsuario = $statement->fetch();
 		}catch(Exception $e){
