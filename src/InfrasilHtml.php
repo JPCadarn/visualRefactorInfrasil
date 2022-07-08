@@ -58,7 +58,8 @@ class InfrasilHtml {
 
 		return [
             'html' => $html,
-            'idModal' => $idModal
+            'idModal' => $idModal,
+            'idTable' => $idTable
         ];
 	}
 
@@ -115,7 +116,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridAgendamentos'
 		];
 	}
 
@@ -177,7 +179,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridInspecoes'
 		];
 	}
 
@@ -234,7 +237,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridUsuarios'
 		];
 	}
 
@@ -292,7 +296,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridClientes'
 		];
 	}
 
