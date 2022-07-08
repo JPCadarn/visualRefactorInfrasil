@@ -1,6 +1,11 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 spl_autoload_register(function($class){
+    $class = str_replace('\\', '/', $class);
     require_once $class.'.php';
 });
 
@@ -9,6 +14,7 @@ use Controllers\ClientesController;
 use Controllers\InspecoesController;
 use Controllers\PontesController;
 use Controllers\UsuariosController;
+use Services\SessionService;
 
 if(!empty($_GET)){
 	switch($_GET['action']){
@@ -85,6 +91,10 @@ if(!empty($_GET)){
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->fazerLogin($_POST));
 			break;
+        case 'logout':
+            $Controller = new UsuariosController();
+            echo json_encode($Controller->fazerLogout());
+            break;
 		case 'excluirUsuario':
 			$Controller = new UsuariosController();
 			echo json_encode($Controller->excluirUsuario($_POST));
@@ -124,6 +134,10 @@ if(!empty($_GET)){
 		case 'listarInspecoes':
 			$Controller = new InspecoesController();
 			echo json_encode($Controller->listarInspecoes($_POST));
+			break;
+		case 'detalhesInspecao':
+			$Controller = new InspecoesController();
+			echo json_encode($Controller->detalhesInspecao($_POST));
 			break;
 		default:
 			echo json_encode([

@@ -25,4 +25,14 @@ class HtmlUtils
 
 		return $html;
 	}
+
+	public static function renderImagens($imagens)
+	{
+		$html = '';
+		foreach($imagens as $imagem){
+			$html .= "<li><img class='materialboxed' src='assets/fotos/{$imagem['imagem']}'></li>";
+		}
+
+		return $html;
+	}
 }

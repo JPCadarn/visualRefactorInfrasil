@@ -40,4 +40,15 @@ class InspecoesController
 
 		return $InspecoesService->avaliarInspecao($dadosFiltrados);
 	}
+
+	public function detalhesInspecao($dadosRequisicao)
+	{
+		$conexao = Conexao::conectar();
+		$InspecoesService = new InspecoesService();
+		$InspecoesService->setConexao($conexao);
+
+		$dadosFiltrados = InspecoesFilter::detalhesInspecaoFilter($dadosRequisicao);
+
+		return $InspecoesService->detalhesInspecao($dadosFiltrados);
+	}
 }

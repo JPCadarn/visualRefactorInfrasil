@@ -1,6 +1,7 @@
 <?php
     spl_autoload_register(function($class){
-        require_once 'src\\'.$class.'.php';
+        $class = str_replace('\\', '/', $class);
+        require_once 'src/'.$class.'.php';
     });
 
     use Services\SessionService;

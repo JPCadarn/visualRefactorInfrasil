@@ -27,3 +27,7 @@
 .negrito {
 	font-weight: bold;
 }
+
+.dataTables_length, .dataTables_paginate{
+	display: none;
+}
