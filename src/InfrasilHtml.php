@@ -59,7 +59,7 @@ class InfrasilHtml {
 		return [
             'html' => $html,
             'idModal' => $idModal,
-            'idTable' => $idTable
+            'idTable' => 'gridPontes'
         ];
 	}
 
