@@ -35,7 +35,7 @@ class InfrasilHtml {
         }
 
         $html .= '
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" id="gridPontes">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -58,7 +58,8 @@ class InfrasilHtml {
 
 		return [
             'html' => $html,
-            'idModal' => $idModal
+            'idModal' => $idModal,
+            'idTable' => 'gridPontes'
         ];
 	}
 
@@ -91,7 +92,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" id="gridAgendamentos">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -115,7 +116,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridAgendamentos'
 		];
 	}
 
@@ -155,7 +157,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" id="gridInspecoes">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -177,7 +179,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridInspecoes'
 		];
 	}
 
@@ -210,7 +213,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" id="gridUsuarios">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -234,7 +237,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridUsuarios'
 		];
 	}
 
@@ -267,7 +271,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" id="gridClientes">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -292,7 +296,8 @@ class InfrasilHtml {
 
 		return [
 			'html' => $html,
-			'idModal' => $idModal
+			'idModal' => $idModal,
+            'idTable' => 'gridClientes'
 		];
 	}
 
