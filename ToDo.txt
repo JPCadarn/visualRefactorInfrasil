@@ -1,14 +1,14 @@
 -> Criar coluna id_agendamento nas inspeções;
 -> implementar paginação;
--> fazer requisição pra montar chartJS;
--> organizar action.php;
--> Relatórios;
--> dark mode;
 -> filtros grid pontes;
 -> filtros grid agendamentos;
 -> filtros grid inspeçoes;
 -> filtros grid usuarios;
 -> filtros grid clientes;
+-> fazer requisição pra montar chartJS;
+-> organizar action.php;
+-> Relatórios;
+-> dark mode;
 -> fechar transações;
 -> Migrar todos os métodos da InfrasilHtml p/ lógica de arquivo e métodos genéricos pra renderizar elementos dependentes de consulta;
 -> Pensar parte de cidades p/ OAEs;

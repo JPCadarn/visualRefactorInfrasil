@@ -20,6 +20,7 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--Import materialize.css-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 		<link type="text/css" rel="stylesheet" href="assets/css/index.css"/>
 		<link rel="icon" href="assets/Logo/logo_novo_clean.png" type="image/x-icon">
 		<meta charset="UTF-8">
@@ -136,5 +137,7 @@
 	<script type="text/javascript" src="assets/js/ajax.js"></script>
 	<script type="text/javascript" src="assets/js/mascaras.js"></script>
 	<script type="text/javascript" src="src/vendors/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/1.5.6/js/dataTables.colReorder.min.js"></script>
 </body>
 </html>
