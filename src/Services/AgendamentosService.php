@@ -42,7 +42,8 @@ class AgendamentosService extends AbstractService
 		return [
 			'html' => $grid['html'],
 			'status' => 200,
-			'idModal' => $grid['idModal']
+			'idModal' => $grid['idModal'],
+            'idTable' => $grid['idTable']
 		];
 	}
 
