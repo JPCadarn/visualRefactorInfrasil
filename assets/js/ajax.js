@@ -45,7 +45,7 @@ function instanciarDataTables(idTabela) {
 			bFilter: false,
 			info: false,
 		});
-		table.page.len(20).draw();
+		table.page.len(8).draw();
 		let info = table.page.info();
 		let html = '';
 

@@ -109,6 +109,10 @@ class ClientesService extends AbstractService
 				'message' => 'Cliente cadastrado com sucesso.'
 			];
 		}catch(Exception $e){
+            echo '<pre>';
+
+            $statement->debugDumpParams();
+            exit;
 			$this->conexao->rollBack();
 			return [
 				'status' => $e->getCode(),
