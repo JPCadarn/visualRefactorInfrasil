@@ -30,7 +30,9 @@ function dispararAjaxAberturaModal(elemento){
 			});
 			instanciarJsMaterialize();
 			fazerBindMascaras();
-			instanciarDataTables(response.idTable);
+			if (response.hasOwnProperty('idTable')) {
+				instanciarDataTables(response.idTable);
+			}
 			instance.open();
 		}else{
 			M.toast({html: response.message, classes: "red darken-3 rounded"})
@@ -45,7 +47,7 @@ function instanciarDataTables(idTabela) {
 			bFilter: false,
 			info: false,
 		});
-		table.page.len(8).draw();
+		table.page.len(10).draw();
 		let info = table.page.info();
 		let html = '';
 
