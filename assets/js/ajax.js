@@ -31,7 +31,7 @@ function dispararAjaxAberturaModal(elemento){
 			instanciarJsMaterialize();
 			fazerBindMascaras();
 			if (response.hasOwnProperty('idTable')) {
-				instanciarDataTables(response.idTable);
+				instanciarDataTables(response.idTable, response.idModal);
 			}
 			instance.open();
 		}else{
@@ -40,14 +40,15 @@ function dispararAjaxAberturaModal(elemento){
 	});
 }
 
-function instanciarDataTables(idTabela) {
+function instanciarDataTables(idTabela, idModal) {
 	$(document).ready(function() {
 		let table = $('#'+idTabela).DataTable( {
 			colReorder: true,
 			bFilter: false,
 			info: false,
 		});
-		table.page.len(10).draw();
+		let qtdElementos = Math.round($('#'+idModal+' .modal-content').height() / 65);
+		table.page.len(qtdElementos).draw();
 		let info = table.page.info();
 		let html = '';
 
