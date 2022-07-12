@@ -1,10 +1,10 @@
 -> Criar coluna id_agendamento nas inspeções;
--> implementar paginação;
 -> filtros grid pontes;
 -> filtros grid agendamentos;
 -> filtros grid inspeçoes;
 -> filtros grid usuarios;
 -> filtros grid clientes;
+-> Trocar dash p/ usar cards;
 -> fazer requisição pra montar chartJS;
 -> organizar action.php;
 -> Relatórios;

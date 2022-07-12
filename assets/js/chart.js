@@ -28,7 +28,9 @@ const data = {
 const config = {
     type: 'doughnut',
     data: data,
-    options: {}
+    options: {
+		maintainAspectRatio: false
+	}
 };
 
 const myChart = new Chart(

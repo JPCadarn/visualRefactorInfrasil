@@ -117,7 +117,11 @@
 					<ul class="collapsible popout">
 						<li class="active">
 							<div class="collapsible-header"><i class="material-icons">filter_drama</i>Estado das OAE's</div>
-							<div class="collapsible-body"><canvas id="myChart"></canvas></div>
+							<div class="collapsible-body">
+                                <div class="chart-container">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
 						</li>
 					</ul>
 				</div>
