@@ -6,6 +6,10 @@
 	padding-left: 300px;
 }
 
+.sidenav {
+	width: 17%;
+}
+
 .imagem-login {
 	width: 25% !important;
 	margin: 8em;
