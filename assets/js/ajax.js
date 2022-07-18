@@ -4,7 +4,7 @@ function dispararAjaxAberturaModal(elemento){
 		action: action,
 		numeroModal: document.getElementsByClassName('modal').length,
 		page: 1
-	}
+	};
 	let dataId = $(elemento).data('id');
 	if(dataId !== ''){
 		dataRequest['id'] = dataId;
@@ -30,10 +30,71 @@ function dispararAjaxAberturaModal(elemento){
 			});
 			instanciarJsMaterialize();
 			fazerBindMascaras();
+			if (response.hasOwnProperty('idTable')) {
+				instanciarDataTables(response.idTable, response.idModal);
+			}
 			instance.open();
 		}else{
 			M.toast({html: response.message, classes: "red darken-3 rounded"})
 		}
+	});
+}
+
+function instanciarDataTables(idTabela, idModal) {
+	$(document).ready(function() {
+		let table = $('#'+idTabela).DataTable( {
+			colReorder: true,
+			bFilter: false,
+			info: false,
+		});
+		let qtdElementos = Math.round($('#'+idModal+' .modal-content').height() / 65);
+		table.page.len(qtdElementos).draw();
+		let info = table.page.info();
+		let html = '';
+
+		for (let i = 0; i < info.pages; i++) {
+			html += '<li class="waves-effect" id="page'+i+'"><a href="#!">'+(i+1)+'</a></li>';
+		}
+		$('#paginas').innerHTML = html;
+		$('#paginas').html(html);
+		$('#page0').addClass('active');
+
+		let texto = 'Exibindo '+(info.start + 1)+'-'+info.end+'/'+info.recordsTotal;
+		$('#teste').text(texto);
+
+		$('select').formSelect();
+		$('#next').on( 'click', function () {
+			table.page( 'next' ).draw( 'page' );
+			info = table.page.info();
+			texto = 'Exibindo '+(info.start + 1)+'-'+info.end+'/'+info.recordsTotal;
+			$('#teste').text(texto);
+			$("li[id*='page']").each(function (i, el) {
+				$('#'+el.id).removeClass('active')
+			});
+			$('#page'+info.page).addClass('active')
+		} );
+
+		$('#previous').on( 'click', function () {
+			table.page( 'previous' ).draw( 'page' );
+			info = table.page.info();
+			texto = 'Exibindo '+(info.start + 1)+'-'+info.end+'/'+info.recordsTotal;
+			$('#teste').text(texto);
+			$("li[id*='page']").each(function (i, el) {
+				$('#'+el.id).removeClass('active')
+			});
+			$('#page'+info.page).addClass('active')
+		} );
+
+		$('#filtrar').on('click', function(){
+			let filteredData = table
+				.columns( 1 )
+				.data()
+				.flatten()
+				.filter( function ( value ) {
+					return value.includes('ware');
+				} );
+			console.log(filteredData);
+		})
 	});
 }
 

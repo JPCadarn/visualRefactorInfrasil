@@ -49,7 +49,18 @@ class InfrasilHtml {
                     '.$corpo.'
                 </tbody>
             </table>';
-
+        $html .= "
+            <div class='row'>
+                <span class='left' id='teste'></span>
+                <span class='right pagination'>
+                    <li class='waves-effect' id='previous'><a href='#!'><i class='material-icons'>chevron_left</i></a></li>
+                         <span id='paginas'>
+    
+                        </span>
+                    <li class='waves-effect' id='next'><a href='#!'><i class='material-icons'>chevron_right</i></a></li>
+                </span>
+            </div>
+        ";
         $html .= "</div>";
         $html .= "<div class='modal-footer'>";
         $html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioPonte' data-position='bottom' data-tooltip='Cadastrar estrutura'><i class='material-icons'>add</i></button>";
@@ -107,7 +118,18 @@ class InfrasilHtml {
                     '.$corpo.'
                 </tbody>
             </table>';
-
+        $html .= "
+            <div class='row'>
+                <span class='left' id='teste'></span>
+                <span class='right pagination'>
+                    <li class='waves-effect' id='previous'><a href='#!'><i class='material-icons'>chevron_left</i></a></li>
+                         <span id='paginas'>
+    
+                        </span>
+                    <li class='waves-effect' id='next'><a href='#!'><i class='material-icons'>chevron_right</i></a></li>
+                </span>
+            </div>
+        ";
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
 		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioAgendamento' data-position='bottom' data-tooltip='Cadastrar agendamento'><i class='material-icons'>add</i></button>";
@@ -173,7 +195,18 @@ class InfrasilHtml {
                     '.$corpo.'
                 </tbody>
             </table>';
-
+        $html .= "
+            <div class='row'>
+                <span class='left' id='teste'></span>
+                <span class='right pagination'>
+                    <li class='waves-effect' id='previous'><a href='#!'><i class='material-icons'>chevron_left</i></a></li>
+                         <span id='paginas'>
+    
+                        </span>
+                    <li class='waves-effect' id='next'><a href='#!'><i class='material-icons'>chevron_right</i></a></li>
+                </span>
+            </div>
+        ";
 		$html .= "</div>";
 		$html .= "</div>";
 
@@ -228,7 +261,18 @@ class InfrasilHtml {
                     '.$corpo.'
                 </tbody>
             </table>';
-
+        $html .= "
+            <div class='row'>
+                <span class='left' id='teste'></span>
+                <span class='right pagination'>
+                    <li class='waves-effect' id='previous'><a href='#!'><i class='material-icons'>chevron_left</i></a></li>
+                         <span id='paginas'>
+    
+                        </span>
+                    <li class='waves-effect' id='next'><a href='#!'><i class='material-icons'>chevron_right</i></a></li>
+                </span>
+            </div>
+        ";
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
 		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioUsuario' data-position='bottom' data-tooltip='Cadastrar usuário'><i class='material-icons'>add</i></button>";
@@ -287,7 +331,18 @@ class InfrasilHtml {
                     '.$corpo.'
                 </tbody>
             </table>';
-
+        $html .= "
+            <div class='row'>
+                <span class='left' id='teste'></span>
+                <span class='right pagination'>
+                    <li class='waves-effect' id='previous'><a href='#!'><i class='material-icons'>chevron_left</i></a></li>
+                         <span id='paginas'>
+    
+                        </span>
+                    <li class='waves-effect' id='next'><a href='#!'><i class='material-icons'>chevron_right</i></a></li>
+                </span>
+            </div>
+        ";
 		$html .= "</div>";
 		$html .= "<div class='modal-footer'>";
 		$html .= "<button class='modal-close waves-effect waves-green btn-floating triggerModal tooltipped' data-action='formularioCliente' data-position='bottom' data-tooltip='Cadastrar cliente'><i class='material-icons'>add</i></button>";

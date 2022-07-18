@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `agendamentos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `data` date NOT NULL,
   `horario` time NOT NULL,
   `detalhes` text COLLATE utf8_unicode_ci NOT NULL,
@@ -81,7 +81,7 @@ INSERT INTO `agendamentos` VALUES(32, '0000-00-00', '00:00:00', '', 29, 0);
 --
 
 CREATE TABLE `clientes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `data_nascimento` date NOT NULL,
   `cpf_cnpj` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
@@ -117,7 +117,7 @@ INSERT INTO `clientes` VALUES(5, 'Mateus Da Cruz', '0000-00-00', '', '', '', 'ma
 --
 
 CREATE TABLE `imagens_inspecoes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `inspecao_id` int(11) NOT NULL,
   `imagem` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `id_usuario` int(11) NOT NULL
@@ -130,7 +130,7 @@ CREATE TABLE `imagens_inspecoes` (
 --
 
 CREATE TABLE `imagens_pontes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `ponte_id` int(11) NOT NULL,
   `imagem` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `id_usuario` int(11) NOT NULL
@@ -162,7 +162,7 @@ INSERT INTO `imagens_pontes` VALUES(222, 30, '$2y$10$nGB4y9T3HjfqOC9RNOXmtuK46Ny
 --
 
 CREATE TABLE `inspecoes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `id_agendamento` int(11) NOT NULL,
   `ponte_id` int(11) NOT NULL,
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -237,7 +237,7 @@ INSERT INTO `inspecoes` VALUES(642, 29, 'Inspeção automática gerada pelo agen
 --
 
 CREATE TABLE `pontes` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `nome` text COLLATE utf8_unicode_ci,
   `descricao` text COLLATE utf8_unicode_ci,
   `via` text COLLATE utf8_unicode_ci,
@@ -317,7 +317,7 @@ INSERT INTO `pontes` VALUES(30, 'Ponte', '', 'Local', '1996-02-12', 'tb450', '',
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `senha` varchar(60) COLLATE utf8_unicode_ci NOT NULL,

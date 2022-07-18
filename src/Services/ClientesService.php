@@ -33,7 +33,8 @@ class ClientesService extends AbstractService
 			return [
 				'html' => $grid['html'],
 				'status' => 200,
-				'idModal' => $grid['idModal']
+				'idModal' => $grid['idModal'],
+                'idTable' => $grid['idTable']
 			];
 		}catch(Exception $e){
 			$this->conexao->rollBack();
@@ -108,6 +109,10 @@ class ClientesService extends AbstractService
 				'message' => 'Cliente cadastrado com sucesso.'
 			];
 		}catch(Exception $e){
+            echo '<pre>';
+
+            $statement->debugDumpParams();
+            exit;
 			$this->conexao->rollBack();
 			return [
 				'status' => $e->getCode(),
