@@ -1,4 +1,3 @@
--> Criar coluna id_agendamento nas inspeções;
 -> Trocar dash p/ usar cards;
 -> fazer requisição pra montar chartJS;
 -> Relatórios;
