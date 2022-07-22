@@ -35,7 +35,7 @@
 				InfrasilHtml::renderNavBar();
 			?>
 			<div class="col s12 m10">
-				<div class="col s12 m4">
+				<div class="col s12 m6">
 					<ul class="collapsible popout">
 						<li class="active">
 							<div class="collapsible-header"><i class="material-icons">event</i>Próximas Inspeções</div>
@@ -74,7 +74,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="col s12 m4">
+				<div class="col s12 m6">
 					<ul class="collapsible popout">
 						<li class="active">
 							<div class="collapsible-header"><i class="material-icons">event</i>Rankeamento de Manutenção Prioritária</div>
@@ -113,9 +113,9 @@
 						</li>
 					</ul>
 				</div>
-				<div class="col s12 m4">
+				<div class="col s12">
 					<ul class="collapsible popout">
-						<li class="active">
+						<li class="">
 							<div class="collapsible-header"><i class="material-icons">filter_drama</i>Estado das OAE's</div>
 							<div class="collapsible-body">
                                 <div class="chart-container">

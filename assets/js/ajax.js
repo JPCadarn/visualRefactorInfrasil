@@ -7,7 +7,7 @@ function dispararAjaxAberturaModal(elemento){
 	};
 	let dataId = $(elemento).data('id');
 	if(dataId !== ''){
-		dataRequest['id'] = dataId;
+		dataRequest.id = dataId;
 	}
 
 	$.ajax({
@@ -35,17 +35,20 @@ function dispararAjaxAberturaModal(elemento){
 			}
 			instance.open();
 		}else{
-			M.toast({html: response.message, classes: "red darken-3 rounded"})
+			M.toast({html: response.message, classes: 'red darken-3 rounded'});
 		}
 	});
 }
 
 function instanciarDataTables(idTabela, idModal) {
 	$(document).ready(function() {
-		let table = $('#'+idTabela).DataTable( {
+		let table = $('#'+idTabela).DataTable({
 			colReorder: true,
 			bFilter: false,
 			info: false,
+			language: {
+				emptyTable: 'Nenhuma informação cadastrada.'
+			}
 		});
 		let qtdElementos = Math.round($('#'+idModal+' .modal-content').height() / 65);
 		table.page.len(qtdElementos).draw();
@@ -69,9 +72,9 @@ function instanciarDataTables(idTabela, idModal) {
 			texto = 'Exibindo '+(info.start + 1)+'-'+info.end+'/'+info.recordsTotal;
 			$('#teste').text(texto);
 			$("li[id*='page']").each(function (i, el) {
-				$('#'+el.id).removeClass('active')
+				$('#' + el.id).removeClass('active');
 			});
-			$('#page'+info.page).addClass('active')
+			$('#page' + info.page).addClass('active');
 		} );
 
 		$('#previous').on( 'click', function () {
@@ -80,9 +83,9 @@ function instanciarDataTables(idTabela, idModal) {
 			texto = 'Exibindo '+(info.start + 1)+'-'+info.end+'/'+info.recordsTotal;
 			$('#teste').text(texto);
 			$("li[id*='page']").each(function (i, el) {
-				$('#'+el.id).removeClass('active')
+				$('#' + el.id).removeClass('active');
 			});
-			$('#page'+info.page).addClass('active')
+			$('#page' + info.page).addClass('active');
 		} );
 
 		$('#filtrar').on('click', function(){
@@ -94,7 +97,7 @@ function instanciarDataTables(idTabela, idModal) {
 					return value.includes('ware');
 				} );
 			console.log(filteredData);
-		})
+		});
 	});
 }
 
@@ -103,7 +106,6 @@ function instanciarJsMaterialize(){
 	$('.collapsible').collapsible();
 	$('.tooltipped').tooltip();
 	$('.fixed-action-btn').floatingActionButton();
-	$('.collapsible').collapsible();
 	$('select').formSelect();
 }
 
@@ -156,7 +158,7 @@ $('#formLogin').on('submit', function (event) {
 		usuario: $('#usuario').val(),
 		senha: $('#senha').val(),
 		action: 'login'
-	}
+	};
 
 	$.ajax({
 		type: 'POST',
@@ -168,7 +170,7 @@ $('#formLogin').on('submit', function (event) {
 		if (response.status === 200 && response.type === 'success'){
 			window.location.href = 'index.php';
 		}else{
-			M.toast({html: response.message, classes: "red darken-3 rounded"})
+			M.toast({html: response.message, classes: "red darken-3 rounded"});
 		}
 	});
 });
@@ -186,13 +188,13 @@ $("body").on("submit", null, function(element){
 		encode: true
 	}).done(function (response) {
 		if(response.type === 'error'){
-			response.errors.forEach(function(msgErro){
+			response.errors.forEach(function (msgErro) {
 				M.toast({
 					html: msgErro,
 					classes: "red darken-3 rounded",
 					displayLength: 2500
-				})
-			})
+				});
+			});
 		}else if(response.type === 'success'){
 			let elementos = $('#' + element.target.getAttribute('id'))[0].elements;
 			let formPossuiImagens = false;
