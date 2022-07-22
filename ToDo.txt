@@ -11,3 +11,4 @@
 -> dark mode;
 -> Migrar todos os métodos da InfrasilHtml p/ lógica de arquivo e métodos genéricos pra renderizar elementos dependentes de consulta;
 -> Pensar parte de cidades p/ OAEs;
+-> Revisar front p/ encaixar com Material Design;
