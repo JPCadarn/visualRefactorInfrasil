@@ -35,7 +35,7 @@ class InfrasilHtml {
         }
 
         $html .= '
-            <table class="highlight responsive-table" id="gridPontes">
+            <table class="highlight " id="gridPontes">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -103,7 +103,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table" id="gridAgendamentos">
+            <table class="highlight " id="gridAgendamentos">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -179,7 +179,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table" id="gridInspecoes">
+            <table class="highlight " id="gridInspecoes">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -246,7 +246,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table" id="gridUsuarios">
+            <table class="highlight " id="gridUsuarios">
                 <thead>
                     <tr>
                       <th>ID</th>
@@ -315,7 +315,7 @@ class InfrasilHtml {
 		}
 
 		$html .= '
-            <table class="highlight responsive-table" id="gridClientes">
+            <table class="highlight " id="gridClientes">
                 <thead>
                     <tr>
                       <th>ID</th>
