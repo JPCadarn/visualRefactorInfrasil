@@ -1,3 +1,15 @@
+$.ajax({
+	type: 'GET',
+	url: 'src/action.php',
+	data: {
+		idCliente: $('#idClienteSessao').val()
+	},
+	contentType: false,
+	processData: false
+}).done(function (resposta) {
+	const data = resposta;
+});
+
 const labels = [
     'January',
     'February',
@@ -7,7 +19,7 @@ const labels = [
     'June',
   ];
 
-const data = {
+/*const data = {
 	labels: [
 	  'Crítico',
 	  'Saudável',
@@ -23,7 +35,7 @@ const data = {
 	  ],
 	  hoverOffset: 4
 	}]
-};
+};*/
 
 const config = {
     type: 'doughnut',

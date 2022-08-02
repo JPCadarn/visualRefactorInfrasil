@@ -668,6 +668,8 @@ class InfrasilHtml {
 	{
 		$tipoUsuario = SessionService::getTipoUsuarioLogado();
 
+        echo '<input type="hidden" id="idUsuarioSessao" value="'.SessionService::getIdUsuarioLogado().'">';
+        echo '<input type="hidden" id="idClienteSessao" value="'.SessionService::getIdClienteLogado().'">';
 		echo '
 			<div class="col s2 m2">
 				<ul id="slide-out" class="sidenav sidenav-fixed">
