@@ -73,4 +73,15 @@ class InspecoesFilter extends AbstractFilter
 
 		return parent::limparCamposRequisicao($dadosFiltrados);
 	}
+
+    public static function getDadosGraficoDashboardFilter(array $dadosRequisicao)
+    {
+        $filtros = [
+            'idCliente' => FILTER_SANITIZE_NUMBER_INT
+        ];
+
+        $dadosFiltrados = filter_var_array($dadosRequisicao, $filtros);
+
+        return parent::limparCamposRequisicao($dadosFiltrados);
+    }
 }

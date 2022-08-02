@@ -1,13 +1,15 @@
+let dadosGrafico = [];
 $.ajax({
 	type: 'GET',
 	url: 'src/action.php',
 	data: {
+		action: 'getDadosGraficoDashboard',
 		idCliente: $('#idClienteSessao').val()
 	},
 	contentType: false,
 	processData: false
 }).done(function (resposta) {
-	const data = resposta;
+	dadosGrafico = resposta;
 });
 
 const labels = [
@@ -19,23 +21,20 @@ const labels = [
     'June',
   ];
 
-/*const data = {
-	labels: [
-	  'Crítico',
-	  'Saudável',
-	  'Requer Atenção'
-	],
+const data = {
+	labels: ['0-19', '20-39', '40-59', '60-79', '80-100'],
 	datasets: [{
-	  label: 'My First Dataset',
-	  data: [300, 50, 100],
-	  backgroundColor: [
-		'rgb(255, 99, 132)',
-		'rgb(54, 162, 235)',
-		'rgb(255, 205, 86)'
-	  ],
-	  hoverOffset: 4
+		label: 'Índice de Manutenção Prioritária',
+		data: [dadosGrafico.countUm, dadosGrafico.countDois, dadosGrafico.countTres, dadosGrafico.countQuatro, dadosGrafico.countCinco],
+		backgroundColor: [
+			'#16f5f1',
+			'#10de21',
+			'#e1e810',
+			'#e08610',
+			'#ed2009'
+		]
 	}]
-};*/
+};
 
 const config = {
     type: 'doughnut',

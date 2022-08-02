@@ -18,6 +18,10 @@ use Services\SessionService;
 
 if(!empty($_GET)){
 	switch($_GET['action']){
+        case 'getDadosGraficoDashboard':
+            $Controller = new InspecoesController();
+            echo json_encode($Controller->getDadosGraficoDashboard($_GET));
+            break;
 		default:
 			echo json_encode([
 				'status' => 404,

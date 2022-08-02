@@ -51,4 +51,15 @@ class InspecoesController
 
 		return $InspecoesService->detalhesInspecao($dadosFiltrados);
 	}
+
+    public function getDadosGraficoDashboard(array $dadosRequisicao)
+    {
+        $conexao = Conexao::conectar();
+        $InspecoesService = new InspecoesService();
+        $InspecoesService->setConexao($conexao);
+
+        $dadosFiltrados = InspecoesFilter::getDadosGraficoDashboardFilter($dadosRequisicao);
+
+        return $InspecoesService->getDadosGraficoDashboard($dadosFiltrados);
+    }
 }

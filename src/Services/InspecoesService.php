@@ -10,6 +10,9 @@ use Validators\InspecoesValidator;
 
 class InspecoesService extends AbstractService
 {
+    const ALFA1 = 0.4;
+    const ALFA2 = 0.6;
+
 	public function listarInspecoes($dadosRequisicao)
 	{
 		$inspecoes = [];
@@ -172,4 +175,111 @@ class InspecoesService extends AbstractService
 			];
 		}
 	}
+
+    public function getDadosGraficoDashboard(array $dadosFiltrados)
+    {
+        $sql = 'SELECT 
+				i.*,
+				p.nome AS ponte_nome
+			FROM inspecoes i
+			INNER JOIN pontes p ON i.ponte_id = p.id
+			LEFT JOIN usuarios ON p.id_usuario = usuarios.id 
+			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
+			WHERE clientes.id = :idCliente AND i.status = :statusAvaliado';
+        $statusAvaliado = 'Avaliado';
+
+        try {
+            $this->conexao->beginTransaction();
+            $statement = $this->conexao->prepare($sql);
+            $statement->bindParam(':idCliente', $dadosFiltrados['idCliente']);
+            $statement->bindParam(':statusAvaliado', $statusAvaliado);
+            $statement->execute();
+            $dadosGrafico = $statement->fetchAll();
+            $this->conexao->commit();
+            return $this->agruparDadosGrafico($dadosGrafico);
+        } catch (Exception $exception) {
+            $this->conexao->rollBack();
+            return [
+                'status' => $exception->getCode(),
+                'errors' => [
+                    'Ocorreu um erro ao buscar os dados do gráfico. Tente novamente e contate o suporte técnico caso o erro persista.'
+                ],
+                'type' => 'error'
+            ];
+        }
+    }
+
+    private function agruparDadosGrafico(array $dadosGrafico)
+    {
+        $grupos = [];
+        foreach($dadosGrafico as $inspecao){
+            $imp = $this->calcularIMP($inspecao)['imp'];
+            $grupos[intval($imp/20)+1][] = $imp;
+        }
+        return [
+            'countUm' => isset($grupos[1]) ? count($grupos[1]) : 0,
+            'countDois' => isset($grupos[2]) ? count($grupos[2]) : 0,
+            'countTres' => isset($grupos[3]) ? count($grupos[3]) : 0,
+            'countQuatro' => isset($grupos[4]) ? count($grupos[4]) : 0,
+            'countCinco' => isset($grupos[5]) ? count($grupos[5]) : 0
+        ];
+    }
+
+    public function calcularIMP($inspecao){
+        $indiceValorSocial = $this->calcularIndiceValorSocial($inspecao);
+        $indiceSaudeEstrutura = $this->calcularIndiceSaudeEstrutura($inspecao);
+        $imp = self::ALFA1 * $indiceValorSocial + self::ALFA2 * $indiceSaudeEstrutura;
+        return [
+            'ivs' => $indiceValorSocial,
+            'ise' => $indiceSaudeEstrutura,
+            'imp' => $imp,
+            'descricao' => substr($inspecao['nome'], 0, 50),
+            'id' => $inspecao['id'],
+            'ponte_id' => $inspecao['ponte_id'],
+            'data_inspecao' => $inspecao['data_inspecao'],
+            'ponte_nome' => $inspecao['ponte_nome'],
+            'tipo_inspecao' => $inspecao['tipo_inspecao']
+        ];
+    }
+
+    public function calcularIndiceValorSocial($inspecao){
+        return $inspecao['nota_indice_localizacao'] + $inspecao['nota_indice_volume_trafego'] + $inspecao['nota_indice_largura_oae'];
+    }
+
+    public function calcularIndiceSaudeEstrutura($inspecao){
+        $fatorSeguranca = $this->calcularFatorSeguranca($inspecao);
+        $fatorConservacao = $this->calcularFatorConservacao($inspecao);
+        $fatorImpacto = $this->calcularFatorImpacto($inspecao);
+        return $fatorSeguranca + $fatorConservacao + $fatorImpacto;
+    }
+
+    private function calcularFatorSeguranca($inspecao){
+        return $inspecao['nota_geometria_condicoes'] +
+            $inspecao['nota_acessos'] +
+            $inspecao['nota_cursos_agua'] +
+            $inspecao['nota_encontros_fundacoes'] +
+            $inspecao['nota_apoios_intermediarios'] +
+            $inspecao['nota_aparelhos_apoio'] +
+            $inspecao['nota_superestrutura'] +
+            $inspecao['nota_pista_rolamento'] +
+            $inspecao['nota_juntas_dilatacao'] +
+            $inspecao['nota_barreiras_guardacorpos'] +
+            $inspecao['nota_sinalizacao'] +
+            $inspecao['nota_instalacoes_util_publica'];
+    }
+
+    private function calcularFatorConservacao($inspecao){
+        return $inspecao['nota_largura_plataforma'] +
+            $inspecao['nota_capacidade_carga'] +
+            $inspecao['nota_superficie_plataforma'] +
+            $inspecao['nota_pista_rolamento_fc'] +
+            $inspecao['nota_outros_fc'];
+    }
+
+    private function calcularFatorImpacto($inspecao){
+        return $inspecao['nota_espaco_livre'] +
+            $inspecao['nota_localizacao_ponte'] +
+            $inspecao['nota_saude_fisica_ponte'] +
+            $inspecao['nota_outros_fi'];
+    }
 }
