@@ -1,5 +1,4 @@
 -> Trocar dash p/ usar cards;
--> fazer requisição pra montar chartJS;
 -> Relatórios;
 -> fechar transações;
 -> filtros grid pontes;

@@ -28,7 +28,7 @@ class InfrasilHtml {
                     <th>'.DateUtils::formatarData($ponte['data_construcao'], 'd/m/Y').'</th>
                     <th>
                     	<a class="waves-effect triggerModal tooltipped" data-tooltip="Detalhes" data-position="bottom" data-action="detalhesPonte" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">info</i></a>
-                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="formularioAgendamento" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">print</i></a>
+                    	<a class="waves-effect triggerModal tooltipped" data-tooltip="Imprimir Relatório" data-position="bottom" data-action="imprimirPonte" data-id="'.$ponte['id'].'"><i class="material-icons yellow-text text-darken-3">print</i></a>
 					</th>
                 </tr>
             ';

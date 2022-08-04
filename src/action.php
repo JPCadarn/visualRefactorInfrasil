@@ -22,6 +22,10 @@ if(!empty($_GET)){
             $Controller = new InspecoesController();
             echo json_encode($Controller->getDadosGraficoDashboard($_GET));
             break;
+        case 'imprimirPonte':
+            $Controller = new PontesController();
+            echo json_encode($Controller->imprimirPonte($_GET));
+            break;
 		default:
 			echo json_encode([
 				'status' => 404,
