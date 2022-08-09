@@ -28,7 +28,7 @@ class InspecoesService extends AbstractService
 				inspecoes.data_inspecao, 
 				inspecoes.tipo_inspecao 
 			FROM pontes 
-			INNER JOIN inspecoes ON pontes.id = inspecoes.ponte_id 
+			JOIN inspecoes ON pontes.id = inspecoes.ponte_id 
 			LEFT JOIN usuarios ON pontes.id_usuario = usuarios.id 
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 			WHERE clientes.id = :idCliente';
@@ -176,17 +176,29 @@ class InspecoesService extends AbstractService
 		}
 	}
 
-    public function getDadosGraficoDashboard(array $dadosFiltrados)
+    public function getDadosDashboard(array $dadosFiltrados)
     {
         $sql = 'SELECT 
 				i.*,
 				p.nome AS ponte_nome
 			FROM inspecoes i
-			INNER JOIN pontes p ON i.ponte_id = p.id
+			JOIN pontes p ON i.ponte_id = p.id
 			LEFT JOIN usuarios ON p.id_usuario = usuarios.id 
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 			WHERE clientes.id = :idCliente AND i.status = :statusAvaliado';
         $statusAvaliado = 'Avaliado';
+
+		$sqlProximasAvaliacoes = '
+			SELECT i.id, p.nome, i.data, i.tipo
+			FROM inspecoes i 
+			JOIN pontes p ON i.ponte_id = p.id
+			JOIN usuarios u ON p.id_usuario = u.id 
+			JOIN clientes c ON u.id_cliente = c.id
+			WHERE c.id = :idCliente AND i.status = :statusAberto
+		';
+		$statusAberto = 'Aberto';
+		$grupos = [];
+		$indicesManutencaoPrioritaria = [];
 
         try {
             $this->conexao->beginTransaction();
@@ -195,8 +207,26 @@ class InspecoesService extends AbstractService
             $statement->bindParam(':statusAvaliado', $statusAvaliado);
             $statement->execute();
             $dadosGrafico = $statement->fetchAll();
+
+			$statementProximasInspecoes = $this->conexao->prepare($sqlProximasAvaliacoes);
+			$statementProximasInspecoes->bindParam(':idCliente', $dadosFiltrados['idCliente']);
+			$statementProximasInspecoes->bindParam(':statusAberto', $statusAberto);
+			$statementProximasInspecoes->execute();
+			$dadosProximasInspecoes = $statementProximasInspecoes->fetchAll();
+
+			foreach($dadosGrafico as $inspecao){
+				$imp = $this->calcularIMP($inspecao)['imp'];
+				$indicesManutencaoPrioritaria[] = $imp;
+				$grupos[intval($imp/20)+1][] = $imp;
+			}
+
             $this->conexao->commit();
-            return $this->agruparDadosGrafico($dadosGrafico);
+
+            return [
+				'dadosGrafico' => $this->agruparDadosGrafico($grupos),
+				'proximasInspecoes' => $dadosProximasInspecoes,
+				'manutencoesPrioritarias' => $this->montarManutencoesPrioritarias($indicesManutencaoPrioritaria)
+			];
         } catch (Exception $exception) {
             $this->conexao->rollBack();
             return [
@@ -212,10 +242,6 @@ class InspecoesService extends AbstractService
     private function agruparDadosGrafico(array $dadosGrafico)
     {
         $grupos = [];
-        foreach($dadosGrafico as $inspecao){
-            $imp = $this->calcularIMP($inspecao)['imp'];
-            $grupos[intval($imp/20)+1][] = $imp;
-        }
         return [
             'countUm' => isset($grupos[1]) ? count($grupos[1]) : 0,
             'countDois' => isset($grupos[2]) ? count($grupos[2]) : 0,
@@ -282,4 +308,12 @@ class InspecoesService extends AbstractService
             $inspecao['nota_saude_fisica_ponte'] +
             $inspecao['nota_outros_fi'];
     }
+
+	private function montarManutencoesPrioritarias(bool|array $indicesManutencaoPrioritaria)
+	{
+		$indicesManutencaoPrioritaria = array_slice($indicesManutencaoPrioritaria, 0, 5);
+		rsort($indicesManutencaoPrioritaria, SORT_NUMERIC);
+
+		return $indicesManutencaoPrioritaria;
+	}
 }

@@ -16,7 +16,7 @@ require_once('conexao.php');
 		$dados = $conexao->executarQuery('SELECT * FROM pontes WHERE id = '.$_GET['id'])[0];
 		$imagens = $conexao->executarQuery("SELECT imagem FROM imagens_pontes WHERE ponte_id = {$_GET['id']}");
 		$agendamentos = $conexao->executarQuery("SELECT * FROM agendamentos WHERE ponte_id = {$_GET['id']}");
-		$inspecoes = $conexao->executarQuery("SELECT inspecoes.*, usuarios.nome FROM inspecoes INNER JOIN usuarios ON inspecoes.id_usuario = usuarios.id WHERE ponte_id = {$_GET['id']}");
+		$inspecoes = $conexao->executarQuery("SELECT inspecoes.*, usuarios.nome FROM inspecoes JOIN usuarios ON inspecoes.id_usuario = usuarios.id WHERE ponte_id = {$_GET['id']}");
 		$opcoesInspecao = [
 			['id' => 'cadastral', 'tipo' => 'Cadastral'],
 			['id' => 'rotineira', 'tipo' => 'Rotineira'],

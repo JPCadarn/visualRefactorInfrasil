@@ -11,7 +11,7 @@ require_once('conexao.php');
 	if(!isset($_GET['id']) || $_GET['id'] == ''){
 		header('Location: '.$_SERVER['HTTP_REFERER']);
 	}else{
-		$inspecao = $conexao->executarQuery("SELECT inspecoes.*, usuarios.nome AS usuario_nome FROM inspecoes INNER JOIN usuarios ON inspecoes.id_usuario = usuarios.id WHERE inspecoes.id = {$_GET['id']}")[0];
+		$inspecao = $conexao->executarQuery("SELECT inspecoes.*, usuarios.nome AS usuario_nome FROM inspecoes JOIN usuarios ON inspecoes.id_usuario = usuarios.id WHERE inspecoes.id = {$_GET['id']}")[0];
 		$imagens = $conexao->executarQuery("SELECT imagem FROM imagens_inspecoes WHERE inspecao_id = {$_GET['id']}");
 		
 		$opcoesInspecao = [

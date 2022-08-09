@@ -1,11 +1,11 @@
 let dadosGrafico = [];
 $.ajax({
 	type: 'GET',
-	url: 'src/action.php?action=getDadosGraficoDashboard&idCliente='+$('#idClienteSessao').val(),
+	url: 'src/action.php?action=getDadosDashboard&idCliente='+$('#idClienteSessao').val(),
 	contentType: false,
 	processData: false
 }).done(function (resposta) {
-	dadosGrafico = resposta;
+	dadosGrafico = resposta.dadosGrafico;
 });
 
 const labels = [

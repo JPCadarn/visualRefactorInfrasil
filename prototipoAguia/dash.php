@@ -14,7 +14,7 @@ require_once('conexao.php');
 				i.*,
 				p.nome AS ponte_nome
 			FROM inspecoes i
-			INNER JOIN pontes p ON i.ponte_id = p.id
+			JOIN pontes p ON i.ponte_id = p.id
 			LEFT JOIN usuarios ON p.id_usuario = usuarios.id 
 			LEFT JOIN clientes ON usuarios.id_cliente = clientes.id
 			WHERE clientes.id = '.SessionService::getIdCliente());

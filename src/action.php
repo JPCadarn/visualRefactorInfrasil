@@ -18,9 +18,9 @@ use Services\SessionService;
 
 if(!empty($_GET)){
 	switch($_GET['action']){
-        case 'getDadosGraficoDashboard':
+        case 'getDadosDashboard':
             $Controller = new InspecoesController();
-            echo json_encode($Controller->getDadosGraficoDashboard($_GET));
+            echo json_encode($Controller->getDadosDashboard($_GET));
             break;
         case 'imprimirPonte':
             $Controller = new PontesController();

@@ -20,8 +20,8 @@ class PontesService extends AbstractService
                 pontes.nome, 
                 pontes.data_construcao
             FROM pontes
-                INNER JOIN usuarios ON pontes.id_usuario = usuarios.id 
-                INNER JOIN clientes ON usuarios.id_cliente = clientes.id 
+                JOIN usuarios ON pontes.id_usuario = usuarios.id 
+                JOIN clientes ON usuarios.id_cliente = clientes.id 
             WHERE clientes.id = :idCliente';
         $idCliente = SessionService::getIdClienteLogado();
 
@@ -120,9 +120,9 @@ class PontesService extends AbstractService
 		$sqlAdicional = '
 			SELECT imagem 
 			FROM imagens_pontes
-			INNER JOIN agendamentos ON imagens_pontes.ponte_id = agendamentos.ponte_id
-			INNER JOIN inspecoes ON imagens_pontes.ponte_id = inspecoes.ponte_id
-			INNER JOIN usuarios ON inspecoes.id_usuario = usuarios.id
+			JOIN agendamentos ON imagens_pontes.ponte_id = agendamentos.ponte_id
+			JOIN inspecoes ON imagens_pontes.ponte_id = inspecoes.ponte_id
+			JOIN usuarios ON inspecoes.id_usuario = usuarios.id
 			WHERE imagens_pontes.ponte_id = :idOae
 		';
 

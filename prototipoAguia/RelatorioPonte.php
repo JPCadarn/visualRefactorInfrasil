@@ -51,7 +51,7 @@ class RelatorioPonte{
 		$inspecoes = $this->conexao->executarQuery("
 			SELECT inspecoes.*, pontes.nome AS ponte_nome 
 			FROM inspecoes
-			INNER JOIN pontes ON inspecoes.ponte_id = pontes.id 
+			JOIN pontes ON inspecoes.ponte_id = pontes.id 
 			WHERE inspecoes.status = 'Avaliado'");
 		
 		return [
