@@ -6,16 +6,9 @@ $.ajax({
 	processData: false
 }).done(function (resposta) {
 	dadosGrafico = resposta.dadosGrafico;
+	proximasInspecoes = resposta.proximasInspecoes;
+	manutencoesPrioritarias = resposta.manutencoesPrioritarias;
 });
-
-const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
 
 const data = {
 	labels: ['0-19', '20-39', '40-59', '60-79', '80-100'],
