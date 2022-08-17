@@ -40,7 +40,7 @@
 						<li class="active">
 							<div class="collapsible-header"><i class="material-icons">event</i>Próximas Inspeções</div>
 							<div class="collapsible-body">
-								<table class="striped centered">
+								<table id="tableProximasInspecoes" class="striped centered">
 									<thead>
 									  <tr>
 										  <th>ID</th>
@@ -79,7 +79,7 @@
 						<li class="active">
 							<div class="collapsible-header"><i class="material-icons">event</i>Rankeamento de Manutenção Prioritária</div>
 							<div class="collapsible-body">
-								<table class="striped centered">
+								<table id="tableRankeamento" class="striped centered">
 									<thead>
 									  <tr>
 										  <th>ID</th>
