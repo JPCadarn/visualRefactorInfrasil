@@ -189,7 +189,7 @@ class InspecoesService extends AbstractService
         $statusAvaliado = 'Avaliado';
 
 		$sqlProximasAvaliacoes = '
-			SELECT i.id, p.nome, i.data, i.tipo
+			SELECT i.id, p.nome, i.data_inspecao, i.tipo_inspecao
 			FROM inspecoes i 
 			JOIN pontes p ON i.ponte_id = p.id
 			JOIN usuarios u ON p.id_usuario = u.id 
@@ -228,6 +228,9 @@ class InspecoesService extends AbstractService
 				'manutencoesPrioritarias' => $this->montarManutencoesPrioritarias($indicesManutencaoPrioritaria)
 			];
         } catch (Exception $exception) {
+			echo '<pre>';
+			print_r($exception);
+			exit;
             $this->conexao->rollBack();
             return [
                 'status' => $exception->getCode(),
