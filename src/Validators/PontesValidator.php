@@ -22,10 +22,6 @@ class PontesValidator
 			}
 		}
 
-		if(empty($_FILES)){
-			$erros[] = 'Por favor, insira ao menos uma imagem para a OAE';
-		}
-
 		return $erros;
 	}
 
