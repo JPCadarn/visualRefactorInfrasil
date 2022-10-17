@@ -228,9 +228,6 @@ class InspecoesService extends AbstractService
 				'manutencoesPrioritarias' => $this->montarManutencoesPrioritarias($indicesManutencaoPrioritaria)
 			];
         } catch (Exception $exception) {
-            echo '<pre>';
-            print_r($exception);
-            exit;
             $this->conexao->rollBack();
             return [
                 'status' => $exception->getCode(),
