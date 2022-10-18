@@ -42,32 +42,15 @@
 							<div class="collapsible-body">
 								<table id="tableProximasInspecoes" class="striped centered">
 									<thead>
-									  <tr>
-										  <th>ID</th>
-										  <th>Estrutura</th>
-										  <th>Data</th>
-										  <th>Visualizar</th>
-									  </tr>
+										<tr>
+											<th>ID</th>
+											<th>Estrutura</th>
+										  	<th>Data</th>
+										  	<th>Visualizar</th>
+										</tr>
 									</thead>
 									<tbody>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>01/01/2023</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>01/01/2023</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>01/01/2023</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
+
 									</tbody>
 								  </table>
 							</div>
@@ -81,34 +64,17 @@
 							<div class="collapsible-body">
 								<table id="tableRankeamento" class="striped centered">
 									<thead>
-									  <tr>
-										  <th>ID</th>
-										  <th>Estrutura</th>
-										  <th>Nota</th>
-										  <th>Visualizar</th>
-									  </tr>
+										<tr>
+											<th>ID</th>
+										  	<th>Estrutura</th>
+										  	<th>Nota</th>
+										  	<th>Visualizar</th>
+									  	</tr>
 									</thead>
 									<tbody>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>32.7</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>26.7</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
-									  <tr>
-										<td>1</td>
-										<td>Ponte Linha Corticeira</td>
-										<td>18.6</td>
-										<td><i class="material-icons tooltipped yellow-text text-darken-3" data-position="right" data-tooltip="Visualizar informações">info</i></td>
-									  </tr>
+
 									</tbody>
-								  </table>
+							  	</table>
 							</div>
 						</li>
 					</ul>
